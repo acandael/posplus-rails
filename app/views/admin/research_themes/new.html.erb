@@ -1,0 +1,12 @@
+<h1>Add Research Theme</h1>
+<%= form_for [:admin, @research_theme] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <%= f.submit "Add Research Theme" %>
+<% end %>

@@ -1,1 +1,8 @@
 <h1>Manage Research Themes</h1>
+<%= link_to 'Add Research Theme', new_admin_research_theme_path %>
+
+<ul>
+<% @research_themes.each do |theme| %>
+  <li><%= theme.title %><li>
+<% end %>
+</ul>
