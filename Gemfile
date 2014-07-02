@@ -29,7 +29,11 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'launchy'
 end
+
+gem 'fabrication'
+gem 'faker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
