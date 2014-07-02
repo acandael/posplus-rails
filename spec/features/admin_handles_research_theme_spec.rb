@@ -16,27 +16,50 @@ require 'spec_helper'
     end
 
     scenario 'an admin adds a research theme' do
-      click_link 'Add Research Theme'
-      expect(page).to have_css 'h1', text: 'Add Research Theme'
+      add_research_theme @research_theme.title, @research_theme.description
 
-      fill_in 'Title', with: @research_theme.title 
-      fill_in 'Description', with: @research_theme.description 
-      click_button "Add Research Theme"
       page.should have_content @research_theme.title 
       page.should have_content "you successfully added a new research theme"
     end
 
+    scenario 'an admin should not be able to add a research theme without title and description' do
+      expect{
+        add_research_theme "", ""
+      }.not_to change(ResearchTheme, :count).by(1)
+      page.should have_content "there was a problem, the research theme could not be added" 
+    end
+
     scenario "Admin edits research theme" do
-      find("a[href='/admin/research_themes/#{@research_theme.id}/edit']").click 
-      find("input[@id='research_theme_title']").set("this is the edited description")
-      click_button "Update Research Theme"
-      page.should have_content "this is the edited description"
+      @research_theme.title = "this is the edited title"
+      update_research_theme @research_theme.title, @research_theme.description 
+      page.should have_content @research_theme.title
       page.should have_content "you successfully updated the research theme"
+    end
+
+    scenario "An admin should not be able to update research theme without title or description" do
+      @research_theme.title = ""
+      @research_theme.description = ""
+      update_research_theme @research_theme.title, @research_theme.description 
+      page.should_not have_content "this is the edited title"
+      page.should have_content "there was a problem, the research theme could not be updated"
     end
     
     scenario "Admin visits research themes page and deletes research theme" do
       click_link "Delete"
       expect(page).not_to have_css 'a', text: @research_theme.title
       expect(page).to have_content "you successfully removed the research theme"
+    end
+
+    def add_research_theme(title, description)
+      click_link 'Add Research Theme'
+      fill_in 'Title', with: title 
+      fill_in 'Description', with: description 
+      click_button "Add Research Theme"
+    end
+
+    def update_research_theme(title, description)
+      find("a[href='/admin/research_themes/#{@research_theme.id}/edit']").click 
+      find("input[@id='research_theme_title']").set(title)
+      click_button "Update Research Theme"
     end
   end

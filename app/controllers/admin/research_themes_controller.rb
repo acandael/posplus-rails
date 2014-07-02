@@ -17,14 +17,23 @@ class Admin::ResearchThemesController < ApplicationController
 
   def create
     @research_theme = ResearchTheme.create(research_theme_params)
-    @research_theme.save
+    if @research_theme.save
     redirect_to admin_research_themes_path, notice: "you successfully added a new research theme"
+    else
+      flash.alert = "there was a problem, the research theme could not be added"
+      render :new
+    end
   end
+
 
   def update
     @research_theme = ResearchTheme.find(params[:id])
-    @research_theme.update_attributes(research_theme_params)
+    if @research_theme.update_attributes(research_theme_params)
     redirect_to admin_research_themes_path, notice: "you successfully updated the research theme"
+    else
+      flash.alert ="there was a problem, the research theme could not be updated"
+      render :edit
+    end
   end
 
   def destroy
