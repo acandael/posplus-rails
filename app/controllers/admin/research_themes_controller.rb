@@ -7,6 +7,10 @@ class Admin::ResearchThemesController < ApplicationController
     @research_theme = ResearchTheme.new
   end
 
+  def show
+    @research_theme = ResearchTheme.find(params[:id])
+  end
+
   def edit
     @research_theme = ResearchTheme.find(params[:id])
   end

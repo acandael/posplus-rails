@@ -10,5 +10,4 @@ feature 'View the dashboard' do
    visit admin_path
    expect(page).to have_css 'a', text: 'Research Themes'
  end
-
 end
