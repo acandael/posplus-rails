@@ -16,7 +16,9 @@ require 'spec_helper'
     end
 
     scenario 'an admin adds a research theme' do
+      expect{
       add_research_theme @research_theme.title, @research_theme.description
+      }.to change(ResearchTheme, :count).by(1)
 
       page.should have_content @research_theme.title 
       page.should have_content "you successfully added a new research theme"
@@ -44,8 +46,10 @@ require 'spec_helper'
       page.should have_content "there was a problem, the research theme could not be updated"
     end
     
-    scenario "Admin visits research themes page and deletes research theme" do
+    scenario "Admin deletes research theme" do
+      expect{
       click_link "Delete"
+      }.to change(ResearchTheme, :count).by(-1)
       expect(page).not_to have_css 'a', text: @research_theme.title
       expect(page).to have_content "you successfully removed the research theme"
     end
