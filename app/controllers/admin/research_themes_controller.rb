@@ -18,13 +18,19 @@ class Admin::ResearchThemesController < ApplicationController
   def create
     @research_theme = ResearchTheme.create(research_theme_params)
     @research_theme.save
-    redirect_to admin_research_themes_path
+    redirect_to admin_research_themes_path, notice: "you successfully added a new research theme"
   end
 
   def update
     @research_theme = ResearchTheme.find(params[:id])
     @research_theme.update_attributes(research_theme_params)
-    redirect_to admin_research_themes_path
+    redirect_to admin_research_themes_path, notice: "you successfully updated the research theme"
+  end
+
+  def destroy
+    research_theme = ResearchTheme.find(params[:id])
+    research_theme.destroy
+    redirect_to admin_research_themes_path, notice: "you successfully removed the research theme"
   end
 
   private
