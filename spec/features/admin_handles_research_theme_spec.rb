@@ -54,6 +54,16 @@ require 'spec_helper'
       expect(page).to have_content "you successfully removed the research theme"
     end
 
+    scenario "Admin sees research projects for research theme" do
+      research_project_1 = Fabricate(:research_project)
+      research_project_2 = Fabricate(:research_project)
+      @research_theme.research_projects << research_project_1
+      @research_theme.research_projects << research_project_2
+      click_link @research_theme.title
+      expect(page).to have_css 'li', text: research_project_1.title
+      expect(page).to have_css 'li', text: research_project_2.title
+    end
+
     def add_research_theme(title, description)
       click_link 'Add Research Theme'
       fill_in 'Title', with: title 
