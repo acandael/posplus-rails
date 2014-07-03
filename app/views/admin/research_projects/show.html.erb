@@ -2,3 +2,9 @@
 <div>
   <%= @research_project.body %>
 </div>
+<h2>Research Themes</h2>
+<ul>
+  <% @research_project.research_themes.each do |theme| %>
+    <li><%= theme.title %></li>
+  <% end %>
+</ul>

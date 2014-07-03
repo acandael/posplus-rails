@@ -65,4 +65,14 @@ feature "Admin interacts with research projects" do
     expect(page).to have_content "you successfully removed the research project"
   end
 
+  scenario "Admin sees research themes for research project" do
+    research_theme_1 = Fabricate(:research_theme)
+    research_theme_2 = Fabricate(:research_theme)
+    @research_project.research_themes << research_theme_1
+    @research_project.research_themes << research_theme_2
+    click_link @research_project.title
+    expect(page).to have_css 'li', text: research_theme_1.title
+    expect(page).to have_css 'li', text: research_theme_2.title
+  end
+
 end
