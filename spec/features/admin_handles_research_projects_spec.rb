@@ -58,4 +58,11 @@ feature "Admin interacts with research projects" do
     expect(page).to have_content "there was a problem, the research project could not be updated"
   end
 
+  scenario "Admin deletes research project" do
+    expect{
+      click_link "Delete"
+    }.to change(ResearchProject, :count).by(-1)
+    expect(page).to have_content "you successfully removed the research project"
+  end
+
 end

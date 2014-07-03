@@ -2,6 +2,6 @@
 <%= link_to "Add Research Project", new_admin_research_project_path %>
 <ul>
 <% @research_projects.each do |project| %>
-  <li><%= link_to project.title, admin_research_project_path(project) %> <%= link_to "Edit", edit_admin_research_project_path(project) %></li>
+  <li><%= link_to project.title, admin_research_project_path(project) %> <%= link_to "Edit", edit_admin_research_project_path(project) %>  <%= link_to "Delete", admin_research_project_path(project), method: :delete %></li>
 <% end %>
 </ul>

@@ -35,7 +35,11 @@ class Admin::ResearchProjectsController < ApplicationController
     end
   end
 
-  
+  def destroy
+    research_project = ResearchProject.find(params[:id])
+    research_project.destroy
+    redirect_to admin_research_projects_path, notice: "you successfully removed the research project"
+  end
 
   
   private
