@@ -1,4 +1,3 @@
-<h1>Add new research project</h1>
 <%= form_for [:admin, @research_project] do |f| %>
   <div>
     <%= f.label :title %>
@@ -8,5 +7,5 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
-  <%= f.submit "Add Research Project" %>
+  <%= f.submit "Update Research Project" %>
 <% end %>
