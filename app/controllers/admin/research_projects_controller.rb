@@ -45,6 +45,6 @@ class Admin::ResearchProjectsController < ApplicationController
   private
 
   def research_project_params
-    params.require(:research_project).permit(:title, :body)
+    params.require(:research_project).permit(:title, :body, :research_theme_ids => [] )
   end
 end

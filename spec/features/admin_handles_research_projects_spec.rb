@@ -75,4 +75,27 @@ feature "Admin interacts with research projects" do
     expect(page).to have_css 'li', text: research_theme_2.title
   end
 
+  scenario "Admin adds research themes to research project" do
+    research_theme_1 = Fabricate(:research_theme)
+    research_theme_2 = Fabricate(:research_theme)
+    research_theme_3 = Fabricate(:research_theme)
+
+
+    click_link "Add Research Project"
+
+
+    expect(page).to have_css 'label', text: research_theme_1.title
+    expect(page).to have_css 'label', text: research_theme_2.title
+    expect(page).to have_css 'label', text: research_theme_3.title
+
+    check "research_project_research_theme_ids_1"
+    check "research_project_research_theme_ids_2"
+
+    save_and_open_page
+
+    click_button "Add Research Project"
+
+    @research_project.reload
+    expect(@research_project.research_themes.count).to eq(2)
+  end
 end
