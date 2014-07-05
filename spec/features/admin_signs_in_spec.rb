@@ -35,7 +35,7 @@ feature 'Admin signs in' do
     fill_in "Email Address", with: alice.email
     fill_in "Password", with: alice.password
     click_button "Sign in"
-    expect(current_path).to eq(admin_path)
+    expect(page).to have_css 'h1', text: "Dashboard"
   end
 
   scenario 'A regular user should not have access to the dashboard' do
@@ -44,6 +44,6 @@ feature 'Admin signs in' do
     fill_in "Email Address", with: alice.email
     fill_in "Password", with: alice.password
     click_button "Sign in"
-    expect(page).to have_content text: "Unauthorized access!"
+    expect(page).to have_css 'p', text: "Unauthorized access!"
   end
 end

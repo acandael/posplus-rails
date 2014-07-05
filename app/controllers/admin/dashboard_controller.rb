@@ -5,8 +5,8 @@ class Admin::DashboardController < ApplicationController
   private
 
   def require_admin
-    unless current_user.admin?
-      flash.now[:alert] = "Unauthorized acces!"
+    unless current_user_admin?
+      flash[:alert] = "Unauthorized access!"
       redirect_to home_path
     end
   end
