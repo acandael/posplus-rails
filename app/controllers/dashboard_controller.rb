@@ -1,5 +1,4 @@
-class Admin::DashboardController < ApplicationController
-  before_filter :require_signin
+class DashboardController < AuthenticatedController
   before_filter :require_admin  
 
   private

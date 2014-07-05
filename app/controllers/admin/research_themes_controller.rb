@@ -1,4 +1,4 @@
-class Admin::ResearchThemesController < ApplicationController
+class Admin::ResearchThemesController < DashboardController
   def index
     @research_themes = ResearchTheme.all
   end
