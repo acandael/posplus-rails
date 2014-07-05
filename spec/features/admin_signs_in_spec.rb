@@ -19,6 +19,16 @@ feature 'Admin signs in' do
     expect(page).to have_content "Wrong Email/Password combination"
   end
 
+  scenario 'Admin signs out' do
+    alice = Fabricate(:admin)
+    visit sign_in_path
+    fill_in "Email Address", with: alice.email 
+    fill_in "Password", with: alice.password
+    click_button "Sign in"
+    click_link "Sign Out"
+    expect(page).to have_content "You are signed out!"
+  end
+
   scenario 'Admin signs in and is redirect to dashboard' do
     alice = Fabricate(:admin)
     visit sign_in_path
@@ -26,5 +36,14 @@ feature 'Admin signs in' do
     fill_in "Password", with: alice.password
     click_button "Sign in"
     expect(current_path).to eq(admin_path)
+  end
+
+  scenario 'A regular user should not have access to the dashboard' do
+    alice = Fabricate(:user)
+    visit sign_in_path
+    fill_in "Email Address", with: alice.email
+    fill_in "Password", with: alice.password
+    click_button "Sign in"
+    expect(page).to have_content text: "Unauthorized access!"
   end
 end
