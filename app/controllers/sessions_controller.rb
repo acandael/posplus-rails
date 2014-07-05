@@ -8,6 +8,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to admin_path
+    else
+      flash.now[:alert] = "Wrong Email/Password combination"
+      render :new    
     end
   end
 end
