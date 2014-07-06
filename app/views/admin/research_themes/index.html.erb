@@ -3,6 +3,6 @@
 
 <ul>
 <% @research_themes.each do |theme| %>
-  <li><%= link_to theme.title, admin_research_theme_path(theme) %>  <%= link_to "Edit", edit_admin_research_theme_path(theme) %>  <%= link_to "Delete", admin_research_theme_path(theme), method: :delete %><li>
+  <li><%= link_to theme.title, admin_research_theme_path(theme) %>  <%= link_to "Edit", edit_admin_research_theme_path(theme) %>  <%= link_to "Delete", admin_research_theme_path(theme), method: :delete %></li>
 <% end %>
 </ul>

@@ -137,7 +137,7 @@ describe Admin::ResearchThemesController do
       let(:action) { post :update, id: @research_theme.id }
     end
 
-    it "deletes the course" do
+    it "deletes the research theme" do
       set_current_admin
       delete :destroy, id: @research_theme.id
       expect(ResearchTheme.count).to eq(0)
