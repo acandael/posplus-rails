@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id]) if session[:user_id]
   end
 
+  def require_user
+    redirect_to signin_path unless current_user
+  end
+
   def current_user_admin?
     current_user && current_user.admin?
   end
