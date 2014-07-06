@@ -10,5 +10,9 @@
   <div>
      <%= f.collection_check_boxes :research_theme_ids, ResearchTheme.all, :id, :title %>
   </div>
-  <%= f.submit "Add Research Project" %>
+  <% if @research_project.new_record? %>
+    <%= f.submit "Add Research Project" %>
+  <% else %>
+    <%= f.submit "Update Research Project" %>
+  <% end %>
 <% end %>

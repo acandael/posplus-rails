@@ -3,6 +3,8 @@ require 'spec_helper'
 feature "Admin interacts with research projects" do
   background do
     @research_project = Fabricate(:research_project)
+    admin = Fabricate(:admin)
+    sign_in(admin)
     visit admin_research_projects_path    
   end
   scenario "Admin views research projects" do
@@ -80,7 +82,6 @@ feature "Admin interacts with research projects" do
     research_theme_2 = Fabricate(:research_theme)
     research_theme_3 = Fabricate(:research_theme)
 
-
     click_link "Add Research Project"
 
 
@@ -91,7 +92,6 @@ feature "Admin interacts with research projects" do
     check "research_project_research_theme_ids_1"
     check "research_project_research_theme_ids_2"
 
-    save_and_open_page
 
     click_button "Add Research Project"
 
