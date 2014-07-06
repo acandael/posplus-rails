@@ -2,3 +2,6 @@
   Welcome <%= current_user.full_name %>
   <%= link_to 'Sign Out', session_path, method: :delete %>
 <% end %>
+<% if current_user_admin? %>
+  <%= link_to "Dashboard", admin_path %>
+<% end %>

@@ -2,6 +2,11 @@ require 'spec_helper'
 
   feature "Admin interacts with research theme" do
     background do
+      admin = Fabricate(:admin)
+      visit sign_in_path
+      fill_in "Email Address", with: admin.email
+      fill_in "Password", with: admin.password
+      click_button "Sign in"
       @research_theme = Fabricate(:research_theme)
       visit admin_research_themes_path
     end

@@ -1,0 +1,14 @@
+<%= form_for [:admin, @research_project] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+     <%= f.collection_check_boxes :research_theme_ids, ResearchTheme.all, :id, :title %>
+  </div>
+  <%= f.submit "Add Research Project" %>
+<% end %>

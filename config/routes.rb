@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   get 'home', to: "homes#index"
 
-  get 'sign_in' => "sessions#new"
+  get 'signin' => "sessions#new"
   resource :session
 
+  get 'admin', to: 'dashboard#index'
   namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
     resources :research_themes
     resources :research_projects
   end
