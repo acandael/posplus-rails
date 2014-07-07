@@ -1,6 +1,6 @@
 <h1>Researchers</h1>
 <ul>
 <%= @researchers.each do |researcher| %>
-  <li><%= researcher.name %></li>
+  <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
 <% end %>
 </ul>
