@@ -3,4 +3,15 @@ class ResearchTheme < ActiveRecord::Base
 
   has_many :theme_projects, dependent: :destroy
   has_many :research_projects, through: :theme_projects
+
+  before_destroy :check_for_projects
+
+  private
+
+  def check_for_projects
+    if research_projects.any?
+      errors[:base] << "cannot delete research theme that still has research projects"
+      return false
+    end
+  end
 end
