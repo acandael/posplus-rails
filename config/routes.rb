@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :research_themes
     resources :research_projects
+    resources :researchers, only: [:index]
   end
 end

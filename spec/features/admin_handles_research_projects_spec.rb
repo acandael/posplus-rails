@@ -23,11 +23,16 @@ feature "Admin interacts with research projects" do
     click_link "Add Research Project"
     fill_in 'Title', with: @research_project.title 
     fill_in 'Body', with: @research_project.body 
+    attach_file 'Image', "spec/support/uploads/monk_large.jpg"
     click_button "Add Research Project"
     }.to change(ResearchProject, :count).by(1)
 
     expect(page).to have_content @research_project.title 
     expect(page).to have_content "you successfully added a new research project"
+
+    visit admin_research_project_path @research_project.id
+    save_and_open_page
+    expect(page).to have_css("img[src='monk_large.jpg']")
   end
 
   scenario 'Admin should not be able to add research project without title and body' do
