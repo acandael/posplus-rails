@@ -13,7 +13,12 @@ class Admin::ResearchersController < DashboardController
 
   def create
     @researcher = Researcher.create(researcher_params)
-    redirect_to admin_researchers_path
+    if @researcher.save
+      redirect_to admin_researchers_path, notice: "You successfully added a new researcher"
+    else
+      flash[:alert] = "there was a problem, the researcher was not added"
+      render :new
+    end
   end
 
   private

@@ -31,7 +31,6 @@ feature "Admin interacts with research projects" do
     expect(page).to have_content "you successfully added a new research project"
 
     visit admin_research_project_path @research_project.id
-    save_and_open_page
     expect(page).to have_css("img[src='monk_large.jpg']")
   end
 

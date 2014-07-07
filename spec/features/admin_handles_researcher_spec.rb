@@ -27,5 +27,17 @@ feature "Admin interacts with researcher" do
       fill_in 'Email', with: @researcher.email
       click_button "Add Researcher"
     }.to change(Researcher, :count).by(1)
+
+    expect(page).to have_css 'p', text: "You successfully added a new researcher"
+  end
+
+  scenario 'Admin should not be able to add research project without name and bio' do
+    expect{
+      click_link "Add Researcher"
+      fill_in 'Name', with: ""
+      fill_in 'Bio', with: ""
+      click_button "Add Researcher"
+    }.not_to change(Researcher, :count).by(1)
+    expect(page).to have_css 'p', text: "there was a problem, the researcher was not added"
   end
 end
