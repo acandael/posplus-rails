@@ -18,4 +18,14 @@ feature "Admin interacts with researcher" do
     expect(page).to have_css 'p', text: @researcher.bio
     expect(page).to have_css 'a', text: @researcher.email
   end
+
+  scenario "Admin adds a researcher" do
+    expect{
+      click_link "Add Researcher"
+      fill_in 'Name', with: @researcher.name
+      fill_in 'Bio', with: @researcher.bio
+      fill_in 'Email', with: @researcher.email
+      click_button "Add Researcher"
+    }.to change(Researcher, :count).by(1)
+  end
 end
