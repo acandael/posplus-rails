@@ -38,8 +38,13 @@ class Admin::ResearchThemesController < DashboardController
 
   def destroy
     research_theme = ResearchTheme.find(params[:id])
-    research_theme.destroy
-    redirect_to admin_research_themes_path, notice: "you successfully removed the research theme"
+    if research_theme.destroy
+      flash[:notice] = "you successfully removed the research theme"
+    else
+      flash[:alert] = research_theme.errors.full_messages.join(' ')
+    end
+
+    redirect_to admin_research_themes_path
   end
 
   private

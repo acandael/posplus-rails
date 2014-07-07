@@ -57,6 +57,18 @@ require 'spec_helper'
       }.to change(ResearchTheme, :count).by(-1)
       expect(page).not_to have_css 'a', text: @research_theme.title
       expect(page).to have_content "you successfully removed the research theme"
+      expect(current_path).to eq admin_research_themes_path
+    end
+
+    scenario "An admin should not be able to delete a research theme when it still has research projects" do
+      research_project = Fabricate(:research_project)
+      @research_theme.research_projects << research_project
+      @research_theme.save
+      expect{
+        click_link "Delete"
+      }.not_to change(ResearchTheme, :count).by(-1)
+      expect(page).to have_content "cannot delete research theme that still has research projects"
+      expect(current_path).to eq admin_research_themes_path
     end
 
     scenario "Admin sees research projects for research theme" do
