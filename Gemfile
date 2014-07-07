@@ -35,6 +35,10 @@ end
 gem 'fabrication'
 gem 'faker'
 
+# gems for uploading and image processing
+gem 'carrierwave'
+gem 'mini_magick'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

@@ -8,6 +8,10 @@
     <%= f.text_area :body %>
   </div>
   <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
      <%= f.collection_check_boxes :research_theme_ids, ResearchTheme.all, :id, :title %>
   </div>
   <% if @research_project.new_record? %>

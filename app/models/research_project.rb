@@ -3,4 +3,6 @@ class ResearchProject < ActiveRecord::Base
 
   has_many :theme_projects, dependent: :destroy
   has_many :research_themes, through: :theme_projects
+
+  mount_uploader :image, ResearchProjectImageUploader
 end
