@@ -15,6 +15,9 @@
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
+  <div>
+     <%= f.collection_check_boxes :research_project_ids, ResearchProject.all, :id, :title %>
+  </div>
   <% if @researcher.new_record? %>
     <%= f.submit "Add Researcher" %>
   <% else %>

@@ -44,6 +44,6 @@ class Admin::ResearchersController < DashboardController
   private
 
   def researcher_params
-    params.require(:researcher).permit(:name, :bio, :email, :image)
+    params.require(:researcher).permit(:name, :bio, :email, :image, :research_project_ids => [])
   end
 end
