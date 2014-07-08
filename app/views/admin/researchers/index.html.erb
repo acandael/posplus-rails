@@ -2,6 +2,6 @@
 <%= link_to 'Add Researcher', new_admin_researcher_path %>
 <ul>
 <% @researchers.each do |researcher| %>
-  <li><%= link_to researcher.name, admin_researcher_path(researcher) %> <%= link_to "Edit", edit_admin_researcher_path(researcher) %> <%= link_to "Delete", admin_researcher_path(researcher), method: :delete %></li>
+  <li><%= link_to researcher.name, admin_researcher_path(researcher) %> <%= link_to "Edit", edit_admin_researcher_path(researcher) %> <%= link_to "Delete", admin_researcher_path(researcher), method: :delete, data: { confirm: "Are you sure?" } %></li>
 <% end %>
 </ul>

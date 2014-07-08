@@ -85,4 +85,11 @@ feature "Admin interacts with researcher" do
     }.to change(Researcher, :count).by(-1)
     expect(page).to have_css 'p', text: "You successfully removed the researcher"
   end
+
+  scenario 'Admin sees research projects for member' do
+    research_project1 = Fabricate(:research_project)
+    @researcher.research_projects << research_project1 
+    click_link @researcher.name
+    expect(page).to have_css 'li', text: research_project1.title
+  end
 end

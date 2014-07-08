@@ -1,0 +1,24 @@
+<%= form_for [:admin, @researcher] do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <% if @researcher.new_record? %>
+    <%= f.submit "Add Researcher" %>
+  <% else %>
+    <%= f.submit "Update Researcher" %>
+  <% end %>
+  <%= link_to 'Cancel', admin_researchers_path %>
+<% end %>
