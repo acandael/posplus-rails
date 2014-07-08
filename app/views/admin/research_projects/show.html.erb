@@ -12,3 +12,9 @@
     <li><%= theme.title %></li>
   <% end %>
 </ul>
+<h2>Researchers</h2>
+<ul>
+  <% @research_project.researchers.each do |researcher| %>
+    <li><%= researcher.name %></li>
+  <% end %>
+</ul>

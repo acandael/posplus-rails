@@ -81,4 +81,14 @@ feature "Admin interacts with research projects" do
     expect(page).to have_css 'li', text: research_theme_1.title
     expect(page).to have_css 'li', text: research_theme_2.title
   end
+
+  scenario "Admin sees researchers for research project" do
+    researcher1 = Fabricate(:researcher)
+    researcher2 = Fabricate(:researcher)
+    @research_project.researchers << researcher1
+    @research_project.researchers << researcher2
+    click_link @research_project.title
+    expect(page).to have_css 'li', text: researcher1.name
+    expect(page).to have_css 'li', text: researcher2.name
+  end
 end
