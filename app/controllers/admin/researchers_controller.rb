@@ -16,7 +16,7 @@ class Admin::ResearchersController < DashboardController
     if @researcher.save
       redirect_to admin_researchers_path, notice: "You successfully added a new researcher"
     else
-      flash[:alert] = "there was a problem, the researcher was not added"
+      flash[:alert] = @researcher.errors.full_messages.join(' ') 
       render :new
     end
   end

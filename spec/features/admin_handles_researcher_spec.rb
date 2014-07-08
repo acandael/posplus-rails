@@ -40,4 +40,15 @@ feature "Admin interacts with researcher" do
     }.not_to change(Researcher, :count).by(1)
     expect(page).to have_css 'p', text: "there was a problem, the researcher was not added"
   end
+
+  scenario 'Admin should not be able to add a researcher if the name already exists' do
+    researcher2 = Fabricate(:researcher)
+    expect{
+      click_link "Add Researcher"
+      fill_in 'Name', with: @researcher.name 
+      fill_in 'Bio', with: researcher2.bio 
+      click_button "Add Researcher"
+    }.not_to change(Researcher, :count).by(1)
+    expect(page).to have_content "Name has already been taken"
+  end
 end

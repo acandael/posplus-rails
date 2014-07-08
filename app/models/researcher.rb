@@ -1,3 +1,4 @@
 class Researcher < ActiveRecord::Base
-  validates :name, :bio, presence: :true
+  validates :name, presence: :true, uniqueness: :true
+  validates :bio, presence: :true
 end

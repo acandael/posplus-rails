@@ -1,7 +1,7 @@
 <h1>Researchers</h1>
 <%= link_to 'Add Researcher', new_admin_researcher_path %>
 <ul>
-<%= @researchers.each do |researcher| %>
+<% @researchers.each do |researcher| %>
   <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
 <% end %>
 </ul>
