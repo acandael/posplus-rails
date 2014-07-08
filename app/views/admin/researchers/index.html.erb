@@ -1,7 +1,15 @@
+<%= render layout: 'dashboard' do %>
 <h1>Researchers</h1>
 <%= link_to 'Add Researcher', new_admin_researcher_path %>
-<ul>
-<% @researchers.each do |researcher| %>
-  <li><%= link_to researcher.name, admin_researcher_path(researcher) %> <%= link_to "Edit", edit_admin_researcher_path(researcher) %> <%= link_to "Delete", admin_researcher_path(researcher), method: :delete, data: { confirm: "Are you sure?" } %></li>
+<table class="table-borders">
+  <tbody>
+    <% @researchers.each do |researcher| %>
+      <tr>
+        <td><%= link_to researcher.name, admin_researcher_path(researcher) %></td>
+        <td><%= link_to "Edit", edit_admin_researcher_path(researcher) %></td>
+        <td><%= link_to "Delete", admin_researcher_path(researcher), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <% end %>
-</ul>
