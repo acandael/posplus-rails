@@ -1,0 +1,17 @@
+<h1>Edit Researcher</h1>
+<%= form_for [:admin, @researcher] do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <%= f.submit "Update Researcher" %>
+<% end %>
+

@@ -51,4 +51,38 @@ feature "Admin interacts with researcher" do
     }.not_to change(Researcher, :count).by(1)
     expect(page).to have_content "Name has already been taken"
   end
+
+  scenario 'Admin edits researcher' do
+    @researcher.bio = "edited the bio"
+    find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
+    find("textarea[@id='researcher_bio']").set(@researcher.bio)
+    click_button "Update Researcher"
+    expect(page).to have_content "you successfully updated the researcher"
+  end
+
+  scenario 'Admin should not be able to update researcher without name or bio' do
+    @researcher.name = ""
+    @researcher.bio = "edited the bio"
+    find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
+    find("input[@id='researcher_name']").set(@researcher.name)
+    find("textarea[@id='researcher_bio']").set(@researcher.bio)
+    click_button "Update Researcher"
+    expect(page).to have_content "Name can't be blank"
+  end
+
+  scenario 'Admin should not be able to give duplicate name while editing' do
+    researcher2 = Fabricate(:researcher)
+    find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
+    find("input[@id='researcher_name']").set(researcher2.name)
+    find("textarea[@id='researcher_bio']").set(@researcher.bio)
+    click_button "Update Researcher"
+    expect(page).to have_content "Name has already been taken"
+  end
+
+  scenario 'Admin deletes researcher' do
+    expect{
+      click_link "Delete"
+    }.to change(Researcher, :count).by(-1)
+    expect(page).to have_css 'p', text: "You successfully removed the researcher"
+  end
 end
