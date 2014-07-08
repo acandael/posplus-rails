@@ -1,0 +1,189 @@
+section.home {
+  @include outer-container;
+  padding: .75em;
+  .hero {
+    margin-top: em(20);
+    margin-bottom: em(20);
+    @include media($medium-screen) {
+      @include span-columns(8);
+    }
+
+
+	$hero-background: desaturate(darken($base-accent-color, 20), 30);	
+	$hero-color: white;
+
+	background: url(/images/logo-transparent.png);
+	background-color: $hero-background;
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: cover;
+	//padding-bottom: 4em;
+
+	.hero-logo img {
+		height: 3em;
+		margin-bottom: 1em;
+	}
+
+	.hero-inner {
+		@include outer-container;
+		@include clearfix;
+		padding: .75em;
+    @include media($medium-screen) {
+      padding: 3em;
+    }
+		margin: auto;
+		text-align: left;
+		color: $hero-color;
+
+		button {
+			@include button(simple, $base-accent-color);
+			font-size: $base-font-size;
+			outline: none;
+		}
+
+		.hero-copy {
+			text-align: left;
+			
+			h1 {
+				font-size: 1.4em;
+				margin-bottom: .2em;
+
+				@include media($large-screen) {
+					font-size: 1.8em;
+				}
+			}
+
+			p {
+				//margin: auto;
+				margin-bottom: 3em;	
+				font-weight: 200;
+
+				@include media($large-screen) {
+					font-size: 1.2em;
+					//max-width: 40%;
+				}
+			}
+		}
+	}
+}
+
+.news {
+  margin-top: em(20);
+  @include media($medium-screen) {
+    @include span-columns(4);
+    @include omega();
+    min-height: 283px;
+  }
+
+  background-color: white;
+  @extend .box-shadow;
+  .news-inner {
+    padding-top: .75em;
+    padding-bottom: .75em;
+    h2 {
+      font-size: $base-font-size * 1.2;
+      text-align: center;
+      @include media($medium-screen) {
+        font-size: $base-font-size * 2;
+      }
+    }
+    p {
+      margin-left: 1.75em;
+      margin-top: em(10);
+      @include media($medium-screen) {
+        padding-left: 1em;
+      }
+    }
+  }
+}
+
+.research {
+  @include span-columns(12);
+  @include media($medium-screen) {
+    margin-top: em(40);
+  }
+}
+
+.bullets {
+  $icon-bullet-size: 3.5em;
+
+  overflow: auto;
+  margin-top: em(20);
+  margin-bottom: $base-line-height;
+
+  
+// change ".three-col-bullet" class to this for two bullet layout
+  .bullet {
+    background: white;
+    @extend .box-shadow;
+    margin-bottom: em(20);
+    padding-top: em(20);
+    padding-bottom: em(10);
+    @include media($medium-screen) {
+      @include span-columns(6);
+      @include omega(2n);  
+      padding-left: em(10);
+      min-height: 280px;
+    } 
+  }
+  
+  .three-col-bullet {
+    @include media($medium-screen) {
+      @include span-columns(4);
+      @include omega(3n);
+    }
+  }
+
+  
+// change ".three-col-bullet" class to this for four bullet layout
+  .four-col-bullet {
+    @include media($large-screen) {
+      @include span-columns(3);
+      @include omega(4n);
+    }
+  }
+
+  .bullet-icon {
+    margin: auto;
+
+    @include media($medium-screen) {
+      float: left;
+    }
+    background: $base-accent-color;
+    padding: $icon-bullet-size /4;
+    border-radius: 50%;
+    width: $icon-bullet-size;
+    height: $icon-bullet-size;
+  }
+
+  .bullet-icon-1 {
+    background: $base-accent-color;
+  }
+
+  .bullet-icon-2 {
+    background: adjust-hue($base-accent-color, -50);
+  }
+
+  .bullet-icon-3 {
+    background: adjust-hue($base-accent-color, -140);
+  }
+
+  .bullet-content {
+      margin-left: $icon-bullet-size * .5;
+      margin-right: $icon-bullet-size * .5;
+      margin-bottom: 1em;
+    @include media($medium-screen) {
+      margin-left: $icon-bullet-size *1.4;
+      margin-bottom: 2em;
+    }
+  }
+
+  h2 {
+    font-size: $icon-bullet-size /2.5;
+    padding-top: $icon-bullet-size /7;
+    margin-bottom: $icon-bullet-size /6;
+    border-bottom: 1px solid transparentize($base-font-color, .8);
+    display: inline-block;
+  }
+ }
+}

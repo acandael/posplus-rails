@@ -2,22 +2,20 @@
 <html>
 <head>
   <title>Posplus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700'
+  rel='stylesheet' type='text/css'>
+  
 </head>
 <body>
-
-<%= render "shared/header" %>
-
-<% if alert %>
-  <p><%= alert %></p>
-<% end %>
-<% if notice %>
-  <p><%= notice %></p>
-<% end %>
-
-<%= yield %>
-
+<div id="main" role="main">
+  <%= render "shared/header" %>
+  <%= yield %>
+  <div class="push"></div>
+</div>
+<%= render "shared/footer" %>
 </body>
 </html>
