@@ -29,9 +29,6 @@ feature "Admin interacts with research projects" do
 
     expect(page).to have_content @research_project.title 
     expect(page).to have_content "you successfully added a new research project"
-
-    visit admin_research_project_path @research_project.id
-    expect(page).to have_css("img[src='monk_large.jpg']")
   end
 
   scenario 'Admin should not be able to add research project without title and body' do

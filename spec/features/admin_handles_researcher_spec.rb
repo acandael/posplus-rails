@@ -20,14 +20,14 @@ feature "Admin interacts with researcher" do
   end
 
   scenario "Admin adds a researcher" do
+    @researcher.reload
     expect{
       click_link "Add Researcher"
-      fill_in 'Name', with: @researcher.name
+      fill_in 'Name', with: "some name" 
       fill_in 'Bio', with: @researcher.bio
       fill_in 'Email', with: @researcher.email
       click_button "Add Researcher"
     }.to change(Researcher, :count).by(1)
-
     expect(page).to have_css 'p', text: "You successfully added a new researcher"
   end
 
@@ -38,7 +38,7 @@ feature "Admin interacts with researcher" do
       fill_in 'Bio', with: ""
       click_button "Add Researcher"
     }.not_to change(Researcher, :count).by(1)
-    expect(page).to have_css 'p', text: "there was a problem, the researcher was not added"
+    expect(page).to have_css 'p', text: @researcher.errors.full_messages.join(' ') 
   end
 
   scenario 'Admin should not be able to add a researcher if the name already exists' do
