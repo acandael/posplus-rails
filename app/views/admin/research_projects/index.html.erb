@@ -1,7 +1,14 @@
+<%= render layout: 'dashboard' do %>
 <h1>Research Projects</h1>
-<%= link_to "Add Research Project", new_admin_research_project_path %>
-<ul>
-<% @research_projects.each do |project| %>
-  <li><%= link_to project.title, admin_research_project_path(project) %> <%= link_to "Edit", edit_admin_research_project_path(project) %>  <%= link_to "Delete", admin_research_project_path(project), method: :delete, data: { confirm: "Are you sure?" } %></li>
+<table class="table-borders">
+  <tbody>
+    <%= button_to "Add Research Project", new_admin_research_project_path, method: "get" %>
+    <% @research_projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.title, admin_research_project_path(project) %></td>
+        <td><%= link_to "Edit", edit_admin_research_project_path(project) %>&nbsp;&nbsp;<%= link_to "Delete", admin_research_project_path(project), method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 <% end %>
-</ul>

@@ -1,11 +1,12 @@
 section.dashboard {
   @include outer-container;
-  padding: .75em;
-  @include media($medium-screen) {
-    @include span-columns(8);
-  }
 
   form {
     @include span-columns(6);
+  }
+
+  .button_to {
+    margin-top: em(20);
+    margin-bottom: em(20);
   }
 }

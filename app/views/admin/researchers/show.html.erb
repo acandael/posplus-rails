@@ -1,11 +1,13 @@
-<p><%= link_to "Researchers", admin_researchers_path %>
-<h1><%= @researcher.name %></h1>
-<p><%= @researcher.bio %></p>
-<p><%= image_tag @researcher.image.url %>
-<p><%= mail_to @researcher.email %></p>
-<h2>Research Projects</h2>
-<ul>
-  <% @researcher.research_projects.each do |project| %>
-    <li><%= project.title %></li>
-  <% end %>
-</ul>
+<%= render layout: 'dashboard' do %>
+  <p><%= link_to "Researchers", admin_researchers_path %>
+  <h1><%= @researcher.name %></h1>
+  <p><%= @researcher.bio %></p>
+  <p><%= image_tag @researcher.image.url %>
+  <p><%= mail_to @researcher.email %></p>
+  <p><strong>Research Projects</strong></p>
+  <ul>
+    <% @researcher.research_projects.each do |project| %>
+      <li><%= project.title %></li>
+    <% end %>
+  </ul>
+<% end %>

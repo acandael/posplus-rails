@@ -1,20 +1,24 @@
+<%= render layout: 'dashboard' do %>
 <p><%= link_to "Research Projects", admin_research_projects_path %></p>
 <h1><%= @research_project.title %></h1>
 <div>
+  <p><strong>Bodytext</strong></p>
   <%= @research_project.body %>
 </div>
 <div>
+  <p><strong>Image</strong></p>
   <%= image_tag @research_project.image.url %>
 </div>
-<h2>Research Themes</h2>
+<p><strong>Research Themes</strong></p>
 <ul>
   <% @research_project.research_themes.each do |theme| %>
     <li><%= theme.title %></li>
   <% end %>
 </ul>
-<h2>Researchers</h2>
+<p><strong>Researchers</strong></p>
 <ul>
   <% @research_project.researchers.each do |researcher| %>
     <li><%= researcher.name %></li>
   <% end %>
 </ul>
+<% end %>

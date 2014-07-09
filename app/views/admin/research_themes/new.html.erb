@@ -1,3 +1,5 @@
-<h1>Add Research Theme</h1>
-
-<%= render "form" %>
+<%= render layout: 'dashboard' do %>
+  <p><%= link_to 'Research Themes', admin_research_themes_path %></p>
+  <h1>Add Research Theme</h1>
+  <%= render "form" %>
+<% end %>

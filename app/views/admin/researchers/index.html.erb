@@ -1,13 +1,13 @@
 <%= render layout: 'dashboard' do %>
 <h1>Researchers</h1>
-<%= link_to 'Add Researcher', new_admin_researcher_path %>
+<%= button_to 'Add Researcher', new_admin_researcher_path, method: "get" %>
 <table class="table-borders">
   <tbody>
     <% @researchers.each do |researcher| %>
       <tr>
         <td><%= link_to researcher.name, admin_researcher_path(researcher) %></td>
-        <td><%= link_to "Edit", edit_admin_researcher_path(researcher) %></td>
-        <td><%= link_to "Delete", admin_researcher_path(researcher), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "Edit", edit_admin_researcher_path(researcher) %>&nbsp;&nbsp;
+        <%= link_to "Delete", admin_researcher_path(researcher), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -29,17 +29,16 @@
     </div>
   </div>
 </header>
+<div class="signin">
 <% if current_user %>
   Welcome <%= current_user.full_name %>
   <%= link_to 'Sign Out', session_path, method: :delete %>
 <% end %>
-<% if current_user_admin? %>
-  <%= link_to "Dashboard", admin_path %>
-<% end %>
-
+</div>
 <% if alert %>
   <p><%= alert %></p>
 <% end %>
 <% if notice %>
   <p><%= notice %></p>
 <% end %>
+

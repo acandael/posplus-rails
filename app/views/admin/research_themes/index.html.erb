@@ -1,8 +1,13 @@
+<%= render layout: 'dashboard' do %>
 <h1>Manage Research Themes</h1>
-<%= link_to 'Add Research Theme', new_admin_research_theme_path %>
-
-<ul>
-<% @research_themes.each do |theme| %>
-  <li><%= link_to theme.title, admin_research_theme_path(theme) %>  <%= link_to "Edit", edit_admin_research_theme_path(theme) %>  <%= link_to "Delete", admin_research_theme_path(theme), method: :delete, data: { confirm: "Are you sure?" } %></li>
+<%= button_to 'Add Research Theme', new_admin_research_theme_path, method: "get" %>
+<table class="table-borders">
+  <tbody>
+    <% @research_themes.each do |theme| %>
+      <tr>
+        <td><%= link_to theme.title, admin_research_theme_path(theme) %></td>
+        <td><%= link_to "Edit", edit_admin_research_theme_path(theme) %>&nbsp;&nbsp;<%= link_to "Delete", admin_research_theme_path(theme), method: :delete, data: { confirm: "Are you sure?" } %></td></tr>
+    <% end %>
+    </tbody>
+  </table>
 <% end %>
-</ul>
