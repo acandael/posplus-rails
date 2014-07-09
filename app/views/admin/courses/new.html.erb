@@ -1,8 +1,5 @@
-<h1>Add new course</h1>
-<%= form_for [:admin, @course] do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <%= f.submit "Add Course" %>
+<%= render layout: 'dashboard' do %>
+  <p><%= link_to 'Courses', admin_courses_path %></p>
+  <h1>Add new course</h1>
+  <%= render "form" %>
 <% end %>

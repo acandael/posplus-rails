@@ -1,0 +1,12 @@
+<%= form_for [:admin, @course] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <% if @course.new_record? %>
+    <%= f.submit "Add Course" %>
+  <% else %>
+    <%= f.submit "Update Course" %>
+  <% end %>
+  <%= link_to 'Cancel', admin_courses_path %>
+<% end %>
