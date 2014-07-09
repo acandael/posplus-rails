@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'signin' => "sessions#new"
   resource :session
 
-  resources :people, only: [:index]
+  resources :people, only: [:index, :show]
 
   get 'admin', to: 'dashboard#index'
   namespace :admin do

@@ -6,7 +6,9 @@
   <div class="members">
     <% @researchers.each do |researcher| %>
       <div class="member">
-        <a href="/people-detail.html"><%= image_tag researcher.image.url %></a>
+        <%= link_to person_path(researcher) do %>
+          <%= image_tag researcher.image.url %>
+        <% end %>
         <h5><%= researcher.name %></h5>
         <p><%= researcher.title %></p>
       </div>
