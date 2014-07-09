@@ -1,0 +1,58 @@
+section.researchthemes {
+  @include outer-container;
+  padding: 1em;
+  div.bullets {
+    $icon-bullet-size: 3.5em;
+    overflow: auto;
+    margin-bottom: $base-line-height;
+    .bullet {
+      margin-top: em(20);
+      background: white;
+      padding: 1em;
+      @extend .box-shadow;
+      @include media($medium-screen) {
+        @include span-columns(6);
+        @include omega(2n);
+        margin-top: 0;
+      }
+
+      
+
+      .bullet-icon {
+        margin: auto;
+        @include media($medium-screen) {
+          float: left;
+        }
+        background: $base-accent-color;
+        padding: $icon-bullet-size /4;
+        border-radius: 50%;
+        width: $icon-bullet-size;
+        height: $icon-bullet-size;
+      }
+
+      .bullet-icon-1 {
+        background: $base-accent-color;
+      }
+
+      .bullet-icon-2 {
+        background: adjust-hue($base-accent-color, -50);
+      }
+      .bullet-content {
+        margin-left: 0;
+        margin-right: 0;
+        @include media($medium-screen) {
+        margin-left: $icon-bullet-size *1.4;
+        margin-bottom: 2em;
+        }
+      }
+      h2 {
+        font-size: $icon-bullet-size /2.5;
+        padding-top: $icon-bullet-size /7;
+        margin-bottom: $icon-bullet-size /6;
+        border-bottom: 1px solid transparentize($base-font-color, .8);
+        display: inline-block;
+      }
+    }
+  }
+}
+

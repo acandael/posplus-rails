@@ -1,0 +1,17 @@
+<section class="researchthemes">
+  <div class="bullets">
+    <% @research_themes.each do |theme| %>
+      <div class="bullet">
+        <div class="bullet-icon bullet-icon-1">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
+        </div>
+        <div class="bullet-content">
+          <h2><%= theme.title %></h2>
+          <p><%= theme.description %></p>
+          <p><%= link_to 'Go to projects', research_theme_path(theme) %></p>
+        </div>
+      </div> 
+    <% end %>
+  </div>
+</section>
+

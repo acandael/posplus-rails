@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resource :session
 
   resources :people, only: [:index, :show]
+  resources :research, only: [:index]
+  resources :research_themes, only: [:show]
+  resources :research_projects, only: [:show]
 
   get 'admin', to: 'dashboard#index'
   namespace :admin do

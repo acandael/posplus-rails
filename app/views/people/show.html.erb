@@ -1,1 +1,24 @@
-<h1><%= @researcher.name %></h1>
+<section>
+  <article>
+    <h1><%= @researcher.name %></h1>
+    <%= image_tag @researcher.image.url %>
+    <p><%= @researcher.bio %></p>
+  <h2>Projects</h2>
+  <ul>
+    <% @researcher.research_projects.each do |project| %>
+      <li><%= project.title %></li>
+    <% end %>
+  </ul>
+  <h2>Courses</h2
+  <ul>
+    <li><a href="#">Higher Education Governance</a></li>
+    <li><a href="#">Odysseus Project</a></li>
+  </ul>
+  <h2>Publications</h2
+  <ul>
+    <li><a href="#">The protection of journalistic sources under fire? How developments in European human rights Law have reinforced the right of journalists to have their sources protected (2013). Dirk Voorhoof (Ugent).</a></li>
+    <li><a href="#">The protection of journalistic sources under fire? How developments in European human rights Law have reinforced the right of journalists to have their sources protected (2013). Dirk Voorhoof (Ugent).</a></li>
+  </ul>
+  </article>
+</section>
+

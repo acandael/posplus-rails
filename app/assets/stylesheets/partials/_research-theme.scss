@@ -1,0 +1,41 @@
+.projects {
+  overflow: hidden;
+  margin-top: em(20);
+  padding: .75em;
+
+  @include media($large-screen) {
+    @include span-columns(8);
+    margin-top: 0;
+    padding: 3em;
+  }
+
+  background: white;
+  @extend .box-shadow;
+
+  h1 {
+    text-align: center;
+  }
+
+  .project {
+    margin-top: em(20);
+    margin-bottom: em(20);
+  }
+}
+
+aside {
+  padding: .75em;
+  margin-top: em(20);
+  @include media($medium-screen) {
+    @include span-columns(4);
+    padding:3em;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: $base-font-size * 1.2;
+  }
+
+  background: white;
+  @extend .box-shadow;
+}
+

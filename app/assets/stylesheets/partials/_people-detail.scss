@@ -1,0 +1,58 @@
+section {
+  @include outer-container;
+  padding: .75em;
+  @include media($medium-screen) {
+    padding: 0;
+  }
+  article {
+    background-color: white;
+    @extend .box-shadow;
+    margin-top: .75em;
+    margin-bottom: em(20);
+    padding: .75em;
+    padding-top: 0;
+    @include media($medium-screen) {
+      padding: 3em;
+      padding-top: .75em;
+    }
+    img {
+      display: block;
+      margin: auto;
+      margin-top: em(20);
+      margin-bottom: em(20);
+      @include media($medium-screen) {
+        float: right;
+        margin-top: 0;
+        margin-left: em(20);
+      }
+      border: 1px solid $light-gray;
+      padding: 3px;
+    }
+    h1 {
+      font-size: $base-font-size * 1.5;
+      text-align: center;
+      margin-top: em(20);
+      @include media($medium-screen) {
+        font-size: $base-font-size * 2.25;
+        margin-bottom: em(10);
+      }
+    }
+    h2 {
+      margin-top: em(20);
+      margin-bottom: em(10);
+      text-align: center;
+      font-size: $base-font-size * 1.2;
+      @include media($medium-screen) {
+        font-size: $base-font-size * 2;
+        text-align: left;
+      }
+    }
+    ul {
+      margin-top: em(10);
+    }
+    li {
+      margin-bottom: 1em;
+    }
+  }
+}
+

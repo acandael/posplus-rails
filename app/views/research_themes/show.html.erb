@@ -1,0 +1,17 @@
+<section class="research-theme">
+  <div class="projects">
+    <h1>Projects</h1>
+    <% @research_theme.research_projects.each do |project| %>
+    <div class="project">
+      <p><%= link_to project.title, research_project_path(project) %><br />
+      <%= project.body %>
+      </p>
+    </div>
+    <% end %>
+  </div>
+  <aside>
+    <h2><%= @research_theme.title %></h2>
+    <p><%= @research_theme.description %></p>
+  </aside>
+</section>
+
