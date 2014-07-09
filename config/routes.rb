@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'signin' => "sessions#new"
   resource :session
 
+  resources :people, only: [:index]
+
   get 'admin', to: 'dashboard#index'
   namespace :admin do
     resources :research_themes

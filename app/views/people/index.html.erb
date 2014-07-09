@@ -1,0 +1,16 @@
+<section class="people">
+  <div class="lead">
+    <h1>People</h1>
+    <p>The Centre for Higher Education Governance Ghent is led by prof. Jeroen Huisman and employs seven researchers and has several affiliate members.</p>
+  </div>
+  <div class="members">
+    <% @researchers.each do |researcher| %>
+      <div class="member">
+        <a href="/people-detail.html"><%= image_tag researcher.image.url %></a>
+        <h5><%= researcher.name %></h5>
+        <p><%= researcher.title %></p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
