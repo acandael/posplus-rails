@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :research_themes
     resources :research_projects
     resources :researchers
+    resources :courses
   end
 end

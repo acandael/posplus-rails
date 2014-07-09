@@ -1,0 +1,9 @@
+<h1>Edit Course</h1>
+
+<%= form_for [:admin, @course] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <%= f.submit "Update Course" %>
+<% end %>
