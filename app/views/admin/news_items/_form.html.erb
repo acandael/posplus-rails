@@ -1,0 +1,20 @@
+<%= form_for [:admin, @news_item] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.label :link %>
+    <%= f.text_field :link %>
+  </div>
+  <% if @news_item.new_record? %>
+    <%= f.submit "Add News Item" %>
+  <% else %>
+    <%= f.submit "Update News Item" %>
+  <% end %>
+  <%= link_to 'Cancel', admin_news_items_path %>
+<% end %>

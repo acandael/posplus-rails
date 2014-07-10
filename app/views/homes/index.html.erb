@@ -11,11 +11,11 @@
   <div class="news">
     <div class="news-inner">
       <h2>News</h2>
-      <p>17-06-2014 <a href="#">News title</a><br />
+      <% @news.each do |newsitem| %>
+        <p><%= newsitem.created_at.strftime('%d %B %Y') %> <a href="#"><%= newsitem.title %></a><br />
       news summary
-      </p>
-      <p>17-06-2014 <a href="#">News title</a><br />
-      news summary
+        </p>
+      <% end %>
     </div>
   </div>
   <div class="research">

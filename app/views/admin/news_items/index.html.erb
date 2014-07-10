@@ -1,0 +1,12 @@
+<%= render layout: 'dashboard' do %>
+<h1>News Items</h1>
+<%= button_to "Add News Item", new_admin_news_item_path, method: "get" %>
+<table class="table-borders">
+  <% @news_items.each do |news_item| %>
+    <tr>
+      <td><%= link_to news_item.title, admin_news_item_path(news_item) %></td>
+      <td><%= link_to "Edit", edit_admin_news_item_path(news_item) %>&nbsp;&nbsp;<%= link_to "Delete", admin_news_item_path(news_item), method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+  <% end %>
+</table>
+<% end %>

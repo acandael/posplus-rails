@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     resources :research_projects
     resources :researchers
     resources :courses
+    resources :news_items
   end
 end

@@ -21,4 +21,8 @@ feature 'View the dashboard' do
  scenario 'an admin sees the courses link' do
    expect(page).to have_css 'a', text: 'Courses'
  end
+
+ scenario 'an admin sees the news items link' do
+   expect(page).to have_css 'a', text: 'News Items'
+ end
 end
