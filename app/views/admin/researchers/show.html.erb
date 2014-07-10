@@ -4,6 +4,12 @@
   <p><%= @researcher.bio %></p>
   <p><%= image_tag @researcher.image.url %>
   <p><%= mail_to @researcher.email %></p>
+  <p></strong>Courses</strong></p>
+  <ul>
+    <% @researcher.courses.each do |course| %>
+      <li><%= link_to course.title, admin_course_path(course) %></li>
+    <% end %>
+  </ul>
   <p><strong>Research Projects</strong></p>
   <ul>
     <% @researcher.research_projects.each do |project| %>

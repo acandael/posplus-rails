@@ -22,7 +22,7 @@ feature "Admin interacts with researcher" do
   scenario "Admin adds a researcher" do
     @researcher.reload
     expect{
-      click_link "Add Researcher"
+      find("input[@value='Add Researcher']").click
       fill_in 'Name', with: "some name" 
       fill_in 'Bio', with: @researcher.bio
       fill_in 'Email', with: @researcher.email
@@ -33,7 +33,7 @@ feature "Admin interacts with researcher" do
 
   scenario 'Admin should not be able to add research project without name and bio' do
     expect{
-      click_link "Add Researcher"
+      find("input[@value='Add Researcher']").click
       fill_in 'Name', with: ""
       fill_in 'Bio', with: ""
       click_button "Add Researcher"
@@ -44,7 +44,7 @@ feature "Admin interacts with researcher" do
   scenario 'Admin should not be able to add a researcher if the name already exists' do
     researcher2 = Fabricate(:researcher)
     expect{
-      click_link "Add Researcher"
+      find("input[@value='Add Researcher']").click
       fill_in 'Name', with: @researcher.name 
       fill_in 'Bio', with: researcher2.bio 
       click_button "Add Researcher"
@@ -86,10 +86,17 @@ feature "Admin interacts with researcher" do
     expect(page).to have_css 'p', text: "You successfully removed the researcher"
   end
 
-  scenario 'Admin sees research projects for member' do
+  scenario 'Admin sees research projects for researcher' do
     research_project1 = Fabricate(:research_project)
     @researcher.research_projects << research_project1 
     click_link @researcher.name
     expect(page).to have_css 'li', text: research_project1.title
+  end
+
+  scenario 'Admin sees courses for researcher' do
+    course = Fabricate(:course)
+    @researcher.courses << course
+    click_link @researcher.name
+    expect(page).to have_css 'li', text: course.title
   end
 end
