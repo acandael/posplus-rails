@@ -11,8 +11,9 @@
   </ul>
   <h2>Courses</h2
   <ul>
-    <li><a href="#">Higher Education Governance</a></li>
-    <li><a href="#">Odysseus Project</a></li>
+    <% @researcher.courses.each do |course| %>
+      <li><%= course.title %></li>
+    <% end %>
   </ul>
   <h2>Publications</h2
   <ul>

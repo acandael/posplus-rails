@@ -4,7 +4,7 @@
   <p><%= @researcher.bio %></p>
   <p><%= image_tag @researcher.image.url %>
   <p><%= mail_to @researcher.email %></p>
-  <p></strong>Courses</strong></p>
+  <p><strong>Courses</strong></p>
   <ul>
     <% @researcher.courses.each do |course| %>
       <li><%= link_to course.title, admin_course_path(course) %></li>
