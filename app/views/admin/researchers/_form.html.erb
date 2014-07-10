@@ -16,6 +16,9 @@
     <%= f.email_field :email %>
   </div>
   <div>
+    <% if @researcher.image %>
+      <%= image_tag @researcher.image.url %>
+    <% end %>
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>

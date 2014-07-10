@@ -20,7 +20,7 @@ feature "Admin interacts with courses" do
   scenario "admin adds a course" do
     course2 = Fabricate(:course)
     expect{
-      click_link "Add Course"
+      find("input[@value='Add Course']").click
       fill_in 'Title', with: course2.title
       click_button "Add Course"
     }.to change(Course, :count).by(1)
@@ -31,7 +31,7 @@ feature "Admin interacts with courses" do
 
   scenario "admin should not be able to add course without title" do
     expect{
-      click_link "Add Course"
+      find("input[@value='Add Course']").click
       fill_in 'Title', with: "" 
       click_button "Add Course"
     }.not_to change(Course, :count).by(1)
@@ -61,5 +61,12 @@ feature "Admin interacts with courses" do
       click_link "Delete"
     }.to change(Course, :count).by(-1)
     expect(page).to have_css 'p', text: "you successfully deleted a course"
+  end
+
+  scenario 'an admin sees researchers belonging to course' do
+    researcher = Fabricate(:researcher)
+    @course.researchers << researcher
+    click_link @course.title
+    expect(page).to have_css 'li', text: researcher.name 
   end
 end

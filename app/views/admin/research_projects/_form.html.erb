@@ -8,6 +8,9 @@
     <%= f.text_area :body %>
   </div>
   <div>
+    <% if @research_project.image %>
+      <%= image_tag @research_project.image.url %>
+    <% end %>
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>

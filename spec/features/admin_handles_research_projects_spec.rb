@@ -20,7 +20,7 @@ feature "Admin interacts with research projects" do
 
   scenario 'Admin adds a research project' do
     expect{
-    click_link "Add Research Project"
+    find("input[@value='Add Research Project']").click
     fill_in 'Title', with: @research_project.title 
     fill_in 'Body', with: @research_project.body 
     attach_file 'Image', "spec/support/uploads/monk_large.jpg"
@@ -33,7 +33,7 @@ feature "Admin interacts with research projects" do
 
   scenario 'Admin should not be able to add research project without title and body' do
     expect{
-      click_link "Add Research Project"
+      find("input[@value='Add Research Project']").click
       fill_in 'Title', with: "" 
       fill_in 'Body', with: ""
       click_button "Add Research Project"

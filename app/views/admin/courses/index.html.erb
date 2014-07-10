@@ -1,6 +1,6 @@
 <%= render layout: 'dashboard' do %>
 <h1>Courses</h1>
-<%= link_to "Add Course", new_admin_course_path %>
+<%= button_to "Add Course", new_admin_course_path, method: "get" %>
 <table class="table-borders">
   <tbody>
   <% @courses.each do |course| %>

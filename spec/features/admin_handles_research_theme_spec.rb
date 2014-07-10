@@ -82,7 +82,7 @@ require 'spec_helper'
     end
 
     def add_research_theme(title, description)
-      click_link 'Add Research Theme'
+      find("input[@value='Add Research Theme']").click
       fill_in 'Title', with: title 
       fill_in 'Description', with: description 
       click_button "Add Research Theme"

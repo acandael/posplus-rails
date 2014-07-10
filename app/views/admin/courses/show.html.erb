@@ -1,1 +1,9 @@
+<%= render layout: 'dashboard' do %>
 <h1><%= @course.title %></h1>
+<p><strong>Teached By:</strong></p>
+<ul>
+  <% @course.researchers.each do |researcher| %>
+    <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
+  <% end %>
+</ul>
+<% end %>
