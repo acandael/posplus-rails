@@ -8,6 +8,20 @@
     <%= f.text_area :body %>
   </div>
   <div>
+    <% if @news_item.image %>
+      <%= image_tag @news_item.image.url %>
+    <% end %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
+    <% if @news_item.document.present? %>
+      <%= link_to @news_item.document.file.identifier, @news_item.document.url %>
+    <% end %>
+    <%= f.label :document %>
+    <%= f.file_field :document %>
+  </div>
+  <div>
     <%= f.label :link %>
     <%= f.text_field :link %>
   </div>

@@ -12,7 +12,7 @@
     <div class="news-inner">
       <h2>News</h2>
       <% @news.each do |newsitem| %>
-        <p><%= newsitem.created_at.strftime('%d %B %Y') %> <a href="#"><%= newsitem.title %></a><br />
+        <p><%= newsitem.created_at.strftime('%d %B %Y') %> <%= link_to newsitem.title, news_item_path(newsitem) %><br />
       news summary
         </p>
       <% end %>

@@ -1,0 +1,20 @@
+<section class="news">
+  <article class="news">
+    <div class="content">
+    <header>
+    <h1><%= @news_item.title %></h1>
+    <time datetime="<%= @news_item.created_at %>"><%= @news_item.created_at.strftime('%d %B %Y') %></time> 
+    </header>
+    <p><%= @news_item.body %></p> 
+    <h2>Document</h2>
+    <ul>
+      <li><%= link_to @news_item.document.file.identifier, @news_item.document.url %><i class="fa fa-download"></i></li>
+    </ul>
+    <h2>Related Link</h2>
+    <ul>
+      <li><%= link_to @news_item.link %></li>
+    </ul>
+    </div>
+    <%= image_tag @news_item.image.url %>
+  </article>
+</section>

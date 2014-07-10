@@ -1,3 +1,11 @@
 <section class="dashboard">
+  <div class="breadcrumb">
+    <% if !current_page?(admin_news_items_path) %>
+    <%= link_to "Dashboard", admin_path %>
+    <%= link_to "News Items", admin_news_items_path %>
+    <% else %>
+    <%= link_to "Dashboard", admin_path %>
+    <% end %>
+  </div>
   <%= yield %>
 </section>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :research, only: [:index]
   resources :research_themes, only: [:show]
   resources :research_projects, only: [:show]
+  resources :news_items, only: [:show]
 
   get 'admin', to: 'dashboard#index'
   namespace :admin do

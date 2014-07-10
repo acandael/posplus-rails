@@ -1,4 +1,9 @@
 <%= render layout: 'dashboard' do %>
   <h1><%= @news_item.title %></h1>
   <p><%= @news_item.body %></p>
+  <%= image_tag @news_item.image.url %>
+  <% if @news_item.document.present? %>
+    <h2>Document</h2>
+    <p><%= link_to @news_item.document.file.identifier, @news_item.document.url %></p>
+  <% end %>
 <% end %>
