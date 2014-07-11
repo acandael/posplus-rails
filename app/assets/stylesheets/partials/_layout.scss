@@ -12,6 +12,9 @@ section {
     margin-left: em(20);
     margin-right: em(20);
   }
+  div.breadcrumbs {
+    @extend .breadcrumbs;
+  }
 }
 .footer-2, .push {
   height: 17em;
@@ -35,6 +38,8 @@ section {
    right: 180px;
    top: 60px;
  }
+
+
 
  .table-borders {
   $table-border-color: $base-border-color;

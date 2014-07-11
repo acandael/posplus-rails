@@ -1,4 +1,4 @@
-<%= render layout: 'dashboard' do %>
+<% breadcrumb :dashboard_item, nil %>
 <h1>News Items</h1>
 <%= button_to "Add News Item", new_admin_news_item_path, method: "get" %>
 <table class="table-borders">
@@ -9,4 +9,3 @@
   </tr>
   <% end %>
 </table>
-<% end %>

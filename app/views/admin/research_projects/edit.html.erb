@@ -1,5 +1,3 @@
-<%= render layout: 'admin/dashboard' do %>
-<p><%= link_to 'Research Projects', admin_research_projects_path %>
+<% breadcrumb :research_project, @research_project %>
 <h1>Edit Research Project</h1>
 <%= render "form" %>
-<% end %>

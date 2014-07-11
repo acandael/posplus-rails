@@ -58,7 +58,7 @@ feature "Admin interacts with research projects" do
     find("input[@id='research_project_title']").set(@research_project.title)
     find("textarea[@id='research_project_body']").set(@research_project.body)
     click_button "Update Research Project"
-    expect(page).not_to have_content "this is the edited title"
+    expect(ResearchProject.find(@research_project.id).title).not_to eq("this is the edited title")
     expect(page).to have_content "there was a problem, the research project could not be updated"
   end
 

@@ -1,9 +1,10 @@
-<%= render layout: 'admin/dashboard' do %>
+<% breadcrumb :course, @course %>
 <h1><%= @course.title %></h1>
-<p><strong>Teached By:</strong></p>
-<ul>
-  <% @course.researchers.each do |researcher| %>
-    <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
-  <% end %>
-</ul>
+<% if @course.researchers.any? %>
+  <p><strong>Teached By:</strong></p>
+  <ul>
+    <% @course.researchers.each do |researcher| %>
+      <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
+    <% end %>
+  </ul>
 <% end %>

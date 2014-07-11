@@ -1,5 +1,4 @@
 section.dashboard {
-  @include outer-container;
 
   form {
     @include span-columns(6);
@@ -12,8 +11,5 @@ section.dashboard {
 
   a {
     text-decoration: underline;
-  }
-  div.breadcrumb {
-    @extend .breadcrumb;
   }
 }

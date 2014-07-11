@@ -1,4 +1,5 @@
-class Admin::NewsItemsController < ApplicationController
+class Admin::NewsItemsController < DashboardController 
+
   def index
     @news_items = NewsItem.all
   end

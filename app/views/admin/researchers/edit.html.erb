@@ -1,5 +1,3 @@
-<%= render layout: 'admin/dashboard' do %>
-  <%= link_to 'Researchers', admin_researchers_path %>
-  <h1>Edit Researcher</h1>
-  <%= render "form" %>
-<% end %>
+<% breadcrumb :researcher, @researcher %>
+<h1>Edit Researcher</h1>
+<%= render "form" %>

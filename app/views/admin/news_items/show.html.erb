@@ -1,4 +1,4 @@
-<%= render layout: 'dashboard' do %>
+  <% breadcrumb :news_item, @news_item %>
   <h1><%= @news_item.title %></h1>
   <p><%= @news_item.body %></p>
   <%= image_tag @news_item.image.url %>
@@ -6,4 +6,3 @@
     <h2>Document</h2>
     <p><%= link_to @news_item.document.file.identifier, @news_item.document.url %></p>
   <% end %>
-<% end %>

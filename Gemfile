@@ -43,6 +43,9 @@ gem 'mini_magick'
 gem 'bourbon'
 gem 'neat'
 
+#Breadcrumbs
+gem 'gretel'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
