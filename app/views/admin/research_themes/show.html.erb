@@ -1,11 +1,11 @@
-<%= render layout: 'dashboard' do %>
+<%= render layout: 'admin/dashboard' do %>
 <p><%= link_to 'Research Themes', admin_research_themes_path %>
 <h1><%= @research_theme.title %></h1>
 <p><%= @research_theme.description %></p>
 <p><strong>Research Projects</strong></p>
 <ul>
   <% @research_theme.research_projects.each do |project| %>
-    <li><%= project.title %></li>
+    <li><%= link_to project.title, admin_research_project_path(project) %></li>
   <% end %>
 </ul>
 <% end %>
