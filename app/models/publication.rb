@@ -1,3 +1,3 @@
 class Publication < ActiveRecord::Base
-  validates :title, presence: true
+  validates :title, :reference, presence: true
 end
