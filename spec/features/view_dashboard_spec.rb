@@ -11,18 +11,26 @@ feature 'View the dashboard' do
  end
 
  scenario 'an admin sees the research themes link' do
-   expect(page).to have_css 'a', text: 'Research Themes'
+   expect(page).to have_link("Research Themes", :href=>"/admin/research_themes")
+ end
+
+ scenario 'an admin sees the research projects link' do
+   expect(page).to have_link("Research Projects", :href=>"/admin/research_projects")
  end
 
  scenario 'an admin sees the researchers link' do
-   expect(page).to have_css 'a', text: 'Researchers'
+   expect(page).to have_link("Researchers", :href=>"/admin/researchers")
  end
 
  scenario 'an admin sees the courses link' do
-   expect(page).to have_css 'a', text: 'Courses'
+   expect(page).to have_link("Courses", :href=>"/admin/courses")
  end
 
  scenario 'an admin sees the news items link' do
-   expect(page).to have_css 'a', text: 'News Items'
+   expect(page).to have_link("News Items", :href=>"/admin/news_items")
+ end
+
+ scenario 'an admin sees the publications link' do
+   expect(page).to have_link("Publications", :href=>"/admin/publications") 
  end
 end
