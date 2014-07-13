@@ -1,4 +1,5 @@
 <%= form_for [:admin, @research_project] do |f| %>
+  <fieldset>
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -15,7 +16,9 @@
     <%= f.file_field :image %>
   </div>
   <div>
-     <%= f.collection_check_boxes :research_theme_ids, ResearchTheme.all, :id, :title %>
+     <%= f.collection_check_boxes :research_theme_ids, ResearchTheme.all, :id, :title do |b| %>
+       <%= b.label() { b.check_box + b.text } %>
+     <% end %>
   </div>
   <% if @research_project.new_record? %>
     <%= f.submit "Add Research Project" %>
@@ -23,4 +26,5 @@
     <%= f.submit "Update Research Project" %>
   <% end %>
   <%= link_to 'Cancel', admin_research_projects_path %>
+</fieldset>
 <% end %>

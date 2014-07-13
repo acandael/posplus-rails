@@ -1,17 +1,25 @@
-  <% breadcrumb :researcher, @researcher %>
+<% breadcrumb :researcher, @researcher %>
+<div class="panel">
+  <div class="content">
   <h1><%= @researcher.name %></h1>
   <p><%= @researcher.bio %></p>
-  <p><%= image_tag @researcher.image.url %>
   <p><%= mail_to @researcher.email %></p>
-  <p><strong>Courses</strong></p>
-  <ul>
-    <% @researcher.courses.each do |course| %>
-      <li><%= link_to course.title, admin_course_path(course) %></li>
-    <% end %>
-  </ul>
-  <p><strong>Research Projects</strong></p>
-  <ul>
-    <% @researcher.research_projects.each do |project| %>
-      <li><%= project.title %></li>
-    <% end %>
-  </ul>
+  <section>
+    <h3>Courses</h3>
+    <ul>
+      <% @researcher.courses.each do |course| %>
+        <li><%= link_to course.title, admin_course_path(course) %></li>
+      <% end %>
+    </ul>
+  </section>
+  <section>
+    <h3>Research Projects</h3>
+    <ul>
+      <% @researcher.research_projects.each do |project| %>
+        <li><%= link_to project.title, admin_research_project_path(project) %></li>
+      <% end %>
+    </ul>
+  </section>
+</div>
+  <p><%= image_tag @researcher.image.url %>
+</div>

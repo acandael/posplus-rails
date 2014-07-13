@@ -77,6 +77,19 @@ crumb :news_item do |news_item|
   parent :news_items
 end
 
+crumb :publications do
+  link "Publications", admin_publications_path
+end
+
+crumb :publication do |publication|
+  if publication
+    link publication.title, admin_publication_path(publication)
+  else
+    link "Publications", admin_publications_path
+  end
+  parent :publications
+end
+
 
 # crumb :project_issues do |project|
 #   link "Issues", project_issues_path(project)

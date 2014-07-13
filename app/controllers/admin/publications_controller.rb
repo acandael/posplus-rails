@@ -44,6 +44,6 @@ class Admin::PublicationsController < DashboardController
   private
 
   def publication_params
-    params.require(:publication).permit(:title, :reference)
+    params.require(:publication).permit(:title, :reference, :research_project_id)
   end
 end

@@ -1,13 +1,15 @@
 <% breadcrumb :dashboard_item, "Research Projects" %>
-<h1>Research Projects</h1>
-<%= button_to "Add Research Project", new_admin_research_project_path, method: "get" %>
-<table class="table-borders">
-  <tbody>
-    <% @research_projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.title, admin_research_project_path(project) %></td>
-        <td><%= link_to "Edit", edit_admin_research_project_path(project) %>&nbsp;&nbsp;<%= link_to "Delete", admin_research_project_path(project), method: :delete, data: { confirm: "Are you sure?" } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="panel">
+  <h1>Research Projects</h1>
+  <%= button_to "Add Research Project", new_admin_research_project_path, method: "get" %>
+  <table class="table-borders">
+    <tbody>
+      <% @research_projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.title, admin_research_project_path(project) %></td>
+          <td><%= link_to "Edit", edit_admin_research_project_path(project) %>&nbsp;&nbsp;<%= link_to "Delete", admin_research_project_path(project), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

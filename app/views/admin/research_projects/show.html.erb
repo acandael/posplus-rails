@@ -1,24 +1,35 @@
-<%= render layout: 'admin/dashboard' do %>
 <% breadcrumb :research_projects, @research_project %>
-<h1><%= @research_project.title %></h1>
-<div>
-  <p><strong>Bodytext</strong></p>
-  <%= @research_project.body %>
-</div>
-<div>
-  <p><strong>Image</strong></p>
+<div class="panel">
+  <div class="content">
+    <h1><%= @research_project.title %></h1>
+    <div>
+      <h3>Bodytext</h3>
+      <%= @research_project.body %>
+    </div>
+    <section>
+    <h3>Research Themes</h3>
+    <ul>
+      <% @research_project.research_themes.each do |theme| %>
+        <li><%= link_to theme.title, admin_research_theme_path(theme) %></li>
+      <% end %>
+    </ul>
+    </section>
+    <section>
+      <h3>Researchers</h3>
+      <ul>
+        <% @research_project.researchers.each do |researcher| %>
+          <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
+        <% end %>
+      </ul>
+    </section>
+    <section>
+      <h3>Publications</strong></h3>
+      <ul>
+        <% @research_project.publications.each do |publication| %>
+          <li><%= link_to publication.title, admin_publication_path(publication) %></li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
   <%= image_tag @research_project.image.url %>
 </div>
-<p><strong>Research Themes</strong></p>
-<ul>
-  <% @research_project.research_themes.each do |theme| %>
-    <li><%= link_to theme.title, admin_research_theme_path(theme) %></li>
-  <% end %>
-</ul>
-<p><strong>Researchers</strong></p>
-<ul>
-  <% @research_project.researchers.each do |researcher| %>
-    <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
-  <% end %>
-</ul>
-<% end %>

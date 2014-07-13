@@ -7,5 +7,7 @@ class ResearchProject < ActiveRecord::Base
   has_many :project_researchers
   has_many :researchers, through: :project_researchers
 
+  has_many :publications
+
   mount_uploader :image, ResearchProjectImageUploader
 end

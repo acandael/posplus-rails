@@ -18,10 +18,12 @@ feature 'Admin interacts with publications' do
   end
 
   scenario 'admin adds a new publication' do
+    @research_project = Fabricate(:research_project)
     expect{
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: @publication.title
       fill_in 'Reference', with: @publication.reference
+      select(@research_project.title, :from => 'publication_research_project_id')
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
@@ -68,5 +70,13 @@ feature 'Admin interacts with publications' do
       click_link "Delete"
     }.to change(Publication, :count).by(-1)
     expect(page).to have_css 'p', text: "You successfully deleted the publication"
+  end
+
+  scenario 'admin sees the research project the publication belongs to' do
+    research_project = Fabricate(:research_project)
+    @publication.research_project = research_project
+    @publication.save
+    click_link @publication.title
+    expect(page).to have_css 'li', text: @publication.research_project.title
   end
 end

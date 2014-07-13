@@ -1,3 +1,21 @@
-<h1><%= @publication.title %></h1>
-<h2>Reference</h2>
-<p><%= @publication.reference %></p>
+<% breadcrumb :publication, @publication %>
+<div class="panel">
+  <div class="content">
+    <section>
+      <h3>Publication</h3>
+      <%= @publication.title %>
+    </section>
+    <section>
+      <h3>Reference</h3>
+      <p><%= @publication.reference %></p>
+    </section>
+    <% if @publication.research_project.present? %>
+      <section>
+        <h3>Research Project</h3>
+        <ul>
+          <li><%= link_to @publication.research_project.title, admin_research_project_path(@publication.research_project) %></li>
+        </ul>
+      </section>
+    <% end %>
+  </div>
+</div>

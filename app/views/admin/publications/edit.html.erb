@@ -1,11 +1,3 @@
-<%= form_for [:admin, @publication] do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :reference %>
-    <%= f.text_area :reference %>
-  </div>
-  <%= f.submit "Update Publication" %>
-<% end %>
+<% breadcrumb :publication, @publication %>
+<h1>Update Publication</h1>
+<%= render "form" %>

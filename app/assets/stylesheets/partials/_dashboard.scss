@@ -1,7 +1,14 @@
 section.dashboard {
 
+  nav {
+    margin-top: em(20);
+  }
+
   form {
-    @include span-columns(6);
+    @include span-columns(8);
+    input[type="submit"]{
+      margin-top: em(20);
+    }
   }
 
   .button_to {
@@ -11,5 +18,34 @@ section.dashboard {
 
   a {
     text-decoration: underline;
+  }
+
+  .content {
+    @include media($medium-screen) {
+      @include span-columns(8);
+    }
+  }
+
+  .panel {
+    @include clearfix;
+    background: lighten($base-border-color, 10);
+    border: 1px solid $base-border-color;
+    margin: 0 0 ($base-line-height / 2) 0;
+    padding: $base-line-height;
+
+    img {
+      float: right;
+    }
+
+    section {
+      margin-top: em(20);
+      margin-bottom: em(20);
+    }
+
+    i {
+      &.right {
+        margin-left: em(10);
+      }
+    }
   }
 }

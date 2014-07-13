@@ -1,9 +1,15 @@
 <% breadcrumb :research_theme, @research_theme %>
-<h1><%= @research_theme.title %></h1>
-<p><%= @research_theme.description %></p>
-<p><strong>Research Projects</strong></p>
-<ul>
-  <% @research_theme.research_projects.each do |project| %>
-    <li><%= link_to project.title, admin_research_project_path(project) %></li>
-  <% end %>
-</ul>
+<div class="panel">
+  <div class="conten">
+    <h1><%= @research_theme.title %></h1>
+    <p><%= @research_theme.description %></p>
+    <section>
+      <h3>Research Projects</h3>
+      <ul>
+        <% @research_theme.research_projects.each do |project| %>
+          <li><%= link_to project.title, admin_research_project_path(project) %></li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+</div>

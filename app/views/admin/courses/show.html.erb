@@ -1,10 +1,16 @@
 <% breadcrumb :course, @course %>
-<h1><%= @course.title %></h1>
-<% if @course.researchers.any? %>
-  <p><strong>Teached By:</strong></p>
-  <ul>
-    <% @course.researchers.each do |researcher| %>
-      <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="panel">
+  <div class="content">
+  <h1><%= @course.title %></h1>
+  <% if @course.researchers.any? %>
+    <section>
+      <h3>Teached By:</h3>
+      <ul>
+        <% @course.researchers.each do |researcher| %>
+          <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+  </div>
+</div>

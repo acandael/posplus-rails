@@ -1,0 +1,22 @@
+<%= form_for [:admin, @publication] do |f| %>
+  <fieldset>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :reference %>
+    <%= f.text_area :reference %>
+  </div>
+  <div>
+    <%= f.label :research_project %>
+    <%= f.collection_select :research_project_id, ResearchProject.all, :id, :title, prompt: true %>
+  </div>
+  <% if @publication.new_record? %>
+    <%= f.submit "Add Publication" %>
+  <% else %>
+    <%= f.submit "Update Publication" %>
+  <% end %>
+  <%= link_to 'Cancel', admin_publications_path %>
+</fieldset>
+<% end %>

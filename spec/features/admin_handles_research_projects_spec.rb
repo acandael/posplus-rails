@@ -69,6 +69,22 @@ feature "Admin interacts with research projects" do
     expect(page).to have_content "you successfully removed the research project"
   end
 
+  scenario "Dependent associations are destroyed when admin deletes research project" do
+    research_theme_1 = Fabricate(:research_theme)
+    research_theme_2 = Fabricate(:research_theme)
+
+    @research_project.research_themes << research_theme_1
+    @research_project.research_themes << research_theme_2
+
+    themes = @research_project.research_themes
+
+    click_link "Delete"
+
+    themes.each do |theme|
+        theme.research_projects.should_not include(@research_project)
+    end
+  end
+
   scenario "Admin sees research themes for research project" do
     research_theme_1 = Fabricate(:research_theme)
     research_theme_2 = Fabricate(:research_theme)
@@ -87,5 +103,15 @@ feature "Admin interacts with research projects" do
     click_link @research_project.title
     expect(page).to have_css 'li', text: researcher1.name
     expect(page).to have_css 'li', text: researcher2.name
+  end
+
+  scenario "Admin sees publications for research project" do
+    publication1 = Fabricate(:publication)
+    publication2 = Fabricate(:publication)
+    @research_project.publications << publication1
+    @research_project.publications << publication2
+    click_link @research_project.title
+    expect(page).to have_css 'li', text: publication1.title
+    expect(page).to have_css 'li', text: publication2.title
   end
 end

@@ -1,34 +1,36 @@
 <%= form_for [:admin, @news_item] do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <div>
-    <% if @news_item.image %>
-      <%= image_tag @news_item.image.url %>
+  <fieldset>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div>
+      <% if @news_item.image %>
+        <%= image_tag @news_item.image.url %>
+      <% end %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div>
+      <% if @news_item.document.present? %>
+        <%= link_to @news_item.document.file.identifier, @news_item.document.url %>
+      <% end %>
+      <%= f.label :document %>
+      <%= f.file_field :document %>
+    </div>
+    <div>
+      <%= f.label :link %>
+      <%= f.text_field :link %>
+    </div>
+    <% if @news_item.new_record? %>
+      <%= f.submit "Add News Item" %>
+    <% else %>
+      <%= f.submit "Update News Item" %>
     <% end %>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-  <div>
-    <% if @news_item.document.present? %>
-      <%= link_to @news_item.document.file.identifier, @news_item.document.url %>
-    <% end %>
-    <%= f.label :document %>
-    <%= f.file_field :document %>
-  </div>
-  <div>
-    <%= f.label :link %>
-    <%= f.text_field :link %>
-  </div>
-  <% if @news_item.new_record? %>
-    <%= f.submit "Add News Item" %>
-  <% else %>
-    <%= f.submit "Update News Item" %>
-  <% end %>
-  <%= link_to 'Cancel', admin_news_items_path %>
+    <%= link_to 'Cancel', admin_news_items_path %>
+  </fieldset>
 <% end %>

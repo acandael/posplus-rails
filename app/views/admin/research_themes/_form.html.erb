@@ -1,4 +1,5 @@
 <%= form_for [:admin, @research_theme] do |f| %>
+  <fieldset>
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -12,4 +13,5 @@
   <% else %>
     <%= f.submit "Update Research Theme" %>
   <% end %>
+  </fieldset>
 <% end %>

@@ -3,22 +3,26 @@
     <h1><%= @research_project.title %></h1>
     <%= image_tag @research_project.image.url %>
     <p><%= @research_project.body %></p> 
-    <div class="researchers">
-      <h2>Researchers</h2>
-      <ul>
-        <% @research_project.researchers.each do |researcher| %>
-          <li><i class="fa fa-user"></i><%= link_to researcher.name, person_path(researcher) %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="researchers">
-      <h2>Publications</h2>
-      <ul>
-        <li><i class="fa fa-book"></i><a href="#">publication 1</a></li>
-        <li><i class="fa fa-book"></i><a href="#">publication 2</a></li>
-        <li><i class="fa fa-book"></i><a href="#">publication 3</a></li>
-      </ul>
-    </div>
+    <% if @research_project.researchers.any? %>
+      <div class="researchers">
+        <h2>Researchers</h2>
+        <ul>
+          <% @research_project.researchers.each do |researcher| %>
+            <li><i class="fa fa-user"></i><%= link_to researcher.name, person_path(researcher) %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <% if @research_project.publications.any? %>
+      <div class="researchers">
+        <h2>Publications</h2>
+        <ul>
+          <% @research_project.publications.each do |publication| %>
+            <li><i class="fa fa-book"></i><%= publication.reference %></li>
+          <% end %>
+        </ul>
+     </div>
+    <% end %>
 </article>
 </section>
 
