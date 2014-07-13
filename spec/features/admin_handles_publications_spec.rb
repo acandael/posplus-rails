@@ -13,7 +13,7 @@ feature 'Admin interacts with publications' do
 
   scenario 'admin clicks publication and views publication details' do
     click_link @publication.title
-    expect(page).to have_css 'h1', text: @publication.title
+    expect(page).to have_css 'p', text: @publication.title
     expect(page).to have_css 'p', text: @publication.reference
   end
 
@@ -23,7 +23,6 @@ feature 'Admin interacts with publications' do
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: @publication.title
       fill_in 'Reference', with: @publication.reference
-      select(@research_project.title, :from => 'publication_research_project_id')
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
