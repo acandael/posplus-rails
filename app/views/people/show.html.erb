@@ -3,18 +3,22 @@
     <h1><%= @researcher.name %></h1>
     <%= image_tag @researcher.image.url %>
     <p><%= @researcher.bio %></p>
-  <h2>Projects</h2>
-  <ul>
-    <% @researcher.research_projects.each do |project| %>
-      <li><%= project.title %></li>
+    <% if @researcher.research_projects.any? %>
+      <h2>Projects</h2>
+      <ul>
+        <% @researcher.research_projects.each do |project| %>
+          <li><%= project.title %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-  <h2>Courses</h2
-  <ul>
-    <% @researcher.courses.each do |course| %>
-      <li><%= course.title %></li>
+    <% if @researcher.courses.any? %>
+      <h2>Courses</h2
+      <ul>
+        <% @researcher.courses.each do |course| %>
+          <li><%= course.title %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
   <h2>Publications</h2
   <ul>
     <li><a href="#">The protection of journalistic sources under fire? How developments in European human rights Law have reinforced the right of journalists to have their sources protected (2013). Dirk Voorhoof (Ugent).</a></li>

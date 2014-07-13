@@ -1,4 +1,12 @@
 <section class="dashboard">
+  <div class="messages">
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+  </div>
   <%= render "shared/breadcrumbs" %>
   <%= yield %>
 </section>
