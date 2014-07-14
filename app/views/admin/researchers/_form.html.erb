@@ -1,4 +1,4 @@
-<%= form_for [:admin, @researcher] do |f| %>
+<%= form_for [:admin, @researcher], html: { multipart: true } do |f| %>
   <fieldset>
   <div>
     <%= f.label :name %>

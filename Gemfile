@@ -38,6 +38,9 @@ gem 'faker'
 # gems for uploading and image processing
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog'
+gem 'carrierwave_direct'
+gem 'sidekiq'
 
 #Bourbon Neat
 gem 'bourbon'
