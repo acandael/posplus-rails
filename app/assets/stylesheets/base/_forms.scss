@@ -1,3 +1,6 @@
+form {
+  margin-top: em(20);
+}
 fieldset {
   background: lighten($base-border-color, 10);
   border: 1px solid $base-border-color;

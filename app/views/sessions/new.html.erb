@@ -1,12 +1,16 @@
-<h1>Sign In</h1>
-<%= form_tag session_path do %>
-  <div>
-  <%= label_tag :email, "Email Address" %>
-  <%= email_field_tag :email %>
-  </div>
-  <div>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-  </div>
-  <input type="submit" value="Sign in" />
-<% end %>
+<section class="session">
+  <h1>Sign In</h1>
+  <%= form_tag session_path do %>
+    <fieldset>
+    <div>
+    <%= label_tag :email, "Email Address" %>
+    <%= email_field_tag :email %>
+    </div>
+    <div>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+    </div>
+    <input type="submit" value="Sign in" />
+  </fieldset>
+  <% end %>
+</section>

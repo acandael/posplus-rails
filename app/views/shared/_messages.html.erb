@@ -1,0 +1,14 @@
+<div class="signin">
+<% if current_user %>
+  Welcome <%= current_user.full_name %>
+  <%= link_to 'Sign Out', session_path, method: :delete %>
+<% end %>
+</div>
+<div class="messages">
+  <% if alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
+</div>

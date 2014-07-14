@@ -29,10 +29,4 @@
     </div>
   </div>
 </header>
-<div class="signin">
-<% if current_user %>
-  Welcome <%= current_user.full_name %>
-  <%= link_to 'Sign Out', session_path, method: :delete %>
-<% end %>
-</div>
 

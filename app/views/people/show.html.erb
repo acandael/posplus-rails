@@ -7,7 +7,7 @@
       <h2>Projects</h2>
       <ul>
         <% @researcher.research_projects.each do |project| %>
-          <li><%= project.title %></li>
+          <li><%= link_to project.title, research_project_path(project) %></li>
         <% end %>
       </ul>
     <% end %>

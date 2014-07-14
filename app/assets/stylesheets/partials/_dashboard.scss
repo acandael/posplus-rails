@@ -1,13 +1,5 @@
 section.dashboard {
 
-  .messages {
-    p.notice {
-      @extend %flash-success;
-    }
-    p.alert {
-      @extend %flash-error;
-    }
-  }
 
   nav {
     margin-top: em(20);

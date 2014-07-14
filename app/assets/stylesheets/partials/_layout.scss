@@ -3,6 +3,16 @@
   height: auto !important;
   height: 100%;
   margin: 0 auto -4em;
+
+  .messages {
+    @include outer-container;
+    p.notice {
+      @extend %flash-success;
+    }
+    p.alert {
+      @extend %flash-error;
+    }
+  }
 }
 
 section {
