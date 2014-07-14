@@ -6,23 +6,18 @@ section.news {
     @include clearfix;
     @extend .box-shadow;
 
-    @include media($large-screen) {
+    @include media($medium-screen) {
       margin-top: 0;
       padding: 3em;
     }
 
-    img {
-      margin-top: em(20);
-      @include media($medium-screen) {
-        margin-top: 0;
-      }
-    }
 
     div.content {
       @include media($medium-screen) {
         @include span-columns(8);
+        float: left;
+        overflow: auto;
       }
-      float: left;
       padding-top: 0;
 
       header {
@@ -62,6 +57,21 @@ section.news {
 
       a {
         text-decoration: underline;
+      }
+    }
+    
+    aside {
+      @include media($medium-screen) {
+        @include span-columns(4);
+        @include omega();
+        float: right;
+      }
+
+      img {
+        margin-top: em(20);
+        @include media($medium-screen) {
+          margin-top: 0;
+        }
       }
     }
   }

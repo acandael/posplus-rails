@@ -17,10 +17,12 @@
     <ul>
       <li><%= link_to @news_item.link %></li>
     </ul>
-    </div>
     <% end %>
+    </div>
     <% if @news_item.image.present? %>
+      <aside>
       <%= image_tag @news_item.image.url %>
+      </aside>
     <% end %>
   </article>
 </section>
