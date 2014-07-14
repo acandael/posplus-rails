@@ -17,7 +17,7 @@
     </div>
     <div>
       <% if @news_item.document.present? %>
-        <%= link_to @news_item.document.file.identifier, @news_item.document.url %>
+        <%= link_to File.basename(@news_item.document.url), @news_item.document.url %>
       <% end %>
       <%= f.label :document %>
       <%= f.file_field :document %>

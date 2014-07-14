@@ -6,7 +6,7 @@
   <% if @news_item.document.present? %>
     <section>
       <h3>Document</h3>
-      <p><%= link_to @news_item.document.file.identifier, @news_item.document.url %><i class="fa fa-download right"></i></p>
+      <p><%= link_to File.basename(@news_item.document.url), @news_item.document.url %><i class="fa fa-download right"></i></p>
     <% end %>
     </section>
   </div>
