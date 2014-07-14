@@ -36,5 +36,6 @@ feature 'Visitor interacts with research page' do
     expect(page).to have_css 'p', text: research_project.body
     expect(page).to have_css 'a', text: researcher.name
     expect(page).to have_css 'li', text: publication.reference
+    page.should have_xpath("//img[@src=\"/uploads/research_project/image/#{File.basename(research_project.image.url)}\"]")
   end
 end
