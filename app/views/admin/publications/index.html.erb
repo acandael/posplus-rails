@@ -7,11 +7,7 @@
       <tr>
         <td><%= link_to publication.title, admin_publication_path(publication) %></td>
         <td><%= link_to "Edit", edit_admin_publication_path(publication) %>&nbsp;&nbsp;<%= link_to "Delete", admin_publication_path(publication), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp;&nbsp;
-        <% if (publication.visible?) %>
-        <%= link_to "Hide", hide_admin_publication_path(publication), method: :patch %></td>
-        <% else %>
-        <%= link_to "Show", hide_admin_publication_path(publication), method: :patch %></td>
-        <% end %>
+        <%= link_to toggle_visibility(publication), hide_admin_publication_path(publication), method: :patch %></td>
       </tr>
     <% end %>
   </table>
