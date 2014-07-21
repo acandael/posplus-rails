@@ -12,4 +12,5 @@ Fabricator(:news_item) do
     ) 
   }
   link { Faker::Internet.url } 
+  visible true
 end

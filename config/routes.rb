@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     resources :research_projects
     resources :researchers
     resources :courses
-    resources :news_items
+    resources :news_items do
+      member do
+        patch :hide
+      end
+    end
     resources :publications
   end
 end

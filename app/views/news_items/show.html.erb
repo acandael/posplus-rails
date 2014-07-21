@@ -1,28 +1,28 @@
 <section class="news">
   <article class="news">
     <div class="content">
-    <header>
-    <h1><%= @news_item.title %></h1>
-    <time datetime="<%= @news_item.created_at %>"><%= @news_item.created_at.strftime('%d %B %Y') %></time> 
-    </header>
-    <p><%= @news_item.body %></p> 
-    <% if @news_item.document.present? %>
-    <h2>Document</h2>
-    <ul>
-      <li><%= link_to File.basename(@news_item.document.url), @news_item.document.url %><i class="fa fa-download"></i></li>
-    </ul>
+      <header>
+        <h1><%= @news_item.title %></h1>
+        <time datetime="<%= @news_item.created_at %>"><%= @news_item.created_at.strftime('%d %B %Y') %></time> 
+      </header>
+      <p><%= @news_item.body %></p> 
+      <% if @news_item.document.present? %>
+        <h2>Document</h2>
+      <ul>
+        <li><%= link_to File.basename(@news_item.document.url), @news_item.document.url %><i class="fa fa-download"></i></li>
+      </ul>
     <% end %>
-    <% if @news_item.link.present? %>
-    <h2>Related Link</h2>
-    <ul>
-      <li><%= link_to @news_item.link %></li>
-    </ul>
+      <% if @news_item.link.present? %>
+        <h2>Related Link</h2>
+      <ul>
+        <li><%= link_to @news_item.link %></li>
+      </ul>
     <% end %>
     </div>
     <% if @news_item.image.present? %>
       <aside>
       <%= image_tag @news_item.image.url %>
-      </aside>
-    <% end %>
+    </aside>
+  <% end %>
   </article>
 </section>

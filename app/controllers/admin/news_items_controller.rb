@@ -1,7 +1,7 @@
 class Admin::NewsItemsController < DashboardController 
 
   def index
-    @news_items = NewsItem.all
+    @news_items = NewsItem.all.order(:created_at)
   end
 
   def show
@@ -42,9 +42,15 @@ class Admin::NewsItemsController < DashboardController
     redirect_to admin_news_items_path, notice: "You successfully deleted a news item"
   end
 
+  def hide
+    @news_item = NewsItem.find(params[:id])
+    @news_item.toggle_visibility!
+    redirect_to admin_news_items_path
+  end
+
   private
 
   def news_item_params
-    params.required(:news_item).permit(:title, :body, :image, :document, :link)
+    params.required(:news_item).permit(:title, :body, :image, :document, :link, :visible)
   end
 end

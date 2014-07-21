@@ -62,4 +62,12 @@ feature 'Admin interacts with news' do
     }.to change(NewsItem, :count).by(-1)
     expect(page).to have_css 'p', text: "You successfully deleted a news item"
   end
+
+  scenario 'Admin hides news item' do
+    click_link "Hide"
+    @news_item.reload
+    expect(@news_item.visible?).to be_false
+    expect(page).to have_css 'a', text: "Show"
+  end
+
 end
