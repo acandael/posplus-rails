@@ -1,4 +1,6 @@
 class Researcher < ActiveRecord::Base
+  include Hideable
+
   validates :name, presence: :true, uniqueness: :true
   validates :bio, presence: :true
 
@@ -10,15 +12,4 @@ class Researcher < ActiveRecord::Base
 
   mount_uploader :image, ResearcherImageUploader
 
-  def visible?
-    visible
-  end
-
-  def toggle_visibility!
-    if visible?
-      update_attribute(:visible, false)
-    else
-      update_attribute(:visible, true)
-    end
-  end
 end
