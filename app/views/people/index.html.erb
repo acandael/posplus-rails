@@ -5,13 +5,15 @@
   </div>
   <div class="members">
     <% @researchers.each do |researcher| %>
-      <div class="member">
-        <%= link_to person_path(researcher) do %>
-          <%= image_tag researcher.image.url %>
-        <% end %>
-        <h5><%= researcher.name %></h5>
-        <p><%= researcher.title %></p>
-      </div>
+      <% if researcher.visible? %>
+        <div class="member">
+          <%= link_to person_path(researcher) do %>
+            <%= image_tag researcher.image.url %>
+          <% end %>
+          <h5><%= researcher.name %></h5>
+          <p><%= researcher.title %></p>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </section>

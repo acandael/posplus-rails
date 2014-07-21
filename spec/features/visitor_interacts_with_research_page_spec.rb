@@ -38,4 +38,20 @@ feature 'Visitor interacts with research page' do
     expect(page).to have_css 'li', text: publication.reference
     page.should have_xpath("//img[@src=\"/uploads/research_project/image/#{File.basename(research_project.image.url)}\"]")
   end
+
+  scenario 'clicks project link and does not see hidden publications belonging to research project' do
+    research_theme = Fabricate(:research_theme)
+    research_project = Fabricate(:research_project)
+    researcher = Fabricate(:researcher)
+    publication = Fabricate(:publication)
+    publication.visible = false
+    publication.save
+    research_project.researchers << researcher
+    research_project.publications << publication
+    research_theme.research_projects << research_project
+    visit research_index_path
+    click_link 'Go to projects'
+    find("a[href='/research_projects/#{research_project.id}']").click 
+    expect(page).not_to have_css 'li', text: publication.reference 
+  end
 end

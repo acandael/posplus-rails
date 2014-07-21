@@ -11,6 +11,14 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'p', text: @researcher.title
   end
 
+  scenario "does not see hidden researcher" do
+    @researcher.visible = false
+    @researcher.save
+    visit people_path
+    expect(page).not_to have_css 'h5', text:@researcher.name
+  end
+
+
   scenario "visitor clicks researcher and sees researcher details" do
     visit people_path
     find("a[href='/people/#{@researcher.id}']").click

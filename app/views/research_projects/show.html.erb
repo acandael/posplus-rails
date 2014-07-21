@@ -18,7 +18,9 @@
         <h2>Publications</h2>
         <ul>
           <% @research_project.publications.each do |publication| %>
-            <li><i class="fa fa-book"></i><%= publication.reference %></li>
+            <% if publication.visible? %>
+              <li><i class="fa fa-book"></i><%= publication.reference %></li>
+            <% end %>
           <% end %>
         </ul>
      </div>
