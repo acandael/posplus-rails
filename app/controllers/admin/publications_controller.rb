@@ -1,6 +1,6 @@
 class Admin::PublicationsController < DashboardController
   def index
-    @publications = Publication.all
+    @publications = Publication.all.order(:created_at)
   end
 
   def show
@@ -40,10 +40,16 @@ class Admin::PublicationsController < DashboardController
     publication.destroy
     redirect_to admin_publications_path, notice: "You successfully deleted the publication"
   end
+
+  def hide
+    @publication = Publication.find(params[:id])
+    @publication.toggle_visibility!
+    redirect_to admin_publications_path, notice: "The publication was successfully updated!"
+  end
   
   private
 
   def publication_params
-    params.require(:publication).permit(:title, :reference, :research_project_id)
+    params.require(:publication).permit(:title, :reference, :research_project_id, :visible)
   end
 end

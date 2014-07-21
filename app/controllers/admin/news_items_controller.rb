@@ -45,7 +45,7 @@ class Admin::NewsItemsController < DashboardController
   def hide
     @news_item = NewsItem.find(params[:id])
     @news_item.toggle_visibility!
-    redirect_to admin_news_items_path
+    redirect_to admin_news_items_path, notice: "The news item was successfully updated!"
   end
 
   private

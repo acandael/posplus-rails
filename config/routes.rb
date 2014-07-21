@@ -23,6 +23,10 @@ Rails.application.routes.draw do
         patch :hide
       end
     end
-    resources :publications
+    resources :publications do
+      member do
+        patch :hide
+      end
+    end
   end
 end

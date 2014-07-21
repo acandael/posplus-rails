@@ -83,4 +83,12 @@ feature 'Admin interacts with publications' do
     click_link @publication.title
     expect(page).to have_css 'li', text: @publication.research_project.title
   end
+
+  scenario 'admin hides publication' do
+    click_link "Hide" 
+    @publication.reload
+    expect(@publication.visible?).to be_false
+    expect(page).to have_css 'a', text: "Show"
+    expect(page).to have_css 'p', text: "The publication was successfully updated!"
+  end
 end
