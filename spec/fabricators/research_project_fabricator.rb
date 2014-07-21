@@ -6,4 +6,5 @@ Fabricator(:research_project) do
       "application/jpg"
     ) 
   }
+  active true
 end

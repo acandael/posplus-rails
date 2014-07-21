@@ -64,7 +64,6 @@ feature 'Admin interacts with news' do
   end
 
   scenario 'Admin hides news item' do
-    save_and_open_page
     click_link "Hide"
     @news_item.reload
     expect(@news_item.visible?).to be_false

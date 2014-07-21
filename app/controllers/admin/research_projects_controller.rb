@@ -41,10 +41,16 @@ class Admin::ResearchProjectsController < DashboardController
     redirect_to admin_research_projects_path, notice: "you successfully removed the research project"
   end
 
+  def close
+    @research_project = ResearchProject.find(params[:id])
+    @research_project.toggle_active!
+    redirect_to admin_research_projects_path
+  end
+
   
   private
 
   def research_project_params
-    params.require(:research_project).permit(:title, :body, :image, :research_theme_ids => [])
+    params.require(:research_project).permit(:title, :body, :image, :active, :research_theme_ids => [])
   end
 end

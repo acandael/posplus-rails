@@ -10,4 +10,16 @@ class ResearchProject < ActiveRecord::Base
   has_many :publications
 
   mount_uploader :image, ResearchProjectImageUploader
+
+  def open?
+    active
+  end
+
+  def toggle_active!
+    if open?
+      update_attribute(:active, false)
+    else
+      update_attribute(:active, true)
+    end
+  end
 end

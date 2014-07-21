@@ -114,4 +114,11 @@ feature "Admin interacts with research projects" do
     expect(page).to have_css 'li', text: publication1.title
     expect(page).to have_css 'li', text: publication2.title
   end
+
+  scenario "Admin closes research project" do
+    click_link "Close"
+    @research_project.reload
+    expect(@research_project.active).to be_false
+    expect(page).to have_css 'a', text: 'Open'
+  end
 end

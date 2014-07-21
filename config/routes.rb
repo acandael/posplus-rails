@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get 'admin', to: 'dashboard#index'
   namespace :admin do
     resources :research_themes
-    resources :research_projects
+    resources :research_projects do
+      member do
+        patch :close
+      end
+    end
     resources :researchers do
       member do
         patch :hide
