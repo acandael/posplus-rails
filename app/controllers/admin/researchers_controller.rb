@@ -1,6 +1,6 @@
 class Admin::ResearchersController < DashboardController
   def index
-    @researchers = Researcher.all
+    @researchers = Researcher.all.order(:name)
   end
 
   def show
@@ -41,9 +41,15 @@ class Admin::ResearchersController < DashboardController
     redirect_to admin_researchers_path, notice: "You successfully removed the researcher"
   end
 
+  def hide
+    @researcher = Researcher.find(params[:id])
+    @researcher.toggle_visibility!
+    redirect_to admin_researchers_path, notice: "The researcher was successfully updated!"
+  end
+
   private
 
   def researcher_params
-    params.require(:researcher).permit(:name, :bio, :email, :image, :title, :research_project_ids => [], :course_ids => [])
+    params.require(:researcher).permit(:name, :bio, :email, :image, :title, :visible, :research_project_ids => [], :course_ids => [])
   end
 end

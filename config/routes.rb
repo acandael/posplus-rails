@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :research_themes
     resources :research_projects
-    resources :researchers
+    resources :researchers do
+      member do
+        patch :hide
+      end
+    end
     resources :courses
     resources :news_items do
       member do

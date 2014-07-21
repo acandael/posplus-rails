@@ -9,4 +9,16 @@ class Researcher < ActiveRecord::Base
   has_many :courses, through: :course_researchers
 
   mount_uploader :image, ResearcherImageUploader
+
+  def visible?
+    visible
+  end
+
+  def toggle_visibility!
+    if visible?
+      update_attribute(:visible, false)
+    else
+      update_attribute(:visible, true)
+    end
+  end
 end

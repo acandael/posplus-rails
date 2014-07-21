@@ -7,4 +7,5 @@ Fabricator(:researcher) do
       "application/jpg"
     ) 
   }
+  visible true
 end

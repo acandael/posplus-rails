@@ -99,4 +99,12 @@ feature "Admin interacts with researcher" do
     click_link @researcher.name
     expect(page).to have_css 'li', text: course.title
   end
+
+  scenario 'Admin hides researcher' do
+    click_link "Hide"
+    @researcher.reload
+    expect(@researcher.visible).to be_false
+    expect(page).to have_css 'a', text: "Show"
+    expect(page).to have_css 'p', text: "The researcher was successfully updated!"
+  end
 end
