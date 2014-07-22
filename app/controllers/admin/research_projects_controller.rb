@@ -1,6 +1,6 @@
 class Admin::ResearchProjectsController < DashboardController 
   def index
-    @research_projects = ResearchProject.all
+    @research_projects = ResearchProject.all.order(:created_at)
   end
 
   def show

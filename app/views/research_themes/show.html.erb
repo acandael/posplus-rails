@@ -1,17 +1,64 @@
 <section class="research-theme">
-  <div class="projects">
-    <h1>Projects</h1>
-    <% @research_theme.research_projects.each do |project| %>
-    <div class="project">
-      <p><%= link_to project.title, research_project_path(project) %><br />
-      <%= project.body %>
-      </p>
-    </div>
-    <% end %>
+  <div class="theme">
+    <h1>Research Theme 1</h1>
+    <p>Lorem dolor sit amet consectetur adipisicing elit. Doloremque, minus, blanditiis, voluptatibus nulla quia ipsam sequi quos iusto aliquam iste magnam accusamus molestias quo illum impedit. Odit officia autem.</p>
+    <section class="projects">
+    <h2>Projects</h2>
+    <ul class="accordion-tabs-minimal">
+      <li class="tab-header-and-content">
+        <a href="#" class="tab-link is-active">Current</a>
+        <div class="tab-content">
+          <% @research_theme.research_projects.each do |project| %>
+            <% if project.active? %>
+            <div class="project">
+              <p><%= link_to project.title, research_project_path(project) %><br />
+              <%= project.body %>
+              </p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+      <li class="tab-header-and-content">
+        <a href="#" class="tab-link">Past</a>
+        <div class="tab-content">
+          <% @research_theme.research_projects.each do |project| %>
+            <% if !project.active? %>
+            <div class="project">
+              <p><%= link_to project.title, research_project_path(project) %><br />
+              <%= project.body %>
+              </p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </section>
   </div>
   <aside>
-    <h2><%= @research_theme.title %></h2>
-    <p><%= @research_theme.description %></p>
+    <img src="images/jigsaw-puzzle.jpg" />
   </aside>
 </section>
+<script>
+$(document).ready(function () {
+  $('.accordion-tabs-minimal').each(function(index) {
+    $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
+  });
+
+  $('.accordion-tabs-minimal').on('click', 'li > a', function(event) {
+    if (!$(this).hasClass('is-active')) {
+      event.preventDefault();
+      var accordionTabs = $(this).closest('.accordion-tabs-minimal')
+      accordionTabs.find('.is-open').removeClass('is-open').hide();
+
+      $(this).next().toggleClass('is-open').toggle();
+      accordionTabs.find('.is-active').removeClass('is-active');
+      $(this).addClass('is-active');
+    } else {
+      event.preventDefault();
+    }
+  });
+});
+</script>
 

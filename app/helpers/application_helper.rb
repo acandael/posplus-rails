@@ -6,4 +6,12 @@ module ApplicationHelper
       "Show"
     end
   end
+
+  def toggle_active(object)
+    if object.active?
+      "Close"
+    else
+      "Open"
+    end
+  end
 end
