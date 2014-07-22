@@ -21,4 +21,11 @@ feature 'Visitor interacts with homepage' do
     visit home_path
     expect(page).not_to have_css 'a', text: @news_item.title
   end
+
+  scenario 'and sees in the picture' do
+    @feature = Fabricate(:feature)
+    visit home_path
+    expect(page).to have_css 'h2', text: @feature.title
+    expect(page).to have_css 'p', text: @feature.body
+  end
 end
