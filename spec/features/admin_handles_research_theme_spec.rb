@@ -85,6 +85,7 @@ require 'spec_helper'
       find("input[@value='Add Research Theme']").click
       fill_in 'Title', with: title 
       fill_in 'Description', with: description 
+      attach_file 'Image', "spec/support/uploads/monk_large.jpg"
       click_button "Add Research Theme"
     end
 

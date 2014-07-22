@@ -5,6 +5,8 @@ class ResearchTheme < ActiveRecord::Base
   has_many :theme_projects, dependent: :destroy
   has_many :research_projects, through: :theme_projects
 
+  mount_uploader :image, ResearchThemeImageUploader
+
 
   private
 
