@@ -3,6 +3,6 @@ class Publication < ActiveRecord::Base
 
   validates :title, :reference, presence: true
 
-  belongs_to :research_project
-
+  has_many :project_publications
+  has_many :research_projects, through: :project_publications
 end

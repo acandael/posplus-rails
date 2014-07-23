@@ -9,11 +9,13 @@
       <h3>Reference</h3>
       <p><%= @publication.reference %></p>
     </section>
-    <% if @publication.research_project.present? %>
+    <% if @publication.research_projects.any? %>
       <section>
         <h3>Research Project</h3>
         <ul>
-          <li><%= link_to @publication.research_project.title, admin_research_project_path(@publication.research_project) %></li>
+          <% @publication.research_projects.each do |project| %>
+            <li><%= link_to project.title, admin_research_project_path(project) %></li>
+          <% end %>
         </ul>
       </section>
     <% end %>

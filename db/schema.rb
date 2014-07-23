@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722124120) do
+ActiveRecord::Schema.define(version: 20140723152129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 20140722124120) do
     t.boolean  "visible"
   end
 
+  create_table "project_publications", force: true do |t|
+    t.integer "research_project_id"
+    t.integer "publication_id"
+  end
+
   create_table "project_researchers", force: true do |t|
     t.integer "research_project_id"
     t.integer "researcher_id"
@@ -54,7 +59,6 @@ ActiveRecord::Schema.define(version: 20140722124120) do
 
   create_table "publications", force: true do |t|
     t.string   "title"
-    t.integer  "research_project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "reference"

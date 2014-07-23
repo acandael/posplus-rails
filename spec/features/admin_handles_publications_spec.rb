@@ -18,16 +18,14 @@ feature 'Admin interacts with publications' do
   end
 
   scenario 'admin adds a new publication' do
-    @research_project = Fabricate(:research_project)
+    research_project = Fabricate(:research_project)
     expect{
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: "new publication" 
       fill_in 'Reference', with: "some reference" 
-      select @research_project.title, :from => 'publication_research_project_id'
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
-    expect(Publication.last.research_project.title).to eq(@research_project.title)
   end
 
   scenario 'admin should not be able to add publication without title and reference' do
@@ -48,11 +46,9 @@ feature 'Admin interacts with publications' do
     find("a[href='/admin/publications/#{@publication.id}/edit']").click
     find("input[@id='publication_title']").set(@publication.title)
     find("textarea[@id='publication_reference']").set(@publication.reference)
-    select @research_project.title, :from => 'publication_research_project_id'
     click_button "Update Publication"
     expect(Publication.find(@publication).title).to eq("edited title")
     expect(Publication.find(@publication).reference).to eq("edited reference")
-    expect(Publication.last.research_project.title).to eq(@research_project.title)
     expect(page).to have_css 'p', text: "You successfully updated the publication"
   end
 
@@ -78,10 +74,10 @@ feature 'Admin interacts with publications' do
 
   scenario 'admin sees the research project the publication belongs to' do
     research_project = Fabricate(:research_project)
-    @publication.research_project = research_project
+    @publication.research_projects << research_project
     @publication.save
     click_link @publication.title
-    expect(page).to have_css 'li', text: @publication.research_project.title
+    expect(page).to have_css 'li', text: research_project.title
   end
 
   scenario 'admin hides publication' do

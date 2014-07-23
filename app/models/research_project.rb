@@ -9,7 +9,8 @@ class ResearchProject < ActiveRecord::Base
   has_many :project_researchers
   has_many :researchers, through: :project_researchers
 
-  has_many :publications
+  has_many :project_publications
+  has_many :publications, through: :project_publications
 
   mount_uploader :image, ResearchProjectImageUploader
 

@@ -9,8 +9,10 @@
     <%= f.text_area :reference %>
   </div>
   <div>
-    <%= f.label :research_project %>
-    <%= f.collection_select :research_project_id, ResearchProject.all, :id, :title, prompt: true %>
+     <h3>Research Projects</h3>
+     <%= f.collection_check_boxes :research_project_ids, ResearchProject.all, :id, :title do |b| %>
+       <%= b.label() { b.check_box + b.text } %>
+     <% end %>
   </div>
   <% if @publication.new_record? %>
     <%= f.submit "Add Publication" %>
