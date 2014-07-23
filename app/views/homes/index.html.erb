@@ -41,12 +41,15 @@
       <div class="bullet-icon bullet-icon-2">
         <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
       </div>
-      <div class="bullet-content">
-        <h2>In the picture</h2>
-        <p>Seminar 'Europe and higher education: The muscles from Brussels?'</p>
-        <img src="/assets/jigsaw-puzzle.jpg" />
-        <p><a href="#">More info</a></p>
-      </div>
+      <% @features.each do |feature| %>
+        <div class="bullet-content">
+          <h2><%= link_to feature.title, feature_path(feature) %></h2>
+          <p><%= feature.body %></p>
+          <% if feature.image.present? %>
+            <%= image_tag feature.image.url %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     
   </div>

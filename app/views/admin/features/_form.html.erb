@@ -1,0 +1,32 @@
+<%= form_for [:admin, @feature] do |f| %>
+  <fieldset>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div>
+      <% if @feature.image %>
+        <%= image_tag @feature.image.url %>
+      <% end %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div>
+      <% if @feature.document.present? %>
+        <%= link_to File.basename(@feature.document.url), @feature.document.url %>
+      <% end %>
+      <%= f.label :document %>
+      <%= f.file_field :document %>
+    </div>
+    <% if @feature.new_record? %>
+      <%= f.submit "Add Feature" %>
+    <% else %>
+      <%= f.submit "Update Feature" %>
+    <% end %>
+    <%= link_to 'Cancel', admin_features_path %>
+  </fieldset>
+<% end %>

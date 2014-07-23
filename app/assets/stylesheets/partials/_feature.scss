@@ -1,0 +1,80 @@
+section.feature {
+  article.feature_item {
+    margin-top: em(20);
+    padding: .75em;
+    background: white;
+    @include clearfix;
+    @extend .box-shadow;
+
+    @include media($medium-screen) {
+      margin-top: 0;
+      padding: 3em;
+    }
+
+
+    div.content {
+      @include media($medium-screen) {
+        @include span-columns(8);
+        float: left;
+        overflow: auto;
+      }
+      padding-top: 0;
+
+      header {
+        margin-bottom: em(20);
+        h1 {
+          font-size: $base-font-size * 1.2;
+          margin-bottom: em(5);
+          @include media($medium-screen) {
+            text-align: left;
+            font-size: $base-font-size * 1.5;
+            margin-top: 0;
+          }
+        }
+        time {
+          font-style: oblique;
+        }
+      }
+
+      h2 {
+        font-size: $base-font-size * 1.2;
+        text-align: center;
+        @include media($medium-screen) {
+          text-align: left;
+          margin-bottom: 0;
+        }
+      }
+
+      i{
+        font-size: $base-font-size * 1.2;
+        color: #40526b;
+        margin-left: em(10);
+      }
+
+      ul {
+        margin-top: em(10);
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    }
+    
+    aside {
+      @include media($medium-screen) {
+        @include span-columns(4);
+        @include omega();
+        float: right;
+      }
+
+      img {
+        margin-top: em(20);
+        @include media($medium-screen) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+

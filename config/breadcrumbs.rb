@@ -90,6 +90,19 @@ crumb :publication do |publication|
   parent :publications
 end
 
+crumb :features do
+  link "In the picture", admin_features_path
+end
+
+crumb :feature do |feature|
+  if feature
+    link feature.title, admin_feature_path(feature)
+  else
+    link "In the picture", admin_features_path
+  end
+  parent :features
+end
+
 
 # crumb :project_issues do |project|
 #   link "Issues", project_issues_path(project)

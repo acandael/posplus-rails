@@ -1,17 +1,22 @@
-<h1>Features</h1>
+<%breadcrumb :dashboard_item, "In the picture" %>
+<div class="panel">
+  <h1>In the picture</h1>
+  <% if @features.size == 0 %>
   <%= button_to "Add Feature", new_admin_feature_path, method: "get" %>
-<table class="table-borders">
-  <tbody>
-    <% @features.each do |feature| %>
-      <tr>
-        <td>
-          <%= link_to feature.title, admin_feature_path(feature) %>
-        </td>
-        <td>
-          <%= link_to "Edit", edit_admin_feature_path(feature) %>&nbsp;&nbsp;
-          <%= link_to "Delete", admin_feature_path(feature), method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% end %>
+  <table class="table-borders">
+    <tbody>
+      <% @features.each do |feature| %>
+        <tr>
+          <td>
+            <%= link_to feature.title, admin_feature_path(feature) %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_admin_feature_path(feature) %>&nbsp;&nbsp;
+            <%= link_to "Delete", admin_feature_path(feature), method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

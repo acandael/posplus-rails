@@ -14,9 +14,9 @@ feature 'Visitor interacts with research page' do
     research_theme.research_projects << research_project
     visit research_index_path
     click_link 'Go to projects'
-    expect(page).to have_css 'h1', text: "Projects"
-    expect(page).to have_css 'h2', text: research_theme.title
-    expect(page).to have_css 'p', text: research_theme.description
+    within("section.projects") { expect(page).to have_css 'h2', text: "Projects" }
+    within("div.project") { expect(page).to have_css 'a', text: research_project.title }
+    within("div.theme") { expect(page).to have_css 'p', text: research_theme.description }
     expect(page).to have_css 'a', text: research_project.title
     expect(page).to have_css 'p', text: research_project.body
   end

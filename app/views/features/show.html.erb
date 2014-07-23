@@ -1,0 +1,28 @@
+<section class="feature">
+  <article class="feature_item">
+    <div class="content">
+      <header>
+        <h1><%= @feature.title %></h1>
+        <time datetime="<%= @feature.created_at %>"><%= @feature.created_at.strftime('%d %B %Y') %></time> 
+      </header>
+      <p><%= @feature.body %></p>
+      <% if @feature.document.present? %>
+        <h2>Document</h2>
+        <ul>
+        <li><%= link_to File.basename(@feature.document.url), @feature.document.url %><i class="fa fa-download"></i></li>
+        </ul>
+      <% end %>
+    </div>
+    <% if @feature.image.present? %>
+      <aside>
+        <%= image_tag @feature.image.url %>
+      <aside>
+    <% end %>
+  </article>
+</section>
+
+
+
+
+
+
