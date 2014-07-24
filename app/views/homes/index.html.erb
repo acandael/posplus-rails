@@ -30,9 +30,8 @@
       <div class="bullet-content">
         <h2>Research Themes</h2>
         <% @research_themes.each do |theme| %>
-        <h3><%= theme.title %></h3>
+        <h3><%= link_to theme.title, research_theme_path(theme) %></h3>
         <p><%= theme.description %></p>
-        <p><%= link_to "Go to projects", research_theme_path(theme) %></p>
         <% end %>
       </div>
     </div>  

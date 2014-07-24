@@ -28,7 +28,7 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '~> 2.4.1'
   gem 'launchy'
 end
 

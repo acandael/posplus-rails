@@ -26,6 +26,7 @@ feature 'Admin interacts with publications' do
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
+    visit admin_publication_path(@publication.id)
   end
 
   scenario 'admin should not be able to add publication without title and reference' do
