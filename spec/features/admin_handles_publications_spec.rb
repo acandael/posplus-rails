@@ -88,4 +88,13 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'a', text: "Show"
     expect(page).to have_css 'p', text: "The publication was successfully updated!"
   end
+
+  scenario 'admin sees data for publication' do
+    data_document = Fabricate(:document)
+    @publication.documents << data_document
+    click_link @publication.title
+    click_link "Data"
+    expect(page).to have_css 'h1', text: "Data"
+    expect(page).to have_css 'a', text: File.basename(data_document.document.url)
+  end
 end
