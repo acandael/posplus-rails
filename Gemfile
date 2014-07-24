@@ -49,6 +49,9 @@ gem 'neat'
 #Breadcrumbs
 gem 'gretel'
 
+#wysiwig editor
+gem 'wysiwyg-rails', '~> 1.1.7'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
