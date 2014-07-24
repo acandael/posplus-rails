@@ -19,7 +19,7 @@
         <ul>
           <% @research_project.publications.each do |publication| %>
             <% if publication.visible? %>
-              <li><i class="fa fa-book"></i><%= publication.reference %></li>
+              <li><i class="fa fa-book"></i><%= raw publication.reference %></li>
             <% end %>
           <% end %>
         </ul>

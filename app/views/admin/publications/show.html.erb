@@ -7,7 +7,7 @@
     </section>
     <section>
       <h3>Reference</h3>
-      <p><%= @publication.reference %></p>
+      <p><%= raw @publication.reference %></p>
     </section>
     <% if @publication.research_projects.any? %>
       <section>

@@ -22,3 +22,15 @@
   <%= link_to 'Cancel', admin_publications_path %>
 </fieldset>
 <% end %>
+
+<script>
+    $(function() {
+      $('#publication_reference').editable({
+        inlineMode: false,
+
+        // Set custom buttons with separator between them. Also include the name
+        // of the buttons  defined in customButtons.
+            buttons: ['bold', 'italic']
+      })
+    });
+</script>
