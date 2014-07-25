@@ -1,0 +1,68 @@
+section.data {
+  @include outer-container;
+  h1 {
+    @include media($small-screen) {
+      margin-top: em(20);
+      text-align: center;
+    }
+    @include media(larg-screen) {
+      margin-top: 0;
+    }
+  }
+  article.publication {
+    margin-top: em(20);
+    margin-bottom: em(20);
+
+    @include media($large-screen) {
+      @include span-columns(12);
+      padding: 3em;
+    }
+    h1 {
+      @include media($small-screen) {
+        font-size: $base-font-size;
+        margin-top: 0;
+      }
+      text-align: left;
+    }
+
+    i {
+      font-size: $base-font-size * 1.2;
+      color: #40526b;
+    }
+
+    div.dataset {
+      @include media($large-screen) {
+        @include span-columns(6 of 12);
+      }
+      h2 {
+        @include media($small-screen) {
+          font-size: $base-font-size;
+          text-align: center;
+        }
+        @include media($large-screen) {
+          font-size: $base-font-size * 1.2;
+          text-align: left;
+        }
+      }
+
+      p {
+        font-size: .9em;
+        @include media($large-screen) {
+          font-size: $base-font-size;
+        }
+      }
+
+      ul {
+        margin-top: em(20);
+      }
+      i {
+        margin-left: em(10);
+      }
+      
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+

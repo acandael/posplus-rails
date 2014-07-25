@@ -90,6 +90,11 @@ crumb :publication do |publication|
   parent :publications
 end
 
+crumb :data do |publication|
+  link "Data", admin_publication_path(publication)
+  parent :publication, publication
+end
+
 crumb :features do
   link "In the picture", admin_features_path
 end

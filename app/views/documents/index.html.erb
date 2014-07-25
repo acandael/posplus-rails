@@ -1,0 +1,20 @@
+<section class="data">
+  <h1>Data</h1>
+  <% @publications.each do |publication| %>
+  <article class="publication">
+    <h1><i class="fa fa-book"></i> <%= publication.title %></h1>
+    <% if publication.documents.any? %>
+      <% publication.documents.in_groups_of(3, false) do |dataset| %>
+        <div class="dataset">
+          <h2>Datasets</h2>
+          <ul>
+            <% dataset.each do |document| %>
+              <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i></li>
+            <% end %>
+          </ul>
+        </div>
+       <% end %>
+     <% end %>
+  </article>
+  <% end %>
+</section>

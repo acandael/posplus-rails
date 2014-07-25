@@ -19,5 +19,15 @@
         </ul>
       </section>
     <% end %>
+    <% if @publication.documents.any? %>
+      <section>
+        <h3>Data</h3>
+        <ul>
+          <% @publication.documents.each do |document| %>
+            <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i></li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
   </div>
 </div>

@@ -1,0 +1,19 @@
+<% breadcrumb :data, @publication %>
+<div class="panel">
+<h1>Data</h1>
+<%= button_to "Add Document", new_admin_publication_document_path(@publication.id), method: "get" %>
+  <table class="table-borders">
+    <% if @documents.any? %>
+      <% @documents.each do |document| %>
+        <tr>
+            <td><%= link_to File.basename(document.file.url), document.file.url %>&nbsp;<i class="fa fa-download"></i></td>
+            <td><%= link_to "Delete", admin_publication_document_path(document.publication_id, document), method: :delete, data: { confirm: "Are you sure" } %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>no documents available</td>
+      </tr>
+    <% end %>
+  </table>
+</div>

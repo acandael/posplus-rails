@@ -55,6 +55,10 @@ gem 'wysiwyg-rails', '~> 1.1.7'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
+#XSS prevention
+gem 'loofah', '~> 2.0.0'
+
 group :production do
   gem 'rails_12factor'
 end

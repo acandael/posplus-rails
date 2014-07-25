@@ -12,9 +12,16 @@ feature 'Admin interacts with publications' do
   end
 
   scenario 'admin clicks publication and views publication details' do
+    project = Fabricate(:research_project)
+    @publication.research_projects << project
+    document = Fabricate(:document)
+    @publication.documents << document
+    @publication.save
     click_link @publication.title
     expect(page).to have_css 'p', text: @publication.title
     expect(page).to have_css 'p', text: @publication.reference
+    expect(page).to have_css 'a', text: project.title
+    expect(page).to have_css 'a', text: File.basename(document.file.url)
   end
 
   scenario 'admin adds a new publication' do
@@ -39,6 +46,7 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'p', text: "Title can't be blank"
     expect(page).to have_css 'p', text: "Reference can't be blank"
   end
+
 
   scenario 'admin edits publication' do
     @research_project = Fabricate(:research_project)
@@ -87,14 +95,5 @@ feature 'Admin interacts with publications' do
     expect(@publication.visible?).to be_false
     expect(page).to have_css 'a', text: "Show"
     expect(page).to have_css 'p', text: "The publication was successfully updated!"
-  end
-
-  scenario 'admin sees data for publication' do
-    data_document = Fabricate(:document)
-    @publication.documents << data_document
-    click_link @publication.title
-    click_link "Data"
-    expect(page).to have_css 'h1', text: "Data"
-    expect(page).to have_css 'a', text: File.basename(data_document.document.url)
   end
 end

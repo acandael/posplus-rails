@@ -33,8 +33,13 @@ aside {
     margin-top: 0;
   }
 
+
   h2 {
     font-size: $base-font-size * 1.2;
+  }
+
+  img {
+    margin-bottom: em(20);
   }
 
   background: white;

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :research_projects, only: [:show]
   resources :news_items, only: [:show]
   resources :features, only: [:show]
+  resources :documents, only: [:index]
 
   get 'admin', to: 'dashboard#index'
   namespace :admin do
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
       member do
         patch :hide
       end
+      resources :documents, only: [:index, :new, :create, :destroy]
     end
 
     resources :features
