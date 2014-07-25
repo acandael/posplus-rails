@@ -20,25 +20,39 @@ feature "Admin interacts with researcher" do
   end
 
   scenario "Admin adds a researcher" do
-    @researcher.reload
     expect{
       find("input[@value='Add Researcher']").click
       fill_in 'Name', with: "some name" 
-      fill_in 'Bio', with: @researcher.bio
-      fill_in 'Email', with: @researcher.email
+      fill_in 'Bio', with: "this is the bio" 
+      fill_in 'Email', with: "researcher@example.com" 
+      attach_file 'Image', "spec/support/uploads/monk_large.jpg"
       click_button "Add Researcher"
     }.to change(Researcher, :count).by(1)
+    expect((Researcher.last).name).to eq("some name")
+    expect((Researcher.last).bio).to eq("this is the bio")
+    expect((Researcher.last).email).to eq("researcher@example.com")
+    expect((Researcher.last).image.url).to eq("/uploads/researcher/image/monk_large.jpg")
     expect(page).to have_css 'p', text: "You successfully added a new researcher"
   end
 
-  scenario 'Admin should not be able to add research project without name and bio' do
+  scenario 'Admin should not be able to add research project without name' do
     expect{
       find("input[@value='Add Researcher']").click
       fill_in 'Name', with: ""
+      fill_in 'Bio', with: "this is the bio"
+      click_button "Add Researcher"
+    }.not_to change(Researcher, :count).by(1)
+    expect(page).to have_css 'p', text: "Name can't be blank" 
+  end
+
+  scenario 'Admin should not be able to add research project without bio' do
+    expect{
+      find("input[@value='Add Researcher']").click
+      fill_in 'Name', with: "John Doe"
       fill_in 'Bio', with: ""
       click_button "Add Researcher"
     }.not_to change(Researcher, :count).by(1)
-    expect(page).to have_css 'p', text: @researcher.errors.full_messages.join(' ') 
+    expect(page).to have_css 'p', text: "Bio can't be blank" 
   end
 
   scenario 'Admin should not be able to add a researcher if the name already exists' do
@@ -46,37 +60,56 @@ feature "Admin interacts with researcher" do
     expect{
       find("input[@value='Add Researcher']").click
       fill_in 'Name', with: @researcher.name 
-      fill_in 'Bio', with: researcher2.bio 
+      fill_in 'Bio', with: "some bio" 
       click_button "Add Researcher"
     }.not_to change(Researcher, :count).by(1)
     expect(page).to have_content "Name has already been taken"
   end
 
   scenario 'Admin edits researcher' do
-    @researcher.bio = "edited the bio"
     find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
-    find("textarea[@id='researcher_bio']").set(@researcher.bio)
+    find("input[@id='researcher_name']").set("John Doe")
+    find("textarea[@id='researcher_bio']").set("John Doe's bio")
     click_button "Update Researcher"
+    @researcher.reload
+    expect(@researcher.name).to eq("John Doe")
+    expect(@researcher.bio).to eq("John Doe's bio")
     expect(page).to have_content "you successfully updated the researcher"
   end
 
-  scenario 'Admin should not be able to update researcher without name or bio' do
-    @researcher.name = ""
-    @researcher.bio = "edited the bio"
+  scenario 'Admin should not be able to update researcher without name' do
     find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
-    find("input[@id='researcher_name']").set(@researcher.name)
-    find("textarea[@id='researcher_bio']").set(@researcher.bio)
+    find("input[@id='researcher_name']").set("")
+    find("textarea[@id='researcher_bio']").set("John Doe's bio")
     click_button "Update Researcher"
     expect(page).to have_content "Name can't be blank"
+    expect(@researcher.name).not_to eq("")
+    expect(@researcher.bio).not_to eq("John Doe's bio")
+  end
+
+  scenario 'Admin should not be able to update researcher without email' do
+    find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
+    find("input[@id='researcher_name']").set("John Doe")
+    find("textarea[@id='researcher_bio']").set("John Doe's bio")
+    find("input[@id='researcher_email']").set("")
+    click_button "Update Researcher"
+    expect(page).to have_content "Email can't be blank"
+    expect(@researcher.name).not_to eq("John Doe")
+    expect(@researcher.bio).not_to eq("John Doe's bio")
+    expect(@researcher.email).not_to eq("")
   end
 
   scenario 'Admin should not be able to give duplicate name while editing' do
     researcher2 = Fabricate(:researcher)
     find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
     find("input[@id='researcher_name']").set(researcher2.name)
-    find("textarea[@id='researcher_bio']").set(@researcher.bio)
+    find("textarea[@id='researcher_bio']").set("John Doe's bio")
+    find("input[@id='researcher_email']").set("john.doe@example.com")
     click_button "Update Researcher"
-    expect(page).to have_content "Name has already been taken"
+    expect(page).to have_css 'p', text: "Name has already been taken"
+    expect(@researcher.name).not_to eq(researcher2.name)
+    expect(@researcher.bio).not_to eq("John Doe's bio")
+    expect(@researcher.email).not_to eq("john.doe@example.com")
   end
 
   scenario 'Admin deletes researcher' do
@@ -84,6 +117,7 @@ feature "Admin interacts with researcher" do
       click_link "Delete"
     }.to change(Researcher, :count).by(-1)
     expect(page).to have_css 'p', text: "You successfully removed the researcher"
+    expect(current_path).to eq("/admin/researchers")
   end
 
   scenario 'Admin sees research projects for researcher' do

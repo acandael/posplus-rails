@@ -1,8 +1,9 @@
 class Researcher < ActiveRecord::Base
   include Hideable
 
-  validates :name, presence: :true, uniqueness: :true
-  validates :bio, presence: :true
+  validates :name, presence: true, uniqueness: :true
+  validates :bio, presence: true
+  validates :email, presence: true
 
   has_many :project_researchers
   has_many :research_projects, through: :project_researchers

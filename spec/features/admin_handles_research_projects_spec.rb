@@ -16,18 +16,20 @@ feature "Admin interacts with research projects" do
     click_link @research_project.title
     expect(page).to have_css 'h1', text: @research_project.title
     expect(page).to have_css 'div', text: @research_project.body
+    page.should have_xpath("//img[@src=\"/uploads/research_project/image/#{File.basename(@research_project.image.url)}\"]")
   end
 
   scenario 'Admin adds a research project' do
     expect{
     find("input[@value='Add Research Project']").click
-    fill_in 'Title', with: @research_project.title 
-    fill_in 'Body', with: @research_project.body 
+    fill_in 'Title', with: "new research project" 
+    fill_in 'Body', with: "description for research project" 
     attach_file 'Image', "spec/support/uploads/monk_large.jpg"
     click_button "Add Research Project"
     }.to change(ResearchProject, :count).by(1)
 
-    expect(page).to have_content @research_project.title 
+    expect(page).to have_css 'a', text: "new research project" 
+    expect((ResearchProject.last).image.url).to eq("/uploads/research_project/image/monk_large.jpg")
     expect(page).to have_content "you successfully added a new research project"
   end
 
@@ -46,8 +48,10 @@ feature "Admin interacts with research projects" do
     @research_project.title = "this is the edited title"
     find("a[href='/admin/research_projects/#{@research_project.id}/edit']").click 
     find("input[@id='research_project_title']").set(@research_project.title)
+    attach_file 'Image', "spec/support/uploads/monk_large.jpg"
     click_button "Update Research Project"
     expect(page).to have_content "this is the edited title"
+    expect((ResearchProject.last).image.url).to eq("/uploads/research_project/image/monk_large.jpg")
     expect(page).to have_content "you successfully updated the research project"
   end
 
