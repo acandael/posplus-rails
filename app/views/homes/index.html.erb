@@ -1,5 +1,5 @@
 <section class="home">
-  <div class="hero">
+  <div class="hero block">
     <div class="hero-inner">
       <div class="hero-copy">
         <h1>POS Plus Static prototype</h1>
@@ -8,7 +8,7 @@
       <button>Learn More</button>
     </div>
   </div>
-  <div class="news">
+  <div class="news block">
     <div class="news-inner">
       <h2>News</h2>
       <% @news.each do |newsitem| %>
@@ -54,4 +54,10 @@
   </div>
   </div>
 </section>
+<script>
+$(document).ready(function () {
+  $('.bullet').matchHeight();
+  $('.block').matchHeight();
+});
+</script>
 
