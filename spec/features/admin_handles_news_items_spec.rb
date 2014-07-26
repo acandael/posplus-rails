@@ -18,7 +18,6 @@ feature 'Admin interacts with news' do
     expect(page).to have_css 'p', text: @news_item.body
     page.should have_xpath("//img[@src=\"/uploads/news_item/image/#{File.basename(@news_item.image.url)}\"]")
     expect(page).to have_css 'a', text: File.basename(@news_item.document.url)
-
   end
 
   scenario 'Admin adds a news item' do
