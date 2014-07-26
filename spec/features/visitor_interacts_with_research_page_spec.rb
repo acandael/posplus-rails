@@ -12,6 +12,7 @@ feature 'Visitor interacts with research page' do
     research_theme = Fabricate(:research_theme)
     research_project = Fabricate(:research_project)
     research_theme.research_projects << research_project
+    research_project.save
     visit research_index_path
     click_link 'Go to projects'
     within("section.projects") { expect(page).to have_css 'h2', text: "Projects" }
@@ -19,6 +20,7 @@ feature 'Visitor interacts with research page' do
     within("div.theme") { expect(page).to have_css 'p', text: research_theme.description }
     expect(page).to have_css 'a', text: research_project.title
     expect(page).to have_css 'p', text: research_project.body
+    within("aside") { expect(page).to have_css 'a', text: "Data" }
   end
 
   scenario 'clicks project link and sees research project details' do
