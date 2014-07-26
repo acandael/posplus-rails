@@ -20,7 +20,7 @@ class Admin::CoursesController < DashboardController
     if @course.save
       redirect_to admin_courses_path, notice: "you successfully added a new course"
     else
-      flash[:alert] = "there was a problem, the course was not added!"
+      flash[:alert] = @course.errors.full_messages.join(' ')
       render :new
     end
   end
@@ -30,7 +30,7 @@ class Admin::CoursesController < DashboardController
     if @course.update_attributes(course_params)
     redirect_to admin_courses_path, notice: "You successfully updated the course"
     else
-      flash.alert = "there was a problem, the course could not be updated"
+      flash.alert = @course.errors.full_messages.join(' ') 
       render :edit
     end
   end

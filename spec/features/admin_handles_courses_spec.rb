@@ -9,23 +9,28 @@ feature "Admin interacts with courses" do
   end
 
   scenario "admin views courses" do
-    expect(page).to have_content @course.title
+    within("table.table-borders") { expect(page).to have_css 'a', text: @course.title }
   end
 
   scenario "admin clicks course link and views course details" do
+    teacher = Fabricate(:researcher)
+    @course.researchers << teacher
+    @course.save
+
     click_link @course.title
+
     expect(page).to have_css 'h1', text: @course.title
+    expect(page).to have_css 'a', text: teacher.name
   end
 
   scenario "admin adds a course" do
-    course2 = Fabricate(:course)
     expect{
       find("input[@value='Add Course']").click
-      fill_in 'Title', with: course2.title
+      fill_in 'Title', with: "new course" 
       click_button "Add Course"
     }.to change(Course, :count).by(1)
 
-    expect(page).to have_css 'a', text: course2.title
+    expect(page).to have_css 'a', text: "new course" 
     expect(page).to have_css 'p', text: "you successfully added a new course"
   end
 
@@ -35,25 +40,33 @@ feature "Admin interacts with courses" do
       fill_in 'Title', with: "" 
       click_button "Add Course"
     }.not_to change(Course, :count).by(1)
-    expect(page).to have_css 'p', text: "there was a problem, the course was not added!"
+    expect(page).to have_css 'p', text: "Title can't be blank"
+    expect((Course.last).title).not_to eq("")
+  end
+
+  scenario "admin should not be able to add duplicate course title" do
+    expect{
+      find("input[@value='Add Course']").click
+      fill_in 'Title', with: @course.title 
+      click_button "Add Course"
+    }.not_to change(Course, :count).by(1)
+    expect(page).to have_css 'p', text: "Title has already been taken"
   end
 
   scenario 'admin edits course' do
-    @course.title = "this is the edited title"
     find("a[href='/admin/courses/#{@course.id}/edit']").click 
-    find("input[@id='course_title']").set(@course.title)
+    find("input[@id='course_title']").set("edited title")
     click_button "Update Course"
-    expect(page).to have_css 'a', text: "this is the edited title"
+    expect(page).to have_css 'a', text: "edited title"
     expect(page).to have_css 'p', text: "You successfully updated the course"
   end
 
   scenario 'an admin should not be able to update the course without title' do
-    @course.title = ""
     find("a[href='/admin/courses/#{@course.id}/edit']").click 
-    find("input[@id='course_title']").set(@course.title)
+    find("input[@id='course_title']").set("")
     click_button "Update Course"
+    expect(page).to have_css 'p', text: "Title can't be blank"
     expect(Course.find(@course.id).title).not_to eq("")
-    expect(page).to have_css 'p', text: "there was a problem, the course could not be updated"
   end
 
   scenario 'an admin deletes a course' do
@@ -61,6 +74,7 @@ feature "Admin interacts with courses" do
       click_link "Delete"
     }.to change(Course, :count).by(-1)
     expect(page).to have_css 'p', text: "you successfully deleted a course"
+    expect(current_path).to eq("/admin/courses")
   end
 
   scenario 'an admin sees researchers belonging to course' do
