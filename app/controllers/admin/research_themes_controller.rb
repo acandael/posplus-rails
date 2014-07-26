@@ -20,7 +20,7 @@ class Admin::ResearchThemesController < DashboardController
     if @research_theme.save
     redirect_to admin_research_themes_path, notice: "you successfully added a new research theme"
     else
-      flash.alert = "there was a problem, the research theme could not be added"
+      flash.alert = @research_theme.errors.full_messages.join(' ') 
       render :new
     end
   end
@@ -31,7 +31,7 @@ class Admin::ResearchThemesController < DashboardController
     if @research_theme.update_attributes(research_theme_params)
     redirect_to admin_research_themes_path, notice: "you successfully updated the research theme"
     else
-      flash.alert ="there was a problem, the research theme could not be updated"
+      flash.alert = @research_theme.errors.full_messages.join(' ') 
       render :edit
     end
   end
