@@ -2,21 +2,25 @@ require 'spec_helper'
 
 feature 'Admin signs in' do
   scenario 'Admin successfully signs in' do
-    alice = Fabricate(:user)
+    alice = Fabricate(:admin)
     visit signin_path
     fill_in "Email Address", with: alice.email
     fill_in "Password", with: alice.password
     click_button "Sign in"
     expect(page).to have_content alice.full_name  
+    expect(page).to have_css 'a', text: "Sign Out"
+    expect(page).to have_css 'a[class="sign-up"]', text: "Admin"
+    expect(current_path).to eq("/admin")
   end
 
   scenario 'Admin signs in with invalid credentials' do
-    alice = Fabricate(:user)
+    alice = Fabricate(:admin)
     visit signin_path
-    fill_in "Email Address", with: "hello"
+    fill_in "Email Address", with: "invalid username"
     fill_in "Password", with: alice.password
     click_button "Sign in"
     expect(page).to have_content "Wrong Email/Password combination"
+    expect(page).not_to have_css 'a[class="sign-up"]', text: "Admin"
   end
 
   scenario 'Admin signs out' do
@@ -27,15 +31,8 @@ feature 'Admin signs in' do
     click_button "Sign in"
     click_link "Sign Out"
     expect(page).to have_content "You are signed out!"
-  end
-
-  scenario 'Admin signs in and is redirect to dashboard' do
-    alice = Fabricate(:admin)
-    visit signin_path
-    fill_in "Email Address", with: alice.email
-    fill_in "Password", with: alice.password
-    click_button "Sign in"
-    expect(page).to have_css 'h1', text: "Dashboard"
+    expect(current_path).to eq("/")
+    expect(page).not_to have_css 'a[class="sign-up"]', text: "Admin"
   end
 
   scenario 'A regular user should not have access to the dashboard' do
@@ -45,5 +42,7 @@ feature 'Admin signs in' do
     fill_in "Password", with: alice.password
     click_button "Sign in"
     expect(page).to have_css 'p', text: "Unauthorized access!"
+    expect(page).not_to have_css 'a[class="sign-up"]', text: "Admin"
+    expect(current_path).to eq("/home")
   end
 end

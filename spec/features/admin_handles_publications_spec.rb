@@ -79,6 +79,7 @@ feature 'Admin interacts with publications' do
       click_link "Delete"
     }.to change(Publication, :count).by(-1)
     expect(page).to have_css 'p', text: "You successfully deleted the publication"
+    expect(current_path).to eq("/admin/publications")
   end
 
   scenario 'admin sees the research project the publication belongs to' do
