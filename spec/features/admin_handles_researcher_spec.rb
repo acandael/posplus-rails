@@ -13,10 +13,20 @@ feature "Admin interacts with researcher" do
   end
 
   scenario "Admin clicks researcher link and views researcher details" do
+    project = Fabricate(:research_project)
+    @researcher.research_projects << project
+    course = Fabricate(:course)
+    @researcher.courses << course
+    @researcher.save
+
     click_link @researcher.name
+
     expect(page).to have_css 'h1', text: @researcher.name
     expect(page).to have_css 'p', text: @researcher.bio
     expect(page).to have_css 'a', text: @researcher.email
+    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
+    expect(page).to have_css 'a', text: course.title
+    expect(page).to have_css 'a', text: project.title
   end
 
   scenario "Admin adds a researcher" do

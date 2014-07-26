@@ -9,6 +9,7 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'h1', text: "People"
     expect(page).to have_css 'h5', text: @researcher.name 
     expect(page).to have_css 'p', text: @researcher.title
+    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
   end
 
   scenario "does not see hidden researcher" do
@@ -20,18 +21,30 @@ feature "Visitor interacts with people page and" do
 
 
   scenario "visitor clicks researcher and sees researcher details" do
-    visit people_path
-    find("a[href='/people/#{@researcher.id}']").click
-    expect(page).to have_css 'h1', text: @researcher.name
-    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
-  end
-
-  scenario "visitor clicks researcher and sees courses for researcher" do
     course = Fabricate(:course)
     @researcher.courses << course
-    @researcher.image = "spec/uploads/monk.jpg"
+    project = Fabricate(:research_project)
+    @researcher.research_projects << project
+    @researcher.save
+
     visit people_path
     find("a[href='/people/#{@researcher.id}']").click
+
+    expect(page).to have_css 'h1', text: @researcher.name
+    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'li', text: course.title
+    expect(page).to have_css 'a', text: project.title
+  end
+
+  scenario "visitor clicks research project link on researcher details page and goes to research project page" do
+    project = Fabricate(:research_project)
+    @researcher.research_projects << project
+    @researcher.save
+
+    visit people_path
+
+    find("a[href='/people/#{@researcher.id}']").click
+    find("a[href='/research_projects/#{project.id}']").click
+    expect(current_path).to eq("/research_projects/#{project.id}")
   end
 end
