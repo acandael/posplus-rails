@@ -27,9 +27,9 @@
       <%= f.text_field :link %>
     </div>
     <% if @news_item.new_record? %>
-      <%= f.submit "Add News Item" %>
+      <%= f.button "Add News Item", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding News Item ..." } %>
     <% else %>
-      <%= f.submit "Update News Item" %>
+      <%= f.button "Update News Item", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating News Item ..." } %>
     <% end %>
     <%= link_to 'Cancel', admin_news_items_path %>
   </fieldset>
