@@ -20,3 +20,6 @@
 
 # Ingnore Tags file
 tags
+
+# Ignore Vim swp files
+*.swp
