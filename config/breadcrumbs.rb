@@ -37,6 +37,19 @@ crumb :research_project do |research_project|
   parent :research_projects
 end
 
+crumb :research_groups do
+  link "Affiliated Research Groups", admin_research_groups_path
+end
+
+crumb :research_group do |research_group|
+  if research_group
+    link research_group.name, admin_research_group_path(research_group)
+  else
+    link "New Affiliated Research Group", admin_research_groups_path
+  end
+  parent :research_groups
+end
+
 crumb :researchers do
   link "Researchers", admin_researchers_path
 end

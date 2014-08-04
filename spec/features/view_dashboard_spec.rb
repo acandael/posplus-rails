@@ -38,4 +38,8 @@ feature 'View the dashboard' do
    expect(page).to have_link("In the picture", :href=>"/admin/features")
  end
 
+ scenario "an admin sees the affiliated research groups link" do
+   expect(page).to have_link("Affiliated Research Groups", :href=>"/admin/research_groups")
+ end
+
 end
