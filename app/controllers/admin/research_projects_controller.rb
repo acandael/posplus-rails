@@ -44,7 +44,7 @@ class Admin::ResearchProjectsController < DashboardController
   def close
     @research_project = ResearchProject.find(params[:id])
     @research_project.toggle_active!
-    redirect_to admin_research_projects_path
+    render "close.js.erb"
   end
 
   

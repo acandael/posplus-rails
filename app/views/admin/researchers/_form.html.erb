@@ -36,9 +36,9 @@
      <% end %>
   </div>
   <% if @researcher.new_record? %>
-    <%= f.submit "Add Researcher" %>
+    <%= f.button "Add Researcher", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Researcher ..." } %>
   <% else %>
-    <%= f.submit "Update Researcher" %>
+    <%= f.button "Update Researcher", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Researcher ..." } %>
   <% end %>
   <%= link_to 'Cancel', admin_researchers_path %>
 </fieldset>

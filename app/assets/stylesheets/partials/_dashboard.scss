@@ -3,6 +3,9 @@ section.dashboard {
 
   nav {
     margin-top: em(20);
+    li {
+      line-height: 2em;
+    }
   }
 
   form {
@@ -44,6 +47,7 @@ section.dashboard {
     }
 
     i {
+      color: $base-accent-color;
       &.right {
         margin-left: em(10);
       }

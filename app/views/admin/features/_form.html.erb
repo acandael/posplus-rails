@@ -23,9 +23,9 @@
       <%= f.file_field :document %>
     </div>
     <% if @feature.new_record? %>
-      <%= f.submit "Add Feature" %>
+      <%= f.button "Add Feature", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Feature ..." } %>
     <% else %>
-      <%= f.submit "Update Feature" %>
+      <%= f.button "Update Feature", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Feature ..." } %>
     <% end %>
     <%= link_to 'Cancel', admin_features_path %>
   </fieldset>

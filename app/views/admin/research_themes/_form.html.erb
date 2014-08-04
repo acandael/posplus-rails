@@ -16,9 +16,9 @@
     <%= f.file_field :image %>
   </div>
   <% if @research_theme.new_record? %>
-    <%= f.submit "Add Research Theme" %>
+    <%= f.button "Add Research Theme", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Research Theme ..." } %>
   <% else %>
-    <%= f.submit "Update Research Theme" %>
+    <%= f.button "Update Research Theme", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Research Theme ..." } %>
   <% end %>
   </fieldset>
 <% end %>

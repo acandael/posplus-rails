@@ -123,6 +123,5 @@ feature "Admin interacts with research projects" do
     click_link "Close"
     @research_project.reload
     expect(@research_project.active).to be_false
-    expect(page).to have_css 'a', text: 'Open'
   end
 end

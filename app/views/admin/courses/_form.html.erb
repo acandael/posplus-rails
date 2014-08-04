@@ -5,9 +5,9 @@
     <%= f.text_field :title %>
   </div>
   <% if @course.new_record? %>
-    <%= f.submit "Add Course" %>
+    <%= f.button "Add Course", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Course ..." } %>
   <% else %>
-    <%= f.submit "Update Course" %>
+    <%= f.button "Update Course", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Course ..." } %>
   <% end %>
   <%= link_to 'Cancel', admin_courses_path %>
   </field>

@@ -8,7 +8,7 @@
         <tr>
           <td><%= link_to project.title, admin_research_project_path(project) %></td>
           <td><%= link_to "Edit", edit_admin_research_project_path(project) %>&nbsp;&nbsp;<%= link_to "Delete", admin_research_project_path(project), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp;&nbsp;
-            <%= link_to toggle_active(project), close_admin_research_project_path(project), method: :patch %>
+            <%= link_to toggle_active(project), close_admin_research_project_path(project), method: :patch, remote: true, id: dom_id(project) %>
       </td>
 
       </tr>

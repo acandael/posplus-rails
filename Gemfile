@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara', '~> 2.4.1'
+  gem 'selenium-webdriver', '~> 2.42.0'
   gem 'launchy'
 end
 

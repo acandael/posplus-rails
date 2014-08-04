@@ -21,9 +21,9 @@
      <% end %>
   </div>
   <% if @research_project.new_record? %>
-    <%= f.submit "Add Research Project" %>
+    <%= f.button "Add Research Project", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Research Project ..." } %>
   <% else %>
-    <%= f.submit "Update Research Project" %>
+    <%= f.button "Update Research Project", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Research Project ..." } %>
   <% end %>
   <%= link_to 'Cancel', admin_research_projects_path %>
 </fieldset>

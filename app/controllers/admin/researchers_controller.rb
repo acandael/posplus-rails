@@ -44,7 +44,7 @@ class Admin::ResearchersController < DashboardController
   def hide
     @researcher = Researcher.find(params[:id])
     @researcher.toggle_visibility!
-    redirect_to admin_researchers_path, notice: "The researcher was successfully updated!"
+    render "hide.js.erb"
   end
 
   private

@@ -44,7 +44,7 @@ class Admin::PublicationsController < DashboardController
   def hide
     @publication = Publication.find(params[:id])
     @publication.toggle_visibility!
-    redirect_to admin_publications_path, notice: "The publication was successfully updated!"
+    render "hide.js.erb"
   end
   
   private

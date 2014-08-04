@@ -7,7 +7,7 @@
       <tr>
         <td><%= link_to news_item.title, admin_news_item_path(news_item) %></td>
         <td><%= link_to "Edit", edit_admin_news_item_path(news_item) %>&nbsp;&nbsp;<%= link_to "Delete", admin_news_item_path(news_item), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp;&nbsp;
-          <%= link_to toggle_visibility(news_item), hide_admin_news_item_path(news_item), method: :patch %></td>
+          <%= link_to toggle_visibility(news_item), hide_admin_news_item_path(news_item), method: :patch, remote: true, id: dom_id(news_item) %></td>
     </tr>
     <% end %>
   </table>
