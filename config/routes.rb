@@ -41,5 +41,8 @@ Rails.application.routes.draw do
     end
 
     resources :features
+
+    resources :research_groups
+
   end
 end

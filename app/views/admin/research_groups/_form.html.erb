@@ -1,0 +1,25 @@
+<%= form_for [:admin, @research_group], html: { multipart: true } do |f| %>
+  <fieldset>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <% if @research_group.image %>
+        <%= image_tag @research_group.image.url %>
+      <% end %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div>
+      <%= f.label :website %>
+      <%= f.text_field :website %>
+    </div>
+    <% if @research_group.new_record? %>
+      <%= f.button "Add Affiliated Research Group", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Affiliated Research Group ..." } %>
+    <% else %>
+      <%= f.button "Update Affiliated Research Group", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Affiliated Research Group ..." } %>
+    
+    <% end %>
+  </fieldset>
+<% end %>

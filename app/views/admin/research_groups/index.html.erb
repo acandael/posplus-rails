@@ -1,0 +1,20 @@
+<div class="panel">
+  <h1>Affiliated Research Groups</h1>
+  <%= button_to 'Add Affiliated Research Group', new_admin_research_group_path, method: "get" %>
+  <table class="table-borders">
+    <tbody>
+      <% if @research_groups.size != 0 %>
+        <% @research_groups.each do |group| %>
+          <tr>
+            <td><%= link_to group.name, admin_research_group_path(group) %></td>
+            <td><%= link_to "Edit", edit_admin_research_group_path(group) %>&nbsp;&nbsp;<%= link_to "Delete", admin_research_group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td>no affiliated research groups available</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

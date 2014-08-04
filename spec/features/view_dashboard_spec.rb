@@ -37,4 +37,5 @@ feature 'View the dashboard' do
  scenario "an admin sees the 'in the picture' link" do
    expect(page).to have_link("In the picture", :href=>"/admin/features")
  end
+
 end
