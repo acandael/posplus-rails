@@ -9,7 +9,7 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'h1', text: "People"
     expect(page).to have_css 'h5', text: @researcher.name 
     expect(page).to have_css 'p', text: @researcher.title
-    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
+    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
   end
 
   scenario "does not see hidden researcher" do
@@ -31,7 +31,7 @@ feature "Visitor interacts with people page and" do
     find("a[href='/people/#{@researcher.id}']").click
 
     expect(page).to have_css 'h1', text: @researcher.name
-    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
+    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'li', text: course.title
     expect(page).to have_css 'a', text: project.title
   end

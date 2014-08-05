@@ -27,6 +27,6 @@ feature 'Visitor interacts with homepage' do
     visit home_path
     expect(page).to have_css 'h2', text: @feature.title
     expect(page).to have_css 'p', text: @feature.body
-    page.should have_xpath("//img[@src=\"/uploads/feature/image/#{File.basename(@feature.image.url)}\"]")
+    page.should have_xpath("//img[@src=\"/uploads/feature/image/#{File.basename(@feature.image.url(:thumb))}\"]")
   end
 end

@@ -24,7 +24,7 @@ feature "Admin interacts with researcher" do
     expect(page).to have_css 'h1', text: @researcher.name
     expect(page).to have_css 'p', text: @researcher.bio
     expect(page).to have_css 'a', text: @researcher.email
-    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{File.basename(@researcher.image.url)}\"]")
+    page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'a', text: course.title
     expect(page).to have_css 'a', text: project.title
   end
@@ -41,7 +41,7 @@ feature "Admin interacts with researcher" do
     expect((Researcher.last).name).to eq("some name")
     expect((Researcher.last).bio).to eq("this is the bio")
     expect((Researcher.last).email).to eq("researcher@example.com")
-    expect((Researcher.last).image.url).to eq("/uploads/researcher/image/monk_large.jpg")
+    expect((Researcher.last).image.url).to eq("/uploads/researcher/image/#{Researcher.last.id}/monk_large.jpg")
     expect(page).to have_css 'p', text: "You successfully added a new researcher"
   end
 
