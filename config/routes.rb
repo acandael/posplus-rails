@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "homes#index"
 
   get 'home', to: "homes#index"
+  get 'pages/about', to: "pages#about"
 
   get 'signin' => "sessions#new"
   resource :session
@@ -41,8 +42,7 @@ Rails.application.routes.draw do
     end
 
     resources :features
-
     resources :research_groups
-
   end
+
 end
