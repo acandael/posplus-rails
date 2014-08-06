@@ -1,0 +1,53 @@
+<section class="contact">
+  <div class="title">
+    <h1>Contact Us</h1>
+  </div>
+  <div class="information">
+    <h2>Contact Information</h2>
+    <p>Korte Meer 5, 9000 Gent, BELGIUM<br />
+    Jeroen Huisman: +32 9 264 69 78 | Secretariat of the Dept. of Sociology: <br /><i class="fa fa-phone-square"></i>+32 9 264 91 71<br />
+    <i class="fa fa-phone-square"></i>+32 9 264 69 75<br />
+    <i class="fa fa-envelope"></i><a href="mailto:jeroen.huisman@ugent.be">jeroen.huisman@ugent.be</a>
+  </div>
+  <div class="where">
+  <ul class="accordion-tabs-minimal">
+    <li class="tab-header-and-content">
+      <a href="#" class="tab-link is-active">By Car</a>
+      <div class="tab-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper. Sed ac mauris ipsum. Nullam imperdiet sapien id purus pretium id aliquam mi ullamcorper.</p>
+      </div>
+    </li>
+    <li class="tab-header-and-content">
+      <a href="#" class="tab-link">By Public Transport</a>
+      <div class="tab-content">
+      <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque. Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam. Quisque tincidunt ligula at nisl imperdiet sagittis. Morbi rutrum tempor arcu, non ultrices sem semper a. Aliquam quis sem mi.</p>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="map">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.075007295212!2d3.72307279999999!3d51.05170280000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c371442ffe9533%3A0xe47f57e176bed6ef!2sKorte+Meer+5!5e0!3m2!1snl!2sbe!4v1403267695660" frameborder="0" style="border:0"></iframe>
+<div>
+</section>
+<script>
+$(document).ready(function () {
+  $('.accordion-tabs-minimal').each(function(index) {
+    $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
+  });
+
+  $('.accordion-tabs-minimal').on('click', 'li > a', function(event) {
+    if (!$(this).hasClass('is-active')) {
+      event.preventDefault();
+      var accordionTabs = $(this).closest('.accordion-tabs-minimal')
+      accordionTabs.find('.is-open').removeClass('is-open').hide();
+
+      $(this).next().toggleClass('is-open').toggle();
+      accordionTabs.find('.is-active').removeClass('is-active');
+      $(this).addClass('is-active');
+    } else {
+      event.preventDefault();
+    }
+  });
+  });
+</script>
+
