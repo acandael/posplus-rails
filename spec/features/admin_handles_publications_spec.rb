@@ -14,6 +14,8 @@ feature 'Admin interacts with publications' do
   scenario 'admin clicks publication and views publication details' do
     project = Fabricate(:research_project)
     @publication.research_projects << project
+    category = Category.create(name: "working_paper")
+    @publication.category = category 
     document = Fabricate(:document)
     @publication.documents << document
     @publication.save
@@ -22,18 +24,24 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'p', text: @publication.reference
     expect(page).to have_css 'a', text: project.title
     expect(page).to have_css 'a', text: File.basename(document.file.url)
+    expect(page).to have_css 'p', text: @publication.category.name
   end
 
   scenario 'admin adds a new publication' do
     research_project = Fabricate(:research_project)
+    category1 = Category.create(name: "working paper")
+    category2 = Category.create(name: "technical report")
     expect{
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: "new publication" 
+      select "working paper", from: "Category" 
       fill_in 'Reference', with: "some reference" 
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
-    visit admin_publication_path(@publication.id)
+    expect((Publication.last).title).to eq("new publication")
+    expect((Publication.last).category.name).to eq("working paper")
+    expect((Publication.last).reference).to eq("some reference")
   end
 
   scenario 'admin should not be able to add publication without title and reference' do
@@ -95,4 +103,5 @@ feature 'Admin interacts with publications' do
     @publication.reload
     expect(@publication.visible?).to be_false
   end
+
 end

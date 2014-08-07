@@ -13,6 +13,15 @@ section.dashboard {
     input[type="submit"]{
       margin-top: em(20);
     }
+    &.filter {
+      label, select {
+        display: inline;
+      }
+      input[type="submit"] {
+        padding: .5em;
+        margin-top: 0;
+      }
+    }
   }
 
   .button_to {

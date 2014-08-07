@@ -2,6 +2,10 @@
 <div class="panel">
   <h1>Publications</h1>
   <%= button_to "Add Publication", new_admin_publication_path, method: "get" %>
+  <%= form_tag admin_publications_path, method: "get", id: "filter", class: "filter" do %>
+    <%= label_tag "Category" %>
+    <%= select "publication", "category", options_for_select(options_for_categories, selected: params[:publication][:category]), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
+  <% end %>
   <table class="table-borders">
     <% @publications.each do |publication| %>
       <tr>
@@ -12,3 +16,4 @@
     <% end %>
   </table>
 </div>
+<script>

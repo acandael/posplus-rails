@@ -1,6 +1,10 @@
 class Admin::PublicationsController < DashboardController
   def index
-    @publications = Publication.all.order(:created_at)
+    if params[:publication][:category] != ""
+      @publications = Publication.filter(params[:publication][:category])
+    else
+      @publications = Publication.all
+    end
   end
 
   def show
@@ -50,6 +54,6 @@ class Admin::PublicationsController < DashboardController
   private
 
   def publication_params
-    params.require(:publication).permit(:title, :reference, :visible, :research_project_ids => [])
+    params.require(:publication).permit(:title, :category_id, :reference, :visible, :research_project_ids => [])
   end
 end

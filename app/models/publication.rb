@@ -9,10 +9,19 @@ class Publication < ActiveRecord::Base
 
   has_many :documents
 
+  belongs_to :category
+
+
   private
 
   def scrub_reference
     Loofah.fragment(reference).scrub!(:prune)
+  end
+
+  def self.filter(filter)
+    if filter
+      where(category_id: filter)
+    end
   end
 
 end
