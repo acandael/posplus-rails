@@ -1,0 +1,68 @@
+section.publications {
+  h1 {
+    font-size: $base-font-size * 1.2;
+    margin-top: em(20);
+    text-align: center;
+    @include media($medium-screen) {
+      font-size: $base-font-size * 2;
+      margin-top: 0;
+      margin-bottom: em(10);
+    }
+  }
+  i {
+    color: #40526b;
+    font-size: $base-font-size * 1.2;
+    &.right {
+      margin-left: em(10);
+    }
+    &.left {
+      margin-right: em(10);
+    }
+  }
+  div.documents {
+    padding: .75em;
+    margin-top: em(20);
+    @include media($medium-screen) {
+      float: left;
+      @include span-columns(9);
+      @include omega(2n);
+      margin-top: 0;
+      padding: 3em;
+    }
+    background-color: white;
+    box-shadow: 0 1px 4px 1px $light-gray;
+
+    h2 {
+      font-size: $base-font-size * 1.2;
+      text-align: center;
+      @include media($medium-screen) {
+        text-align: left;
+      }
+    }
+
+    ul {
+      margin-left: em(10);
+      margin-top: em(20);
+    }
+
+    li {
+      margin-bottom: em(10);
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  aside {
+    @include media($medium-screen) {
+      @include span-columns(3);
+      float: right;
+    }
+
+    ul {
+      margin-top: em(20);
+    }
+  }
+}
+

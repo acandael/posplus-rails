@@ -1,0 +1,33 @@
+<section class="publications">
+    <div class="documents">
+      <h1>POS+ Publication Series</h1>
+      <section class="series">
+        <h2>Working Papers</h2>
+        <ul>
+          <% @publications.each do |publication| %>
+            <% if publication.category.name == "working_paper" %>
+              <li><%= link_to publication.title, "#" %><i class="fa fa-file right"></i></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </section>
+      <section class="series">
+        <h2>Technical Reports</h2>
+        <ul>
+          <% @publications.each do |publication| %>
+            <% if publication.category.name == "technical report" %>
+              <li><%= link_to publication.title, "#" %><i class="fa fa-file right"></i></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </section>
+    </div>
+    <aside>
+      <h2>Archive</h2>
+      <ul>
+        <li><i class="fa fa-folder left"></i><a href="#">2013</a></li>
+        <li><i class="fa fa-folder left"></i><a href="#">2012</a></li>
+      </ul>
+    </aside>
+</section>
+
