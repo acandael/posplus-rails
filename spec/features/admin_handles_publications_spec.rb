@@ -93,6 +93,8 @@ feature 'Admin interacts with publications' do
   scenario 'admin sees the research project the publication belongs to' do
     research_project = Fabricate(:research_project)
     @publication.research_projects << research_project
+    category = Fabricate(:category)
+    @publication.category_id = category.id
     @publication.save
     click_link @publication.title
     expect(page).to have_css 'li', text: research_project.title
