@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'pages/contact', to: "pages#contact"
   get 'publications', to: "publications#index"
   get 'series', to: "publications#series"
+  get 'archive/:year', to: "publications#archive", as: "archive"
 
   get 'signin' => "sessions#new"
   resource :session

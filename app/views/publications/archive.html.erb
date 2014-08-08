@@ -1,10 +1,11 @@
 <section class="publications">
     <div class="documents">
-      <h1>POS+ Publication Series</h1>
+      <h1>POS+ Publication Series Archive</h1>
+      <h2><%= @year %></h2>
       <section class="series">
         <h2>Working Papers</h2>
         <ul>
-          <% @publications.each do |publication| %>
+          <% @archived_publications.each do |publication| %>
             <% if publication.category.name == "working_paper" %>
               <li><%= link_to publication.title, "#" %><i class="fa fa-file right"></i></li>
             <% end %>
@@ -14,7 +15,7 @@
       <section class="series">
         <h2>Technical Reports</h2>
         <ul>
-          <% @publications.each do |publication| %>
+          <% @archived_publications.each do |publication| %>
             <% if publication.category.name == "technical report" %>
               <li><%= link_to publication.title, "#" %><i class="fa fa-file right"></i></li>
             <% end %>
@@ -37,4 +38,5 @@ $(document).ready(function () {
   $('.documents, .archive').matchHeight();
 });
 </script>
+
 
