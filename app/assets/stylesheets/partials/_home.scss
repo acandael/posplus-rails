@@ -33,7 +33,8 @@ section.home {
 		margin: auto;
 		text-align: left;
 		color: $hero-color;
-
+    background: image-url('belfort.png') no-repeat;
+    background-size: cover; 
 		button {
 			@include button(simple, $base-accent-color);
 			font-size: $base-font-size;
@@ -46,6 +47,7 @@ section.home {
 			h1 {
 				font-size: 1.4em;
 				margin-bottom: .2em;
+        color: $light-gray;
 
 				@include media($large-screen) {
 					font-size: 1.8em;
