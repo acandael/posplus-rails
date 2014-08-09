@@ -8,7 +8,7 @@
       <% if researcher.visible? %>
         <div class="member">
           <%= link_to person_path(researcher) do %>
-            <%= image_tag researcher.image.url %>
+            <%= image_tag researcher.image.url(:thumb) %>
           <% end %>
           <h5><%= researcher.name %></h5>
           <p><%= researcher.title %></p>
@@ -17,4 +17,8 @@
     <% end %>
   </div>
 </section>
-
+<script>
+$(document).ready(function () {
+  $('.member').matchHeight();
+});
+</script>

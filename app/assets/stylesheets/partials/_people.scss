@@ -24,7 +24,8 @@ section.people {
       @include span-columns (3 of 12);
       @include omega(4n);
     }
-
+    @include clearfix;
+    overflow: hidden;
     background-color: white;
     padding: em(10);
     box-shadow: 0 1px 4px 1px #b4b6a9,2px 2px 1px 0 #fff inset;
