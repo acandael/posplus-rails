@@ -1,6 +1,6 @@
 class Admin::ResearchThemesController < DashboardController
   def index
-    @research_themes = ResearchTheme.all
+    @research_themes = ResearchTheme.all.order("created_at DESC")
   end
 
   def new

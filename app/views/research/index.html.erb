@@ -3,10 +3,10 @@
     <% @research_themes.each do |theme| %>
       <div class="bullet">
         <div class="bullet-icon bullet-icon-1">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
+          <%= image_tag theme.image.url(:thumb) %>
         </div>
         <div class="bullet-content">
-          <h2><%= theme.title %></h2>
+          <h2><%= link_to theme.title, research_theme_path(theme) %></h2>
           <p><%= theme.description %></p>
           <p><%= link_to 'Go to projects', research_theme_path(theme) %></p>
         </div>
@@ -14,4 +14,8 @@
     <% end %>
   </div>
 </section>
-
+<script>
+$(document).ready(function () {
+  $('.bullet').matchHeight();
+});
+</script>
