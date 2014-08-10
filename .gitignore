@@ -24,3 +24,8 @@ tags
 
 # Ignore Vim swp files
 *.swp
+
+# Ignore images
+/public/uploads/research_group/image/*/
+/public/uploads/researcher/image/*/
+/public/uploads/research_theme/image/*/
