@@ -19,7 +19,7 @@ require 'spec_helper'
       click_link @research_theme.title
       expect(page).to have_css 'h1', text: @research_theme.title
       expect(page).to have_css 'div', text: @research_theme.description
-      page.should have_xpath("//img[@src=\"/uploads/research_theme/image/#{File.basename(@research_theme.image.url)}\"]")
+      page.should have_xpath("//img[@src=\"/uploads/research_theme/image/#{@research_theme.id}/#{File.basename(@research_theme.image.url)}\"]")
       expect(page).to have_css 'a', text: project.title
     end
 
@@ -34,7 +34,7 @@ require 'spec_helper'
 
       expect(page).to have_css 'a', text: "new theme" 
       expect((ResearchTheme.last).description).to eq("description for theme")
-      expect((ResearchTheme.last).image.url).to eq("/uploads/research_theme/image/jigsaw-puzzle.jpg")
+      expect((ResearchTheme.last).image.url).to eq("/uploads/research_theme/image/#{(ResearchTheme.last).id}/jigsaw-puzzle.jpg")
       page.should have_content "you successfully added a new research theme"
     end
 
@@ -85,7 +85,7 @@ require 'spec_helper'
 
       expect(page).to have_css 'a', text: "edited title" 
       expect((ResearchTheme.last).description).to eq("edited description") 
-      expect((ResearchTheme.last).image.url).to eq("/uploads/research_theme/image/jigsaw-puzzle.jpg")
+      expect((ResearchTheme.last).image.url).to eq("/uploads/research_theme/image/#{@research_theme.id}/jigsaw-puzzle.jpg")
       page.should have_content "you successfully updated the research theme"
     end
 
