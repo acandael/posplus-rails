@@ -102,8 +102,18 @@ feature 'Admin interacts with publications' do
 
   scenario 'admin hides publication' do
     click_link "Hide" 
+    expect(page).to have_css 'p', text: "The publication is now hidden"
     @publication.reload
     expect(@publication.visible?).to be_false
   end
 
+  scenario 'Admin shows researcher' do
+    @publication.visible = false
+    @publication.save
+    visit admin_publications_path
+    click_link "Show"
+    expect(page).to have_css 'p', text: "The publication is now visible"
+    @publication.reload
+    expect(@publication.visible).to be_true 
+  end
 end
