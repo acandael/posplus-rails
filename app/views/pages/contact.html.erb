@@ -29,25 +29,4 @@
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.075007295212!2d3.72307279999999!3d51.05170280000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c371442ffe9533%3A0xe47f57e176bed6ef!2sKorte+Meer+5!5e0!3m2!1snl!2sbe!4v1403267695660" frameborder="0" style="border:0"></iframe>
 <div>
 </section>
-<script>
-$(document).ready(function () {
-  $('.accordion-tabs-minimal').each(function(index) {
-    $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
-  });
-
-  $('.accordion-tabs-minimal').on('click', 'li > a', function(event) {
-    if (!$(this).hasClass('is-active')) {
-      event.preventDefault();
-      var accordionTabs = $(this).closest('.accordion-tabs-minimal')
-      accordionTabs.find('.is-open').removeClass('is-open').hide();
-
-      $(this).next().toggleClass('is-open').toggle();
-      accordionTabs.find('.is-active').removeClass('is-active');
-      $(this).addClass('is-active');
-    } else {
-      event.preventDefault();
-    }
-  });
-  });
-</script>
 
