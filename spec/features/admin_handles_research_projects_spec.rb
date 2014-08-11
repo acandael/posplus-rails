@@ -121,7 +121,18 @@ feature "Admin interacts with research projects" do
 
   scenario "Admin closes research project" do
     click_link "Close"
+    expect(page).to have_css 'p', text: "The research project is now closed"
     @research_project.reload
     expect(@research_project.active).to be_false
+  end
+
+  scenario 'Admin closes research project' do
+    @research_project.active = false
+    @research_project.save
+    visit admin_research_projects_path
+    click_link "Open"
+    expect(page).to have_css 'p', text: "The research project is now active"
+    @research_project.reload
+    expect(@research_project.active).to be_true 
   end
 end
