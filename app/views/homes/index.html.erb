@@ -50,14 +50,15 @@
         </div>
       <% end %>
     </div>
-    
   </div>
   </div>
 </section>
-<script>
-$(document).ready(function () {
-  $('.bullet').matchHeight();
-  $('.block').matchHeight();
-});
-</script>
 
+<% content_for :javascript do %>
+  <script>
+  $(document).ready(function () {
+    $('.bullet').matchHeight();
+    $('.block').matchHeight();
+  });
+  </script>
+<% end %>

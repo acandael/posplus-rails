@@ -1,6 +1,6 @@
 <section class="research-theme">
   <div class="theme">
-    <h1>Research Theme 1</h1>
+    <h1><%= @research_theme.title %></h1>
     <p><%= @research_theme.description %></p>
     <section class="projects">
     <h2>Projects</h2>
@@ -41,6 +41,8 @@
     <h2><%= link_to "Data", documents_path %>&nbsp;&nbsp;<i class="fa fa-download"></i></h2>
   </aside>
 </section>
+
+
 <script>
 $(document).ready(function () {
   $('.accordion-tabs-minimal').each(function(index) {

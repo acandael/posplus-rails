@@ -1,1 +1,7 @@
 $("#publication_<%= @publication.id %>").text("<%= toggle_visibility(@publication) %>");
+if (<%= @publication.visible %>) {
+  $(".messages").empty().append("<p class='notice'>The publication is now visible</p>");
+}
+  else {
+    $(".messages").empty().append("<p class='notice'>The publication is now hidden</p>");
+}
