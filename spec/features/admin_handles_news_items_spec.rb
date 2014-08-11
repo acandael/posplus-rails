@@ -107,8 +107,19 @@ feature 'Admin interacts with news' do
 
   scenario 'Admin hides news item' do
     click_link "Hide"
+    expect(page).to have_css 'p', text: "The news item is now hidden"
     @news_item.reload
     expect(@news_item.visible?).to be_false
+  end
+
+  scenario 'Admin shows researcher' do
+    @news_item.visible = false
+    @news_item.save
+    visit admin_news_items_path
+    click_link "Show"
+    expect(page).to have_css 'p', text: "The news item is now visible"
+    @news_item.reload
+    expect(@news_item.visible).to be_true 
   end
 
 end
