@@ -146,7 +146,18 @@ feature "Admin interacts with researcher" do
 
   scenario 'Admin hides researcher' do
     click_link "Hide"
+    expect(page).to have_css 'p', text: "The researcher #{ @researcher.name } is now hidden"
     @researcher.reload
     expect(@researcher.visible).to be_false
+  end
+
+  scenario 'Admin shows researcher' do
+    @researcher.visible = false
+    @researcher.save
+    visit admin_researchers_path
+    click_link "Show"
+    expect(page).to have_css 'p', text: "The researcher #{ @researcher.name } is now visible"
+    @researcher.reload
+    expect(@researcher.visible).to be_true 
   end
 end
