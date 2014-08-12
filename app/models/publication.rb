@@ -1,4 +1,8 @@
+require 'elasticsearch/model'
+
 class Publication < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   include Hideable
 
   validates :title, :reference, presence: true
@@ -25,3 +29,5 @@ class Publication < ActiveRecord::Base
   end
 
 end
+
+Publication.import # for auto sync model with elastic search

@@ -16,12 +16,10 @@
     </div>
     <div class="navigation-tools">
       <div class="search-bar">
-        <div class="search-and-submit">
-          <input type="search" placeholder="Enter Search" />
-          <button type="submit">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="">
-          </button>
-        </div>
+          <%= form_tag search_path, class: "search-and-submit", method: :get do %>
+              <%= text_field_tag :q, params[:q], type: "search", placeholder: "Search publications, ..." %>
+              <button type="submit"><i class="fa fa-search"></i></button>
+          <% end %>
       </div>
       <% if current_user_admin? %>
         <%= link_to "Admin", admin_path, class: "sign-up" %>

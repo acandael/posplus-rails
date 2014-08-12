@@ -198,29 +198,6 @@ header.navigation {
       clear: none;
     }
   }
-
-  a.sign-up {
-    margin-top: 13px;
-    float: right;
-    @include transition (all 0.2s ease-in-out);
-    display: inline;
-    background: $navigation-nav-button-background;
-    border-radius: $base-border-radius; 
-    color: white;
-    font-size: .8em;  
-    font-weight: 800;
-    text-transform: uppercase;
-    padding: .4em .5em;
-
-    @include media($large-screen) {
-      padding: .4em 1em;
-    }
-
-    &:hover {
-      background: lighten($navigation-nav-button-background, 10);
-    }
-  }
-
   .search-bar {
     $search-bar-border-color: $base-border-color;
     $search-bar-border: 1px solid $search-bar-border-color;
@@ -230,6 +207,9 @@ header.navigation {
     float: left;
     .search-and-submit {
       position: relative;
+      margin-top: 0;
+      margin-right: em(20);
+      width: 250px;
 
       input[type=search] {
         background: $navigation-search-background;
@@ -252,10 +232,6 @@ header.navigation {
         outline: none;
         padding: 0 15px;
 
-        img {
-          height: 12px;
-          opacity: .7;
-        }
       }
     }
 
@@ -270,4 +246,28 @@ header.navigation {
       }
     }
   }
+
+  a.sign-up {
+    margin-top: 13px;
+    float: right;
+    @include transition (all 0.2s ease-in-out);
+    display: inline;
+    background: $navigation-nav-button-background;
+    border-radius: $base-border-radius; 
+    color: white;
+    font-size: .8em;  
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: .4em .5em;
+
+    @include media($medium-screen) {
+      padding: .6em 1em;
+      margin-left: em(20);
+    }
+
+    &:hover {
+      background: lighten($navigation-nav-button-background, 10);
+    }
+  }
+
 }

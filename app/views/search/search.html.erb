@@ -1,0 +1,16 @@
+<section class="search">
+  <h1>Search Results</h1>
+  <% if @publications.present? %>
+    <p>The search '<em><%= @search_term %></em>' has <%= pluralize(@publications.size, 'result') %></p>
+    <ul>
+      <% @publications.each do |publication| %>
+        <li>
+        <%= link_to publication.title, "#" %><br />
+        <p><%= raw publication.reference %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>no results</p>
+  <% end %>
+</section>

@@ -64,6 +64,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'elasticsearch-model', '~> 0.1.4'
+gem 'elasticsearch-rails', '~> 0.1.4'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
