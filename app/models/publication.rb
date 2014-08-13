@@ -15,6 +15,33 @@ class Publication < ActiveRecord::Base
 
   belongs_to :category
 
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['title^10', 'reference']
+          }
+        },
+        highlight: {
+          pre_tags: ['<em>'],
+          post_tags: ['</em>'],
+          fields: {
+            title: {},
+            reference: {}
+          }
+        }
+      }
+    )
+  end
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :title, analyzer: 'english'
+      indexes :reference, analyzer: 'english'
+    end
+  end
 
   private
 
@@ -27,7 +54,19 @@ class Publication < ActiveRecord::Base
       where(category_id: filter)
     end
   end
+  
+
+
 
 end
 
-Publication.import # for auto sync model with elastic search
+# Delete the previous publication index in Elasticsearch
+Publication.__elasticsearch__.client.indices.delete index: Publication.index_name rescue nil
+
+# Create the new index with the new mapping
+Publication.__elasticsearch__.client.indices.create \
+  index: Publication.index_name,
+  body: { settings: Publication.settings.to_hash, mappings: Publication.mappings.to_hash }
+
+# Index all article records from the DB to Elasticsearch
+Publication.import(force: true)

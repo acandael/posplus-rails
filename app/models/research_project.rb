@@ -1,4 +1,8 @@
+require 'elasticsearch/model'
+
 class ResearchProject < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   include Closeable
 
   validates :title, :body, presence: true
@@ -15,3 +19,5 @@ class ResearchProject < ActiveRecord::Base
   mount_uploader :image, ResearchProjectImageUploader
 
 end
+
+ResearchProject.import # for auto sync model with elastic search

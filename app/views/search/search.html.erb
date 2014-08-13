@@ -1,16 +1,31 @@
 <section class="search">
   <h1>Search Results</h1>
-  <% if @publications.present? %>
-    <p>The search '<em><%= @search_term %></em>' has <%= pluralize(@publications.size, 'result') %></p>
-    <ul>
-      <% @publications.each do |publication| %>
-        <li>
-        <%= link_to publication.title, "#" %><br />
-        <p><%= raw publication.reference %></p>
-        </li>
-      <% end %>
-    </ul>
+  <% if @publications.size > 0 || @research_projects.size > 0 %>
+    <% if @publications.size > 0 %>
+      <p>The search '<strong><%= @search_term %></strong>' has <%= pluralize(@publications.size, 'result') %></p>
+      <ul>
+        <% @publications.each do |publication| %>
+          <li>
+          <%= link_to publication.try(:highlight).try(:title) ? publication.highlight.title[0].html_safe : publication.title,
+          controller: "publications",
+          id: publication._id %>
+          <p><%= raw publication.reference %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @research_projects.present? %>
+      <p>The search '<em><%= @search_term %></em>' has <%= pluralize(@research_projects.size, 'result') %></p>
+      <ul>
+        <% @research_projects.each do |project| %>
+          <li>
+          <%= link_to project.title, research_project_path(project.id) %><br />
+          <p><%= raw project.body %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   <% else %>
-    <p>no results</p>
+    <p>The search '<%= @search_term %>' has no results</p>
   <% end %>
 </section>
