@@ -18,7 +18,10 @@
       <ul>
         <% @research_projects.each do |project| %>
           <li>
-          <%= link_to project.title, research_project_path(project.id) %><br />
+          <%= link_to project.try(:highlight).try(:title) ? project.highlight.title[0].html_safe : project.title,
+          controller: "research_projects",
+          action: "show",
+          id: project._id %>
           <p><%= raw project.body %></p>
           </li>
         <% end %>
