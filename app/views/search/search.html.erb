@@ -9,7 +9,7 @@
           <%= link_to publication.try(:highlight).try(:title) ? publication.highlight.title[0].html_safe : publication.title,
           controller: "publications",
           id: publication._id %>
-          <p><%= raw publication.reference %></p>
+          <%= raw publication.try(:highlight).try(:reference) ? publication.highlight.reference[0].html_safe : publication.reference %>
           </li>
         <% end %>
       </ul>
@@ -22,7 +22,9 @@
           controller: "research_projects",
           action: "show",
           id: project._id %>
-          <p><%= raw project.body %></p>
+          <p>
+          <%= project.try(:highlight).try(:body) ? project.highlight.body[0].html_safe : project.body %>
+          </p>
           </li>
         <% end %>
       </ul>

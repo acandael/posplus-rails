@@ -32,7 +32,7 @@ class ResearchProject < ActiveRecord::Base
           post_tags: ['</em>'],
           fields: {
             title: {},
-            reference: {}
+            body: {}
           }
         }
       }
