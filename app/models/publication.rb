@@ -25,7 +25,7 @@ class Publication < ActiveRecord::Base
           }
         },
         highlight: {
-          pre_tags: ['<em>'],
+          pre_tags: ['<em class="highlight">'],
           post_tags: ['</em>'],
           fields: {
             title: {},

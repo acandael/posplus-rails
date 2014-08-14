@@ -10,6 +10,7 @@ section.search {
 
     @include media($medium-screen) {
       @include span-columns(8);
+      float: none;
     }
   }
 
@@ -18,7 +19,7 @@ section.search {
     margin-bottom: em(15);
   }
 
-  em {
+  em.highlight {
     background: yellow;
   }
 }
