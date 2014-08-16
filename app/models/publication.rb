@@ -69,4 +69,4 @@ Publication.__elasticsearch__.client.indices.create \
   body: { settings: Publication.settings.to_hash, mappings: Publication.mappings.to_hash }
 
 # Index all article records from the DB to Elasticsearch
-Publication.import
+Publication.import(force: true)
