@@ -9,7 +9,7 @@
           <%= link_to publication.try(:highlight).try(:title) ? publication.highlight.title[0].html_safe : publication.title,
           controller: "publications",
           id: publication._id %>
-          <p><%= raw publication.reference %></p>
+          <p><%= raw publication.body %></p>
           </li>
         <% end %>
       </ul>

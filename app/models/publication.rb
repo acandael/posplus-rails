@@ -5,8 +5,8 @@ class Publication < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   include Hideable
 
-  validates :title, :reference, presence: true
-  before_save :scrub_reference
+  validates :title, :body, presence: true
+  before_save :scrub_body
 
   has_many :project_publications
   has_many :research_projects, through: :project_publications
@@ -21,7 +21,7 @@ class Publication < ActiveRecord::Base
         query: {
           multi_match: {
             query: query,
-            fields: ['title^10', 'reference']
+            fields: ['title^10', 'body']
           }
         },
         highlight: {
@@ -29,7 +29,7 @@ class Publication < ActiveRecord::Base
           post_tags: ['</em>'],
           fields: {
             title: {},
-            reference: {}
+            body: {}
           }
         }
       }
@@ -39,14 +39,14 @@ class Publication < ActiveRecord::Base
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :title, analyzer: 'english'
-      indexes :reference, analyzer: 'english'
+      indexes :body, analyzer: 'english'
     end
   end
 
   private
 
-  def scrub_reference
-    Loofah.fragment(reference).scrub!(:prune)
+  def scrub_body
+    Loofah.fragment(body).scrub!(:prune)
   end
 
   def self.filter(filter)

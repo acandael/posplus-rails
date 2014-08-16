@@ -21,7 +21,7 @@ feature 'Admin interacts with publications' do
     @publication.save
     click_link @publication.title
     expect(page).to have_css 'p', text: @publication.title
-    expect(page).to have_css 'p', text: @publication.reference
+    expect(page).to have_css 'p', text: @publication.body
     expect(page).to have_css 'a', text: project.title
     expect(page).to have_css 'a', text: File.basename(document.file.url)
     expect(page).to have_css 'p', text: @publication.category.name
@@ -35,51 +35,51 @@ feature 'Admin interacts with publications' do
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: "new publication" 
       select "working paper", from: "Category" 
-      fill_in 'Reference', with: "some reference" 
+      fill_in 'Body', with: "some reference" 
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
     expect((Publication.last).title).to eq("new publication")
     expect((Publication.last).category.name).to eq("working paper")
-    expect((Publication.last).reference).to eq("some reference")
+    expect((Publication.last).body).to eq("some reference")
   end
 
   scenario 'admin should not be able to add publication without title and reference' do
     expect{
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: "" 
-      fill_in 'Reference', with: "" 
+      fill_in 'Body', with: "" 
       click_button 'Add Publication'
     }.not_to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "Title can't be blank"
-    expect(page).to have_css 'p', text: "Reference can't be blank"
+    expect(page).to have_css 'p', text: "Body can't be blank"
   end
 
 
   scenario 'admin edits publication' do
     @research_project = Fabricate(:research_project)
     @publication.title = "edited title"
-    @publication.reference = "edited reference"
+    @publication.body = "edited reference"
     find("a[href='/admin/publications/#{@publication.id}/edit']").click
     find("input[@id='publication_title']").set(@publication.title)
-    find("textarea[@id='publication_reference']").set(@publication.reference)
+    find("textarea[@id='publication_body']").set(@publication.body)
     click_button "Update Publication"
     expect(Publication.find(@publication).title).to eq("edited title")
-    expect(Publication.find(@publication).reference).to eq("edited reference")
+    expect(Publication.find(@publication).body).to eq("edited reference")
     expect(page).to have_css 'p', text: "You successfully updated the publication"
   end
 
   scenario 'admin should not be able to update publications without title and reference' do
     @publication.title = ""
-    @publication.reference = ""
+    @publication.body = ""
     find("a[href='/admin/publications/#{@publication.id}/edit']").click
     find("input[@id='publication_title']").set(@publication.title)
-    find("textarea[@id='publication_reference']").set(@publication.reference)
+    find("textarea[@id='publication_body']").set(@publication.body)
     click_button "Update Publication"
     expect(Publication.find(@publication).title).not_to eq("")
-    expect(Publication.find(@publication).reference).not_to eq("")
+    expect(Publication.find(@publication).body).not_to eq("")
     expect(page).to have_css 'p', text: "Title can't be blank"
-    expect(page).to have_css 'p', text: "Reference can't be blank"
+    expect(page).to have_css 'p', text: "Body can't be blank"
   end
 
   scenario 'admin deletes publication' do
