@@ -1,6 +1,6 @@
-$("#news_item_<%= @news_item.id %>").text("<%= toggle_visibility(@news_item) %>");
-
-if (<%= @news_item.visible %>) {
+$link = $("#new_item_<%= @new_item.id %>");
+$link.text("<%= toggle_visibility(@news_item) %>");
+if ($link.text() == "Hide") {
   $(".messages").empty().append("<p class='notice'>The news item is now visible</p>");
 }
   else {
