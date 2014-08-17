@@ -1,5 +1,6 @@
-$("#research_project_<%= @research_project.id %>").text("<%= toggle_active(@research_project) %>");
-if (<%= @research_project.active %>) {
+$link = $("#research_project_<%= @research_project.id %>"); 
+$link.text("<%= toggle_active(@research_project) %>");
+if ($link.text() == "Close") {
   $(".messages").empty().append("<p class='notice'>The research project is now active</p>");
 }
   else {
