@@ -62,11 +62,11 @@ gem 'loofah', '~> 2.0.0'
 
 group :production do
   gem 'rails_12factor'
-  gem 'bonsai-elasticsearch-rails'
 end
 
 gem 'elasticsearch-model', '~> 0.1.4'
 gem 'elasticsearch-rails', '~> 0.1.4'
+gem 'bonsai-elasticsearch-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
