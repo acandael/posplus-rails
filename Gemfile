@@ -47,6 +47,9 @@ gem 'sidekiq'
 gem 'bourbon'
 gem 'neat'
 
+#Font Awesome
+gem 'font-awesome-rails', '~> 4.1.0.0' 
+
 #Breadcrumbs
 gem 'gretel'
 

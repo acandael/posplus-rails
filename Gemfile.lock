@@ -256,6 +256,7 @@ DEPENDENCIES
   fabrication
   faker
   fog
+  font-awesome-rails (~> 4.1.0.0)
   gretel
   jbuilder (~> 2.0)
   jquery-rails
