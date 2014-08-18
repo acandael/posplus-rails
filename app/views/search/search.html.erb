@@ -1,7 +1,7 @@
 <section class="search">
   <h1>Search Results</h1>
   <% if @publications.size > 0 || @research_projects.size > 0 %>
-    <p>The search '<strong><%= @search_term %></strong>' has <%= number_of_results %> results</p>
+    <p>The search '<strong><%= @search_term %></strong>' has <%= pluralize(number_of_results, 'result') %></p>
     <% if @publications.size > 0 %>
       <ul>
         <% @publications.each do |publication| %>
