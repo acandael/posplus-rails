@@ -3,13 +3,13 @@ require 'spec_helper'
 feature 'Search' do
   scenario 'visitor searches for publications and views 1 result' do
     visit home_path
-    find("input[@id='q']").set("energy") 
+    find("input[@id='q']").set("governance") 
     find("button[@type='submit']").click
     expect(page).to have_css 'h1', text: "Search Results"
-    expect(page).to have_css 'p', text: "The search 'energy' has 1 result"
+    expect(page).to have_css 'p', text: "The search 'governance' has 1 result"
     expect(page).to have_css 'a', text: "The Energy Project"
     expect(page).to have_css 'p', text: "Research project about financing strategies for renewable energy"
-    expect(page).to have_css 'em.highlight', text: "energy"
+    expect(page).to have_css 'em.highlight', text: "governance"
   end
 
   scenario 'visitor searches for publications and has no results' do

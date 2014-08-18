@@ -1,9 +1,6 @@
-require 'elasticsearch/model'
-
 class ResearchProject < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
   include Closeable
+  include Searchable
 
   validates :title, :body, presence: true
 
@@ -18,26 +15,6 @@ class ResearchProject < ActiveRecord::Base
 
   mount_uploader :image, ResearchProjectImageUploader
 
-  def self.search(query)
-    __elasticsearch__.search(
-      {
-        query: {
-          multi_match: {
-            query: query,
-            fields: ['title^10', 'body']
-          }
-        },
-        highlight: {
-          pre_tags: ['<em class="highlight">'],
-          post_tags: ['</em>'],
-          fields: {
-            title: {},
-            body: {}
-          }
-        }
-      }
-    )
-  end
 
 end
 
