@@ -24,9 +24,6 @@ class Publication < ActiveRecord::Base
       where(category_id: filter)
     end
   end
-  
-
-
 
 end
 

@@ -12,8 +12,8 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
+  <h3>Research Projects</h3>
   <div>
-     <h3>Research Projects</h3>
      <%= f.collection_check_boxes :research_project_ids, ResearchProject.all, :id, :title do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
@@ -27,14 +27,16 @@
 </fieldset>
 <% end %>
 
-<script>
-    $(function() {
-      $('#publication_reference').editable({
-        inlineMode: false,
+<% content_for :javascript do %>
+  <script>
+      $(function() {
+        $('#publication_body').editable({
+          inlineMode: false,
 
-        // Set custom buttons with separator between them. Also include the name
-        // of the buttons  defined in customButtons.
-            buttons: ['bold', 'italic']
-      })
-    });
-</script>
+          // Set custom buttons with separator between them. Also include the name
+          // of the buttons  defined in customButtons.
+              buttons: ['bold', 'italic']
+        })
+      });
+  </script>
+<% end %>
