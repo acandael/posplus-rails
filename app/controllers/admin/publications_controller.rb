@@ -1,6 +1,6 @@
 class Admin::PublicationsController < DashboardController
   def index
-    if (params.has_key?(:publication))
+    if (params.has_key?(:publication) && (params[:publication][:category] != ""))
       @publications = Publication.filter(params[:publication][:category])
       @selected = params[:publication].try(:[], :category)
     else
