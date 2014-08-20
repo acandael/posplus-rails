@@ -13,7 +13,12 @@
       @extend %flash-error;
     }
   }
+  .breadcrumbs {
+    margin-left: em(170);
+    @extend .breadcrumbs;
+  }
 }
+
 
 section {
   @include outer-container;
@@ -21,9 +26,6 @@ section {
   @include media($medium-screen) {
     margin-left: em(20);
     margin-right: em(20);
-  }
-  div.breadcrumbs {
-    @extend .breadcrumbs;
   }
 }
 .footer-2, .push {

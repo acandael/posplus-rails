@@ -1,7 +1,28 @@
 # root crumb
-crumb :root do
-  link "Dashboard", admin_path
+
+crumb :front_publications do
+  link "Publications", publications_path
 end
+
+crumb :publication_series do
+  link "POS+ Publication Series", series_path
+  parent :front_publications
+end
+
+crumb :front_publication do |publication|
+  if publication
+    link "Publication", publication_path(publication)
+  else
+    link "Pos+ Publication Series", series_path 
+  end
+  parent :publication_series
+end
+
+crumb :dashboard do
+  link "Dashboard", admin_path
+  
+end
+
 
 crumb :dashboard_item do |dashboard_item|
   if dashboard_item
@@ -13,6 +34,7 @@ end
 
 crumb :research_themes do
   link "Research Themes", admin_research_themes_path
+  parent :dashboard
 end
 
 crumb :research_theme do |research_theme| 
@@ -26,6 +48,7 @@ end
 
 crumb :research_projects do
   link "Research Projects", admin_research_projects_path
+  parent :dashboard
 end
 
 crumb :research_project do |research_project|
@@ -39,6 +62,7 @@ end
 
 crumb :research_groups do
   link "Affiliated Research Groups", admin_research_groups_path
+  parent :dashboard
 end
 
 crumb :research_group do |research_group|
@@ -52,6 +76,7 @@ end
 
 crumb :researchers do
   link "Researchers", admin_researchers_path
+  parent :dashboard
 end
 
 crumb :researcher do |researcher|
@@ -65,6 +90,7 @@ end
 
 crumb :courses do
   link "Courses", admin_courses_path
+  parent :dashboard
 end
 
 crumb :course do |course|
@@ -79,6 +105,7 @@ end
 
 crumb :news_items do
   link "News Items", admin_news_items_path
+  parent :dashboard
 end
 
 crumb :news_item do |news_item|
@@ -92,6 +119,7 @@ end
 
 crumb :publications do
   link "Publications", admin_publications_path
+  parent :dashboard
 end
 
 crumb :publication do |publication|
@@ -110,6 +138,7 @@ end
 
 crumb :features do
   link "In the picture", admin_features_path
+  parent :dashboard
 end
 
 crumb :feature do |feature|
@@ -120,6 +149,7 @@ crumb :feature do |feature|
   end
   parent :features
 end
+
 
 
 # crumb :project_issues do |project|
