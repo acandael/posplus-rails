@@ -6,7 +6,7 @@
         <ul>
           <% @publications.each do |publication| %>
             <% if publication.category.name == "working_paper" %>
-              <li><%= link_to publication.title, "#" %><i class="fa fa-file right"></i></li>
+              <li><%= sanitize publication.body, tags: %w(strong i) %><i class="fa fa-file right"></i></li>
             <% end %>
           <% end %>
         </ul>
@@ -16,7 +16,7 @@
         <ul>
           <% @publications.each do |publication| %>
             <% if publication.category.name == "technical report" %>
-              <li><%= link_to publication.title, "#" %><i class="fa fa-file right"></i></li>
+              <li><%= sanitize publication.body, tags: %w(strong i) %><i class="fa fa-file right"></i></li>
             <% end %>
           <% end %>
         </ul>
