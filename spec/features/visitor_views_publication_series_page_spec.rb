@@ -15,7 +15,7 @@ feature 'Publication Series page' do
     publication.save
     publication.reload
     visit series_path
-    expect(page).to have_css 'a', text: publication.title
+    expect(page).to have_css 'li', text: publication.body
   end
 
   scenario 'visitor visits publication series page and views technical reports' do
@@ -27,7 +27,24 @@ feature 'Publication Series page' do
     publication.save
     publication.reload
     visit series_path
-    expect(page).to have_css 'li', text: publication.title
+    expect(page).to have_css 'li', text: publication.body
+  end
+
+  scenario 'visitor click on download link besides publication and sees documents for publication' do
+    publication = Fabricate(:publication)
+    category = Fabricate(:category)
+    category.name = "working_paper"
+    category.save
+    publication.category_id = category.id
+    document1 = Fabricate(:document)
+    document2 = Fabricate(:document)
+    publication.documents << document1
+    publication.documents << document2
+    publication.save
+    visit series_path
+    find("a[href='/publications/#{publication.id}']").click
+    expect(page).to have_css 'a', text: File.basename(document1.file.url) 
+    expect(page).to have_css 'a', text: File.basename(document2.file.url) 
   end
 
   scenario 'visitor sees a year folder for each publication year' do

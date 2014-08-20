@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :news_items, only: [:show]
   resources :features, only: [:show]
   resources :documents, only: [:index]
+  resources :publications, only: [:show]
 
   get 'admin', to: 'dashboard#index'
   namespace :admin do

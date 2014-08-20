@@ -3,6 +3,10 @@ class PublicationsController < ApplicationController
 
   end
 
+  def show
+    @publication = Publication.find(params[:id]) 
+  end
+
   def series
     @publications = Publication.all
     @publications_year = @publications.group_by { |p| p.created_at.beginning_of_year }

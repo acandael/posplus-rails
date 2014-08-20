@@ -1,0 +1,11 @@
+<section class="publications">
+  <div class="documents">
+    <h1><%= @publication.title %></h1>
+    <h2>Documents</h2>
+    <ul>
+    <% @publication.documents.each do |document| %>
+      <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i></li>
+    <% end %>
+    </ul>
+  </div>
+</section>
