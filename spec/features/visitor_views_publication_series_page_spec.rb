@@ -25,6 +25,7 @@ feature 'Publication Series page' do
     expect(page).to have_css 'a', text: "Download"
   end
 
+
   scenario 'visitor visits publication series page and views technical reports' do
     publication = Fabricate(:publication)
     category = Fabricate(:category)
