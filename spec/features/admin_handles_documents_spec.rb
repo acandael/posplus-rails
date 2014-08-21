@@ -7,7 +7,7 @@ feature 'Admin interacts with documents belonging to publication' do
   end
 
   scenario 'admin sees data for publication' do
-    @publication = Publication.create(title: "some publication title", body: "some publication reference")
+    @publication = Publication.create(title: "some publication title", body: "some publication reference", year: 2014)
     data_document = Fabricate(:document)
     data_document2 = Fabricate(:document)
     @publication.documents << data_document
@@ -20,7 +20,7 @@ feature 'Admin interacts with documents belonging to publication' do
   end
 
   scenario 'admin adds data document belonging to publication' do
-    @publication = Publication.create(title: "some publication title", body: "some publication reference")
+    @publication = Publication.create(title: "some publication title", body: "some publication reference", year: 2014)
     visit admin_publications_path
     find("a[href='/admin/publications/#{@publication.id}/documents']").click
     expect{
@@ -31,7 +31,7 @@ feature 'Admin interacts with documents belonging to publication' do
   end
 
   scenario 'admin deletes document' do
-    publication = Publication.create(title: "some publication title", body: "some publication reference")
+    publication = Publication.create(title: "some publication title", body: "some publication reference", year: 2014)
     document = Fabricate(:document) 
     publication.documents << document
     publication.save

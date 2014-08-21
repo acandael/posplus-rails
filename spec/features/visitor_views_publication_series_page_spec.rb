@@ -50,7 +50,8 @@ feature 'Publication Series page' do
   scenario 'visitor sees a year folder for each publication year' do
     publication_2014 = Fabricate(:publication)
     publication_2013 = Fabricate(:publication)
-    publication_2013.created_at = "2013-01-01 00:00:00 UTC"
+    publication_2013.year = 2013
+    publication_2014.year = 2014
     category = Fabricate(:category)
     category.name = "technical report"
     category.save
@@ -59,8 +60,8 @@ feature 'Publication Series page' do
     publication_2013.category_id = category.id
     publication_2013.save
     visit series_path
-    within('aside') { expect(page).to have_css 'a', text: publication_2014.created_at.strftime('%Y') }
-    within('aside') { expect(page).to have_css 'a', text: publication_2013.created_at.strftime('%Y') }
+    within('aside') { expect(page).to have_css 'a', text: publication_2014.year }
+    within('aside') { expect(page).to have_css 'a', text: publication_2013.year }
   end
 
   scenario 'visitor views publication series archive' do
@@ -71,16 +72,17 @@ feature 'Publication Series page' do
     publication.category_id = category.id
     publication.save
     visit series_path
-    within('aside') { click_link publication.created_at.strftime('%Y') }
+    within('aside') { click_link publication.year }
     expect(page).to have_css 'h1', text: "POS+ Publication Series Archive"
-    expect(page).to have_css 'h2', text: "#{publication.created_at.strftime('%Y')}"
-    expect(page).to have_css 'li', text: publication.title
+    expect(page).to have_css 'h2', text: "#{publication.year}"
+    expect(page).to have_css 'li', text: publication.body
   end
 
   scenario 'visitor should see publication for a given year in archive' do
     publication_2014 = Fabricate(:publication)
     publication_2013 = Fabricate(:publication)
-    publication_2013.created_at = "2013-01-01 00:00:00 UTC"
+    publication_2014.year = 2014
+    publication_2013.year = 2013
     category = Fabricate(:category)
     category.name = "technical report"
     category.save
@@ -89,8 +91,8 @@ feature 'Publication Series page' do
     publication_2013.category_id = category.id
     publication_2013.save
     visit series_path
-    within('aside') { click_link publication_2014.created_at.strftime('%Y') }
-    expect(page).to have_css 'li', text: publication_2014.title
-    expect(page).not_to have_css 'li', text: publication_2013.title
+    within('aside') { click_link publication_2014.year }
+    expect(page).to have_css 'li', text: publication_2014.body
+    expect(page).not_to have_css 'li', text: publication_2013.body
   end
 end
