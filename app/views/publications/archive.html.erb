@@ -45,7 +45,7 @@
     <aside class="archive">
       <ul>
       <h2>Archive</h2>
-      <% @publications_year.sort.reverse.each do |year, pubs| %>
+      <% @publications_year.each do |year, pubs| %>
         <li><i class="fa fa-folder left"></i><%= link_to year, archive_path(year) %></a>
       </li>
       <% end %>
