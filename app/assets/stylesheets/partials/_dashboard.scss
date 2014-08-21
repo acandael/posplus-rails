@@ -12,6 +12,9 @@ section.dashboard {
     input[type="submit"]{
       margin-top: em(20);
     }
+    input[type="text"].year {
+      width: em(100);
+    }
     &.filter {
       label, select {
         display: inline;

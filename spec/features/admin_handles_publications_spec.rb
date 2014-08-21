@@ -34,12 +34,14 @@ feature 'Admin interacts with publications' do
     expect{
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: "new publication" 
+      fill_in 'Year', with: "2013"
       select "working paper", from: "Category" 
       fill_in 'Body', with: "some reference" 
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
     expect((Publication.last).title).to eq("new publication")
+    expect((Publication.last).year).to eq(2013)
     expect((Publication.last).category.name).to eq("working paper")
     expect((Publication.last).body).to eq("some reference")
   end
@@ -55,31 +57,64 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'p', text: "Body can't be blank"
   end
 
+  scenario 'admin should not be able to add publication with publication year' do
+    expect{
+      find("input[@value='Add Publication']").click
+      fill_in 'Title', with: "new publication" 
+      fill_in 'Year', with: ""
+      fill_in 'Body', with: "some description" 
+      click_button 'Add Publication'
+    }.not_to change(Publication, :count).by(1)
+    expect(page).to have_css 'p', text: "Year can't be blank"
+  end
+
 
   scenario 'admin edits publication' do
     @research_project = Fabricate(:research_project)
-    @publication.title = "edited title"
-    @publication.body = "edited reference"
     find("a[href='/admin/publications/#{@publication.id}/edit']").click
-    find("input[@id='publication_title']").set(@publication.title)
-    find("textarea[@id='publication_body']").set(@publication.body)
+    find("input[@id='publication_title']").set("edited title")
+    find("input[@id='publication_year']").set(2013)
+    find("textarea[@id='publication_body']").set("edited reference")
     click_button "Update Publication"
     expect(Publication.find(@publication).title).to eq("edited title")
+    expect(Publication.find(@publication).year).to eq(2013)
     expect(Publication.find(@publication).body).to eq("edited reference")
     expect(page).to have_css 'p', text: "You successfully updated the publication"
   end
 
   scenario 'admin should not be able to update publications without title and reference' do
-    @publication.title = ""
-    @publication.body = ""
     find("a[href='/admin/publications/#{@publication.id}/edit']").click
-    find("input[@id='publication_title']").set(@publication.title)
-    find("textarea[@id='publication_body']").set(@publication.body)
+    find("input[@id='publication_title']").set("")
+    find("textarea[@id='publication_body']").set("")
     click_button "Update Publication"
     expect(Publication.find(@publication).title).not_to eq("")
     expect(Publication.find(@publication).body).not_to eq("")
     expect(page).to have_css 'p', text: "Title can't be blank"
     expect(page).to have_css 'p', text: "Body can't be blank"
+  end
+
+  scenario 'admin should not be able to edit publication without a year' do
+    find("a[href='/admin/publications/#{@publication.id}/edit']").click
+    find("input[@id='publication_title']").set("edited title")
+    find("input[@id='publication_year']").set(nil)
+    find("textarea[@id='publication_body']").set("edited reference")
+    click_button "Update Publication"
+    expect(Publication.find(@publication).title).not_to eq("edited title")
+    expect(Publication.find(@publication).year).not_to eq(nil)
+    expect(Publication.find(@publication).body).not_to eq("edited reference")
+    expect(page).to have_css 'p', text: "Year can't be blank"
+  end
+
+  scenario 'admin should enter numeric value for year' do
+    find("a[href='/admin/publications/#{@publication.id}/edit']").click
+    find("input[@id='publication_title']").set("edited title")
+    find("input[@id='publication_year']").set('hello baby')
+    find("textarea[@id='publication_body']").set("edited reference")
+    click_button "Update Publication"
+    expect(Publication.find(@publication).title).not_to eq("edited title")
+    expect(Publication.find(@publication).year).not_to eq('hello baby')
+    expect(Publication.find(@publication).body).not_to eq("edited reference")
+    expect(page).to have_css 'p', text: "Year is not a number"
   end
 
   scenario 'admin deletes publication' do

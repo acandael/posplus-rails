@@ -2,7 +2,8 @@ class Publication < ActiveRecord::Base
   include Hideable
   include Searchable
 
-  validates :title, :body, presence: true
+  validates :title, :body, :year, presence: true
+  validates :year, numericality: true
   before_save :scrub_body
 
   has_many :project_publications
