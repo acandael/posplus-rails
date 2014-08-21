@@ -13,6 +13,10 @@
     <%= f.select :category_id, options_for_categories, label: "Category" %>
   </div>
   <div>
+    <%= f.label :series %>
+    <%= f.text_field :series, maxlength: 4, class: "series" %>
+  </div>
+  <div>
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>

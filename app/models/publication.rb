@@ -4,6 +4,7 @@ class Publication < ActiveRecord::Base
 
   validates :title, :body, :year, presence: true
   validates :year, numericality: true
+  validates :series, numericality: true, allow_nil: true
   before_save :scrub_body
 
   has_many :project_publications

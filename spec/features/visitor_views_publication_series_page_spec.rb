@@ -8,14 +8,21 @@ feature 'Publication Series page' do
 
   scenario 'visitor visits publication series page and view working papers' do
     publication = Fabricate(:publication)
+    publication.series = 2
     category = Fabricate(:category)
     category.name = "working_paper"
     category.save
     publication.category_id = category.id 
+    document1 = Fabricate(:document)
+    document2 = Fabricate(:document)
+    publication.documents << document1
+    publication.documents << document2
     publication.save
     publication.reload
     visit series_path
     expect(page).to have_css 'li', text: publication.body
+    expect(page).to have_css 'li', text: "( 2 )"
+    expect(page).to have_css 'a', text: "Download"
   end
 
   scenario 'visitor visits publication series page and views technical reports' do

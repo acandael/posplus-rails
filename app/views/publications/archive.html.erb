@@ -9,6 +9,9 @@
           <% @archived_publications.each do |publication| %>
             <% if publication.category.name == "working_paper" %>
               <li><%= sanitize publication.body, tags: %w(strong i) %>
+              <% if publication.series.present? %>
+                ( <%= publication.series %> )
+              <% end %>
               <% if publication.documents.size > 0 %>
                 (<%= link_to 'Download', publication_path(publication) %>)
               <% end %>
@@ -25,6 +28,10 @@
             <% @archived_publications.each do |publication| %>
               <% if publication.category.name == "technical report" %>
                 <li><%= sanitize publication.body, tags: %w(strong i) %>
+                <% if publication.series.present? %>
+                  ( <%= publication.series %> )
+                <% end %>
+
                 <% if publication.documents.size > 0 %>
                   (<%= link_to 'Download', publication_path(publication) %>)
                 <% end %>
@@ -38,7 +45,7 @@
     <aside class="archive">
       <ul>
       <h2>Archive</h2>
-      <% @publications_year.sort.each do |year, pubs| %>
+      <% @publications_year.sort.reverse.each do |year, pubs| %>
         <li><i class="fa fa-folder left"></i><%= link_to year, archive_path(year) %></a>
       </li>
       <% end %>

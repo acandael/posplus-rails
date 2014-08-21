@@ -16,12 +16,15 @@ feature 'Admin interacts with publications' do
     @publication.research_projects << project
     category = Category.create(name: "working_paper")
     @publication.category = category 
+    @publication.series = 1
     document = Fabricate(:document)
     @publication.documents << document
     @publication.save
     click_link @publication.title
     expect(page).to have_css 'p', text: @publication.title
     expect(page).to have_css 'p', text: @publication.body
+    expect(page).to have_css 'p', text: @publication.year
+    expect(page).to have_css 'p', text: "number #{@publication.series}"
     expect(page).to have_css 'a', text: project.title
     expect(page).to have_css 'a', text: File.basename(document.file.url)
     expect(page).to have_css 'p', text: @publication.category.name
@@ -36,12 +39,14 @@ feature 'Admin interacts with publications' do
       fill_in 'Title', with: "new publication" 
       fill_in 'Year', with: "2013"
       select "working paper", from: "Category" 
+      fill_in 'Series', with: 1
       fill_in 'Body', with: "some reference" 
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
     expect((Publication.last).title).to eq("new publication")
     expect((Publication.last).year).to eq(2013)
+    expect((Publication.last).series).to eq(1)
     expect((Publication.last).category.name).to eq("working paper")
     expect((Publication.last).body).to eq("some reference")
   end
@@ -68,16 +73,30 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'p', text: "Year can't be blank"
   end
 
+  scenario 'admin should not be able to insert series with non-numerical value' do
+    expect{
+      find("input[@value='Add Publication']").click
+      fill_in 'Title', with: "new publication" 
+      fill_in 'Year', with: "2014"
+      fill_in 'Series', with: "hello"
+      fill_in 'Body', with: "some description" 
+      click_button 'Add Publication'
+    }.not_to change(Publication, :count).by(1)
+    expect(page).to have_css 'p', text: "Series is not a number"
+  end
+
 
   scenario 'admin edits publication' do
     @research_project = Fabricate(:research_project)
     find("a[href='/admin/publications/#{@publication.id}/edit']").click
     find("input[@id='publication_title']").set("edited title")
     find("input[@id='publication_year']").set(2013)
+    find("input[@id='publication_series']").set(1)
     find("textarea[@id='publication_body']").set("edited reference")
     click_button "Update Publication"
     expect(Publication.find(@publication).title).to eq("edited title")
     expect(Publication.find(@publication).year).to eq(2013)
+    expect(Publication.find(@publication).series).to eq(1)
     expect(Publication.find(@publication).body).to eq("edited reference")
     expect(page).to have_css 'p', text: "You successfully updated the publication"
   end
@@ -115,6 +134,20 @@ feature 'Admin interacts with publications' do
     expect(Publication.find(@publication).year).not_to eq('hello baby')
     expect(Publication.find(@publication).body).not_to eq("edited reference")
     expect(page).to have_css 'p', text: "Year is not a number"
+  end
+
+  scenario 'admin should enter numeric value for series' do
+    find("a[href='/admin/publications/#{@publication.id}/edit']").click
+    find("input[@id='publication_title']").set("edited title")
+    find("input[@id='publication_year']").set(2012)
+    find("input[@id='publication_series']").set('hello')
+    find("textarea[@id='publication_body']").set("edited reference")
+    click_button "Update Publication"
+    expect(Publication.find(@publication).title).not_to eq("edited title")
+    expect(Publication.find(@publication).year).not_to eq(2012)
+    expect(Publication.find(@publication).body).not_to eq("edited reference")
+    expect(Publication.find(@publication).series).not_to eq('hello')
+    expect(page).to have_css 'p', text: "Series is not a number"
   end
 
   scenario 'admin deletes publication' do

@@ -12,7 +12,7 @@ section.dashboard {
     input[type="submit"]{
       margin-top: em(20);
     }
-    input[type="text"].year {
+    input[type="text"].year, input[type="text"].series {
       width: em(100);
     }
     &.filter {
