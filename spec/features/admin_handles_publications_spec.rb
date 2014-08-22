@@ -175,7 +175,7 @@ feature 'Admin interacts with publications' do
     expect(@publication.visible?).to be_false
   end
 
-  scenario 'Admin shows researcher' do
+  scenario 'Admin shows publication' do
     @publication.visible = false
     @publication.save
     visit admin_publications_path
@@ -183,5 +183,18 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'p', text: "The publication is now visible"
     @publication.reload
     expect(@publication.visible).to be_true 
+  end
+
+  scenario 'Admin sees researchers for publication' do
+    researcher1 = Fabricate(:researcher)
+    researcher2 = Fabricate(:researcher)
+    category = Fabricate(:category)
+    @publication.category_id = category.id
+    @publication.researchers << researcher1
+    @publication.researchers << researcher2
+    @publication.save
+    click_link @publication.title
+    expect(page).to have_css 'li', text: researcher1.name
+    expect(page).to have_css 'li', text: researcher2.name
   end
 end

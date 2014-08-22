@@ -11,6 +11,9 @@ class Researcher < ActiveRecord::Base
   has_many :course_researchers
   has_many :courses, through: :course_researchers
 
+  has_many :publication_researchers
+  has_many :publications, through: :publication_researchers
+
   mount_uploader :image, ResearcherImageUploader
 
 end

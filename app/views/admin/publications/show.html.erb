@@ -21,6 +21,14 @@
       <h3>Reference</h3>
       <p><%= raw @publication.body %></p>
     </section>
+    <section>
+      <h3>Authors</h3>
+      <ul>
+        <% @publication.researchers.each do |researcher| %>
+          <li><%= link_to researcher.name, person_path(researcher) %></li>
+        <% end %>
+      </ul>
+    </section>
     <% if @publication.research_projects.any? %>
       <section>
         <h3>Research Project</h3>

@@ -55,6 +55,6 @@ class Admin::PublicationsController < DashboardController
   private
 
   def publication_params
-    params.require(:publication).permit(:title, :year, :category_id, :series, :body, :visible, :research_project_ids => [])
+    params.require(:publication).permit(:title, :year, :category_id, :series, :body, :visible, :researcher_ids => [], :research_project_ids => [])
   end
 end

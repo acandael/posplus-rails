@@ -10,6 +10,9 @@ class Publication < ActiveRecord::Base
   has_many :project_publications
   has_many :research_projects, through: :project_publications
 
+  has_many :publication_researchers
+  has_many :researchers, through: :publication_researchers
+
   has_many :documents
 
   belongs_to :category
