@@ -19,11 +19,21 @@
         <% end %>
       </ul>
     <% end %>
-  <h2>Publications</h2
-  <ul>
-    <li><a href="#">The protection of journalistic sources under fire? How developments in European human rights Law have reinforced the right of journalists to have their sources protected (2013). Dirk Voorhoof (Ugent).</a></li>
-    <li><a href="#">The protection of journalistic sources under fire? How developments in European human rights Law have reinforced the right of journalists to have their sources protected (2013). Dirk Voorhoof (Ugent).</a></li>
-  </ul>
+    <% if @researcher.publications.any? %>
+      <h2>Latest Publications</h2>
+      <ul>
+        <% @researcher.publications.latest.each do |publication| %>
+          <li><%= sanitize publication.body, tags: %w(strong i) %>
+              <% if publication.series.present? %>
+                ( <%= publication.series %> )
+              <% end %>
+              <% if publication.documents.size > 0 %>
+                (<%= link_to 'Download', publication_path(publication) %>)
+              <% end %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
   </article>
 </section>
 

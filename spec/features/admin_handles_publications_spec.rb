@@ -31,9 +31,12 @@ feature 'Admin interacts with publications' do
   end
 
   scenario 'admin adds a new publication' do
-    research_project = Fabricate(:research_project)
+    research_project1 = Fabricate(:research_project)
+    research_project2 = Fabricate(:research_project)
     category1 = Category.create(name: "working paper")
     category2 = Category.create(name: "technical report")
+    researcher1 = Fabricate(:researcher)
+    researcher2 = Fabricate(:researcher)
     expect{
       find("input[@value='Add Publication']").click
       fill_in 'Title', with: "new publication" 
@@ -41,6 +44,10 @@ feature 'Admin interacts with publications' do
       select "working paper", from: "Category" 
       fill_in 'Series', with: 1
       fill_in 'Body', with: "some reference" 
+      check researcher1.name
+      check researcher2.name
+      check research_project1.title
+      check research_project2.title
       click_button 'Add Publication'
     }.to change(Publication, :count).by(1)
     expect(page).to have_css 'p', text: "You successfully added a publication"
@@ -48,6 +55,8 @@ feature 'Admin interacts with publications' do
     expect((Publication.last).year).to eq(2013)
     expect((Publication.last).series).to eq(1)
     expect((Publication.last).category.name).to eq("working paper")
+    expect((Publication.last).researchers.size).to eq(2)
+    expect((Publication.last).research_projects.size).to eq(2)
     expect((Publication.last).body).to eq("some reference")
   end
 
@@ -168,6 +177,15 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'li', text: research_project.title
   end
 
+  scenario 'admin sees no research projects assigned when no research project' do
+    research_project = Fabricate(:research_project)
+    category = Fabricate(:category)
+    @publication.category_id = category.id
+    @publication.save
+    click_link @publication.title
+    expect(page).to have_css 'li', text: "no research projects assigned" 
+  end
+
   scenario 'admin hides publication' do
     click_link "Hide" 
     expect(page).to have_css 'p', text: "The publication is now hidden"
@@ -196,5 +214,13 @@ feature 'Admin interacts with publications' do
     click_link @publication.title
     expect(page).to have_css 'li', text: researcher1.name
     expect(page).to have_css 'li', text: researcher2.name
+  end
+
+  scenario 'Admin sees no researchers assigned when no researchers' do
+    category = Fabricate(:category)
+    @publication.category_id = category.id
+    @publication.save
+    click_link @publication.title
+    expect(page).to have_css 'li', text: "no researchers assigned"
   end
 end

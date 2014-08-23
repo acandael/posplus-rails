@@ -21,6 +21,8 @@ feature "Visitor interacts with people page and" do
 
 
   scenario "visitor clicks researcher and sees researcher details" do
+    publication = Fabricate(:publication)
+    publication.researchers << @researcher
     course = Fabricate(:course)
     @researcher.courses << course
     project = Fabricate(:research_project)
@@ -33,6 +35,7 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'h1', text: @researcher.name
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'li', text: course.title
+    expect(page).to have_css 'li', text: publication.body
     expect(page).to have_css 'a', text: project.title
   end
 

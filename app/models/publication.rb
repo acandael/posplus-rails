@@ -30,5 +30,9 @@ class Publication < ActiveRecord::Base
     end
   end
 
+  def self.latest
+    limit(3)
+  end
+
 end
 

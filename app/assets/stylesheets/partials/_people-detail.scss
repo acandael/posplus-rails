@@ -5,6 +5,7 @@ section {
     padding: 0;
   }
   article {
+    @include clearfix;
     background-color: white;
     @extend .box-shadow;
     margin-top: .75em;

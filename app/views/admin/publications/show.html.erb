@@ -23,22 +23,32 @@
     </section>
     <section>
       <h3>Authors</h3>
-      <ul>
-        <% @publication.researchers.each do |researcher| %>
-          <li><%= link_to researcher.name, person_path(researcher) %></li>
-        <% end %>
-      </ul>
+      <% if @publication.researchers.any? %>
+          <ul>
+            <% @publication.researchers.each do |researcher| %>
+              <li><%= link_to researcher.name, person_path(researcher) %></li>
+            <% end %>
+          </ul>
+      <% else %>
+          <ul>
+            <li>no researchers assigned</li>
+          </ul>
+      <% end %>
     </section>
-    <% if @publication.research_projects.any? %>
       <section>
         <h3>Research Project</h3>
+        <% if @publication.research_projects.any? %>
         <ul>
           <% @publication.research_projects.each do |project| %>
             <li><%= link_to project.title, admin_research_project_path(project) %></li>
           <% end %>
         </ul>
+        <% else %>
+          <ul>
+            <li>no research projects assigned</li>
+          </ul>
+        <% end %>
       </section>
-    <% end %>
     <% if @publication.documents.any? %>
       <section>
         <h3>Data</h3>
