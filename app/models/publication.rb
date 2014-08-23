@@ -31,7 +31,7 @@ class Publication < ActiveRecord::Base
   end
 
   def self.latest
-    limit(3)
+    order('year DESC').limit(3)
   end
 
 end
