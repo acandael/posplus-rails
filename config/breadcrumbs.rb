@@ -81,7 +81,7 @@ end
 
 crumb :researcher do |researcher|
   if researcher
-    link researcher.name, admin_researcher_path(researcher)
+    link researcher.fullname, admin_researcher_path(researcher)
   else
     link "New Researcher", admin_researchers_path
   end

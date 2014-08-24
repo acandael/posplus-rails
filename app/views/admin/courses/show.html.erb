@@ -7,7 +7,7 @@
       <h3>Teached By:</h3>
       <ul>
         <% @course.researchers.each do |researcher| %>
-          <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
+          <li><%= link_to researcher.fullname, admin_researcher_path(researcher) %></li>
         <% end %>
       </ul>
     </section>

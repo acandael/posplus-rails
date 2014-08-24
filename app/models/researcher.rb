@@ -1,7 +1,8 @@
 class Researcher < ActiveRecord::Base
   include Hideable
 
-  validates :name, presence: true, uniqueness: :true
+  validates :first_name, :last_name, presence: true
+  validates :last_name, :uniqueness => { :scope => :first_name }
   validates :bio, presence: true
   validates :email, presence: true
 
@@ -15,5 +16,9 @@ class Researcher < ActiveRecord::Base
   has_many :publications, through: :publication_researchers
 
   mount_uploader :image, ResearcherImageUploader
+
+  def fullname
+  "#{first_name} #{last_name}"
+  end
 
 end

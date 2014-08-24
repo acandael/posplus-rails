@@ -10,7 +10,7 @@
           <%= link_to person_path(researcher) do %>
             <%= image_tag researcher.image.url(:thumb) %>
           <% end %>
-          <h5><%= researcher.name %></h5>
+          <h5><%= researcher.fullname %></h5>
           <p><%= researcher.title %></p>
         </div>
       <% end %>

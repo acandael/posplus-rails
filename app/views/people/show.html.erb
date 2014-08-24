@@ -1,6 +1,6 @@
 <section>
   <article>
-    <h1><%= @researcher.name %></h1>
+    <h1><%= @researcher.fullname %></h1>
     <%= image_tag @researcher.image.url %>
     <p><%= @researcher.bio %></p>
     <% if @researcher.research_projects.any? %>

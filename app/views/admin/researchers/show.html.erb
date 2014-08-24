@@ -1,7 +1,7 @@
 <% breadcrumb :researcher, @researcher %>
 <div class="panel">
   <div class="content">
-  <h1><%= @researcher.name %></h1>
+  <h1><%= @researcher.fullname %></h1>
   <p><%= @researcher.bio %></p>
   <p><%= mail_to @researcher.email %></p>
   <section>

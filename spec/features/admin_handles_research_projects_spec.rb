@@ -105,8 +105,8 @@ feature "Admin interacts with research projects" do
     @research_project.researchers << researcher1
     @research_project.researchers << researcher2
     click_link @research_project.title
-    expect(page).to have_css 'li', text: researcher1.name
-    expect(page).to have_css 'li', text: researcher2.name
+    expect(page).to have_css 'li', text: researcher1.fullname
+    expect(page).to have_css 'li', text: researcher2.fullname
   end
 
   scenario "Admin sees publications for research project" do

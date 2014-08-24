@@ -1,5 +1,6 @@
 Fabricator(:researcher) do
-  name {  Faker::Name.name }
+  first_name {  Faker::Name.name }
+  last_name { Faker::Name.name }
   bio { Faker::Lorem.paragraph(2) }
   email { Faker::Internet.email }
   image { Rack::Test::UploadedFile.new(

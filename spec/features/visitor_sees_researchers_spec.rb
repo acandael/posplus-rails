@@ -7,7 +7,7 @@ feature "Visitor interacts with people page and" do
   scenario "sees researchers" do
     visit people_path
     expect(page).to have_css 'h1', text: "People"
-    expect(page).to have_css 'h5', text: @researcher.name 
+    expect(page).to have_css 'h5', text: @researcher.fullname 
     expect(page).to have_css 'p', text: @researcher.title
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url(:thumb))}\"]")
   end
@@ -16,7 +16,7 @@ feature "Visitor interacts with people page and" do
     @researcher.visible = false
     @researcher.save
     visit people_path
-    expect(page).not_to have_css 'h5', text:@researcher.name
+    expect(page).not_to have_css 'h5', text:@researcher.fullname
   end
 
 
@@ -32,7 +32,7 @@ feature "Visitor interacts with people page and" do
     visit people_path
     find("a[href='/people/#{@researcher.id}']").click
 
-    expect(page).to have_css 'h1', text: @researcher.name
+    expect(page).to have_css 'h1', text: @researcher.fullname
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'li', text: course.title
     expect(page).to have_css 'li', text: publication.body

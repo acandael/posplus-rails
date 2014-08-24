@@ -44,8 +44,8 @@ feature 'Admin interacts with publications' do
       select "working paper", from: "Category" 
       fill_in 'Series', with: 1
       fill_in 'Body', with: "some reference" 
-      check researcher1.name
-      check researcher2.name
+      check researcher1.fullname
+      check researcher2.fullname
       check research_project1.title
       check research_project2.title
       click_button 'Add Publication'
@@ -212,8 +212,8 @@ feature 'Admin interacts with publications' do
     @publication.researchers << researcher2
     @publication.save
     click_link @publication.title
-    expect(page).to have_css 'li', text: researcher1.name
-    expect(page).to have_css 'li', text: researcher2.name
+    expect(page).to have_css 'li', text: researcher1.fullname
+    expect(page).to have_css 'li', text: researcher2.fullname
   end
 
   scenario 'Admin sees no researchers assigned when no researchers' do

@@ -36,7 +36,7 @@ feature 'Visitor interacts with research page' do
     find("a[href='/research_projects/#{research_project.id}']").click 
     expect(page).to have_css 'h1', text: research_project.title
     expect(page).to have_css 'p', text: research_project.body
-    expect(page).to have_css 'a', text: researcher.name
+    expect(page).to have_css 'a', text: researcher.fullname
     expect(page).to have_css 'li', text: publication.body
     page.should have_xpath("//img[@src=\"/uploads/research_project/image/#{File.basename(research_project.image.url)}\"]")
   end

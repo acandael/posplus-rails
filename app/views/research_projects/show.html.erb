@@ -8,7 +8,7 @@
         <h2>Researchers</h2>
         <ul>
           <% @research_project.researchers.each do |researcher| %>
-            <li><i class="fa fa-user"></i><%= link_to researcher.name, person_path(researcher) %></li>
+            <li><i class="fa fa-user"></i><%= link_to researcher.fullname, person_path(researcher) %></li>
           <% end %>
         </ul>
       </div>

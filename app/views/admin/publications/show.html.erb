@@ -26,7 +26,7 @@
       <% if @publication.researchers.any? %>
           <ul>
             <% @publication.researchers.each do |researcher| %>
-              <li><%= link_to researcher.name, person_path(researcher) %></li>
+              <li><%= link_to researcher.fullname, person_path(researcher) %></li>
             <% end %>
           </ul>
       <% else %>

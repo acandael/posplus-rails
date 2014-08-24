@@ -21,7 +21,7 @@
     <%= f.text_area :body %>
   </div>
   <h3>Researchers</h3>
-     <%= f.collection_check_boxes :researcher_ids, Researcher.all, :id, :name do |b| %>
+     <%= f.collection_check_boxes :researcher_ids, Researcher.all.order(:last_name), :id, :fullname do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
   <div>

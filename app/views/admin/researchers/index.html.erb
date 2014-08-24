@@ -6,7 +6,7 @@
     <tbody>
       <% @researchers.each do |researcher| %>
         <tr>
-          <td><%= link_to researcher.name, admin_researcher_path(researcher) %></td>
+          <td><%= link_to researcher.fullname, admin_researcher_path(researcher) %></td>
           <td><%= link_to "Edit", edit_admin_researcher_path(researcher) %>&nbsp;&nbsp;
             <%= link_to "Delete", admin_researcher_path(researcher), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp;&nbsp;
             <%= link_to toggle_visibility(researcher), hide_admin_researcher_path(researcher), method: :patch, remote: true, id: dom_id(researcher) %></td>

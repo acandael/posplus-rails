@@ -18,7 +18,7 @@
       <h3>Researchers</h3>
       <ul>
         <% @research_project.researchers.each do |researcher| %>
-          <li><%= link_to researcher.name, admin_researcher_path(researcher) %></li>
+          <li><%= link_to researcher.fullname, admin_researcher_path(researcher) %></li>
         <% end %>
       </ul>
     </section>

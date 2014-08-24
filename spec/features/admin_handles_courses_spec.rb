@@ -20,7 +20,7 @@ feature "Admin interacts with courses" do
     click_link @course.title
 
     expect(page).to have_css 'h1', text: @course.title
-    expect(page).to have_css 'a', text: teacher.name
+    expect(page).to have_css 'a', text: teacher.fullname
   end
 
   scenario "admin adds a course" do
@@ -81,6 +81,6 @@ feature "Admin interacts with courses" do
     researcher = Fabricate(:researcher)
     @course.researchers << researcher
     click_link @course.title
-    expect(page).to have_css 'li', text: researcher.name 
+    expect(page).to have_css 'li', text: researcher.fullname 
   end
 end

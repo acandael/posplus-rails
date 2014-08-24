@@ -1,9 +1,9 @@
 $link = $("#researcher_<%= @researcher.id %>");
 $link.text("<%= toggle_visibility(@researcher) %>");
 if ($link.text() == "Hide") {
-  $(".messages").empty().append("<p class='notice'>The researcher <%= @researcher.name %> is now visible</p>");
+  $(".messages").empty().append("<p class='notice'>The researcher <%= @researcher.fullname %> is now visible</p>");
 }
   else {
-    $(".messages").empty().append("<p class='notice'>The researcher <%= @researcher.name %> is now hidden</p>");
+    $(".messages").empty().append("<p class='notice'>The researcher <%= @researcher.fullname %> is now hidden</p>");
 }
 

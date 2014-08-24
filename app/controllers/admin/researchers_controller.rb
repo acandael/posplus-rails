@@ -1,6 +1,6 @@
 class Admin::ResearchersController < DashboardController
   def index
-    @researchers = Researcher.all.order(:name)
+    @researchers = Researcher.all.order(:last_name)
   end
 
   def show
@@ -28,7 +28,7 @@ class Admin::ResearchersController < DashboardController
   def update
     @researcher = Researcher.find(params[:id])
     if @researcher.update_attributes(researcher_params)
-      redirect_to admin_researchers_path, notice: "you successfully updated the researcher #{@researcher.name}"
+      redirect_to admin_researchers_path, notice: "you successfully updated the researcher #{@researcher.fullname}"
     else
       flash[:alert] = @researcher.errors.full_messages.join(' ')
       render :edit
@@ -50,6 +50,6 @@ class Admin::ResearchersController < DashboardController
   private
 
   def researcher_params
-    params.require(:researcher).permit(:name, :bio, :email, :image, :title, :visible, :research_project_ids => [], :course_ids => [])
+    params.require(:researcher).permit(:first_name, :last_name, :bio, :email, :image, :title, :visible, :research_project_ids => [], :course_ids => [])
   end
 end

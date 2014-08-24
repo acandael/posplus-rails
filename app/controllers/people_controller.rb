@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController 
   def index
-    @researchers = Researcher.all
+    @researchers = Researcher.all.order(:last_name)
   end
 
   def show

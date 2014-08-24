@@ -1,8 +1,12 @@
 <%= form_for [:admin, @researcher], html: { multipart: true } do |f| %>
   <fieldset>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
   </div>
   <div>
     <%= f.label :title %>
