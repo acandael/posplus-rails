@@ -5,6 +5,7 @@ class Researcher < ActiveRecord::Base
   validates :last_name, :uniqueness => { :scope => :first_name }
   validates :bio, presence: true
   validates :email, presence: true
+  validates_length_of :title, maximum: 30
 
   has_many :project_researchers
   has_many :research_projects, through: :project_researchers

@@ -67,6 +67,19 @@ feature "Admin interacts with researcher" do
     expect(page).to have_content "Last name has already been taken"
   end
 
+  scenario 'Admin should not be able to add title longer then 30 characters' do
+    expect{
+      find("input[@value='Add Researcher']").click
+      fill_in 'First name', with: "Bram" 
+      fill_in 'Last name', with: "Moolenaar"
+      fill_in 'Title', with: "this is more than 30 characters"
+      fill_in 'Bio', with: "some bio" 
+      fill_in 'Email', with: "john.doe@example.com" 
+      click_button "Add Researcher"
+    }.not_to change(Researcher, :count).by(1)
+    expect(page).to have_content "Title is too long (maximum is 30 characters)"
+  end
+
   scenario 'Admin edits researcher' do
     find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
     find("input[@id='researcher_first_name']").set("John")
