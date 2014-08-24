@@ -12,17 +12,7 @@ feature "Visitor interacts with data page" do
     click_link "Data"
 
     expect(page).to have_css 'h1', text: "Data"
-    expect(page).to have_css 'h1', text: publication.title
+    expect(page).to have_css 'p', text: publication.body
     expect(page).to have_css 'a', text: File.basename(document.file.url)
-  end
-
-  scenario 'visitor sees no data available for publication without documents' do
-    research_theme = Fabricate(:research_theme)
-    publication = Fabricate(:publication)
-
-    visit research_theme_path(research_theme)
-    click_link "Data"
-
-    expect(page).to have_content "no data available"
   end
 end
