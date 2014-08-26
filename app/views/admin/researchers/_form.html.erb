@@ -51,3 +51,19 @@
   <%= link_to 'Cancel', admin_researchers_path %>
 </fieldset>
 <% end %>
+
+
+<% content_for :javascript do %>
+  <script>
+      $(function() {
+        $('#researcher_bio').editable({
+          inlineMode: false,
+
+          // Set custom buttons with separator between them. Also include the name
+          // of the buttons  defined in customButtons.
+          buttons: ['bold', 'italic', 'insertUnorderedList', 'formatBlock', 'undo', 'redo', 'html'],
+          blockTags: ['h3']
+        })
+      });
+  </script>
+<% end %>

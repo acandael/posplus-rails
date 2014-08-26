@@ -2,7 +2,7 @@
   <article>
     <h1><%= @researcher.fullname %></h1>
     <%= image_tag @researcher.image.url %>
-    <p><%= @researcher.bio %></p>
+    <p><%= sanitize @researcher.bio, tags: %w(strong i p h3 ul li) %></p>
     <% if @researcher.research_projects.any? %>
       <h2>Projects</h2>
       <ul>
