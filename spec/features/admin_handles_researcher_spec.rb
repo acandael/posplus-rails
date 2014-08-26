@@ -179,4 +179,12 @@ feature "Admin interacts with researcher" do
     @researcher.reload
     expect(@researcher.visible).to be_true 
   end
+
+  scenario 'Admin changes researcher from current to past' do
+    find("a[href='/admin/researchers/#{@researcher.id}/edit']").click 
+    uncheck 'Active'
+    click_button "Update Researcher"
+    @researcher.reload 
+    expect(@researcher.active).to be_false
+  end
 end

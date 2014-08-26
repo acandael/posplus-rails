@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController 
   def index
-    @researchers = Researcher.all.order(:last_name)
+    @current_researchers = Researcher.where(active: true).order(:last_name)
+    @past_researchers = Researcher.where(active: false).order(:last_name)
   end
 
   def show

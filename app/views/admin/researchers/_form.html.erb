@@ -1,6 +1,10 @@
 <%= form_for [:admin, @researcher], html: { multipart: true } do |f| %>
   <fieldset>
   <div>
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+  <div>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>

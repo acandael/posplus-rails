@@ -1,7 +1,7 @@
 section.people {
   @include outer-container;
   .lead {
-    margin-bottom: em(20);
+    margin-bottom: em(40);
     padding: .75em;
     background-color: white;
     @extend .box-shadow;
@@ -19,24 +19,31 @@ section.people {
     }
   }
 
-  .member {
+  .members {
     @include media($medium-screen) {
-      @include span-columns (3 of 12);
-      @include omega(4n);
+      @include span-columns(12);
     }
-    @include clearfix;
-    overflow: hidden;
-    background-color: white;
-    padding: em(10);
-    box-shadow: 0 1px 4px 1px #b4b6a9,2px 2px 1px 0 #fff inset;
     margin-bottom: em(20);
+    margin-top: em(20);
+    .member {
+      @include media($medium-screen) {
+        @include span-columns (3 of 12);
+        @include omega(4n);
+      }
+      @include clearfix;
+      overflow: hidden;
+      background-color: white;
+      padding: em(10);
+      box-shadow: 0 1px 4px 1px #b4b6a9,2px 2px 1px 0 #fff inset;
+      margin-bottom: em(20);
 
-    h5 {
-      font-size: 18px;
-      border-bottom: 1px solid #cfd1c6;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      text-align: center;
+      h5 {
+        font-size: 18px;
+        border-bottom: 1px solid #cfd1c6;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+      }
     }
   }
 }

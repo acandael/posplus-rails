@@ -3,8 +3,9 @@
     <h1>People</h1>
     <p>The Centre for Higher Education Governance Ghent is led by prof. Jeroen Huisman and employs seven researchers and has several affiliate members.</p>
   </div>
+  <h2>Current Researchers</h2>
   <div class="members">
-    <% @researchers.each do |researcher| %>
+    <% @current_researchers.each do |researcher| %>
       <% if researcher.visible? %>
         <div class="member">
           <%= link_to person_path(researcher) do %>
@@ -16,4 +17,20 @@
       <% end %>
     <% end %>
   </div>
+  <% if (@past_researchers.size > 0) %>
+    <h2>Past Researchers</h2>
+    <div class="members">
+      <% @past_researchers.each do |researcher| %>
+        <% if researcher.visible? %>
+          <div class="member">
+            <%= link_to person_path(researcher) do %>
+              <%= image_tag researcher.image.url(:thumb) %>
+            <% end %>
+            <h5><%= researcher.fullname %></h5>
+            <p><%= researcher.title %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </section>
