@@ -15,6 +15,11 @@ section.dashboard {
     input[type="text"].year, input[type="text"].series {
       width: em(100);
     }
+
+    input[type="text"].phone {
+      width: em(200);
+    }
+
     &.filter {
       label, select {
         display: inline;

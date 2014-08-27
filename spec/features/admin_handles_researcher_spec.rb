@@ -13,6 +13,7 @@ feature "Admin interacts with researcher" do
     @researcher.research_projects << project
     course = Fabricate(:course)
     @researcher.courses << course
+    @researcher.phone = "+32 (0)9 264 67 98"
     @researcher.save
 
     click_link @researcher.fullname
@@ -20,6 +21,7 @@ feature "Admin interacts with researcher" do
     expect(page).to have_css 'h1', text: @researcher.fullname
     expect(page).to have_css 'p', text: @researcher.bio
     expect(page).to have_css 'a', text: @researcher.email
+    expect(page).to have_css 'p', text: "+32 (0)9 264 67 98"
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'a', text: course.title
     expect(page).to have_css 'a', text: project.title
@@ -32,6 +34,7 @@ feature "Admin interacts with researcher" do
       fill_in 'Last name', with: "Doe"
       fill_in 'Bio', with: "this is the bio" 
       fill_in 'Email', with: "researcher@example.com" 
+      fill_in 'Phone', with: "+32 (0)9 264 67 98"
       attach_file 'Image', "spec/support/uploads/monk_large.jpg"
       click_button "Add Researcher"
     }.to change(Researcher, :count).by(1)
@@ -39,6 +42,7 @@ feature "Admin interacts with researcher" do
     expect((Researcher.last).last_name).to eq("Doe")
     expect((Researcher.last).bio).to eq("this is the bio")
     expect((Researcher.last).email).to eq("researcher@example.com")
+    expect((Researcher.last).phone).to eq("+32 (0)9 264 67 98")
     expect((Researcher.last).image.url).to eq("/uploads/researcher/image/#{Researcher.last.id}/monk_large.jpg")
     expect(page).to have_css 'p', text: "You successfully added a new researcher"
   end
@@ -85,11 +89,15 @@ feature "Admin interacts with researcher" do
     find("input[@id='researcher_first_name']").set("John")
     find("input[@id='researcher_last_name']").set("Doe")
     find("textarea[@id='researcher_bio']").set("John Doe's bio")
+    find("input[@id='researcher_email']").set("john.doe@example.com")
+    find("input[@id='researcher_phone']").set("+32 (0)9 264 67 98")
     click_button "Update Researcher"
     @researcher.reload
     expect(@researcher.first_name).to eq("John")
     expect(@researcher.last_name).to eq("Doe")
     expect(@researcher.bio).to eq("John Doe's bio")
+    expect(@researcher.email).to eq("john.doe@example.com")
+    expect(@researcher.phone).to eq("+32 (0)9 264 67 98")
     expect(page).to have_content "you successfully updated the researcher"
   end
 

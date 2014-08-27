@@ -25,6 +25,10 @@
     <%= f.email_field :email %>
   </div>
   <div>
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: "phone" %>
+  </div>
+  <div>
     <% if @researcher.image %>
       <%= image_tag @researcher.image.url(:thumb) %>
     <% end %>
