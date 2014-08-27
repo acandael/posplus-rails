@@ -6,8 +6,12 @@
     <p>
     <i class="fa fa-envelope"></i> <%= mail_to @researcher.email, @researcher.email %>
   <br />
-  <i class="fa fa-phone"></i> <%= @researcher.phone %><br />
-  <i class="fa fa-home"></i> <%= @researcher.address %>
+  <% if @researcher.phone.present? %>
+    <i class="fa fa-phone"></i> <%= @researcher.phone %><br />
+  <% end %>
+  <% if @researcher.address.present? %>
+    <i class="fa fa-home"></i> <%= @researcher.address %>
+  <% end %>
     </p>
     <p><%= sanitize @researcher.bio, tags: %w(strong i p h3 ul li) %></p>
     <% if @researcher.publications.any? %>
