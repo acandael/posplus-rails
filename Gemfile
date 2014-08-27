@@ -71,6 +71,8 @@ gem 'elasticsearch-model', '~> 0.1.4'
 gem 'elasticsearch-rails', '~> 0.1.4'
 gem 'bonsai-elasticsearch-rails'
 
+gem 'newrelic_rpm'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
