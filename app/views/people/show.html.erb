@@ -16,18 +16,16 @@
     <p><%= sanitize @researcher.bio, tags: %w(strong i p h3 ul li) %></p>
     <% if @researcher.publications.any? %>
       <h2>Latest Publications</h2>
-      <ul>
         <% @researcher.publications.latest.each do |publication| %>
-          <li><%= sanitize publication.body, tags: %w(strong i) %>
+          <p><%= sanitize publication.body, tags: %w(strong i) %>
               <% if publication.series.present? %>
                 ( <%= publication.series %> )
               <% end %>
               <% if publication.documents.size > 0 %>
                 (<%= link_to 'Download', publication_path(publication) %>)
               <% end %>
-        </li>
+        </p>
         <% end %>
-      </ul>
     <% end %>
     <% if @researcher.research_projects.any? %>
       <h2>Projects</h2>
@@ -38,7 +36,7 @@
       </ul>
     <% end %>
     <% if @researcher.courses.any? %>
-      <h2>Courses</h2
+      <h2>Courses</h2>
       <ul>
         <% @researcher.courses.each do |course| %>
           <li><%= course.title  %></li>
