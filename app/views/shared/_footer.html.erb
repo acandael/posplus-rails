@@ -3,27 +3,14 @@
     <%= image_tag 'logo-posplus.png' %>
   </div>
     <ul>
-      <li><a href="javascript:void(0)">About</a></li>
-      <li><a href="javascript:void(0)">Contact</a></li>
-      <li><a href="javascript:void(0)">Products</a></li>
+      <li><a href="javascript:void(0)">&copy <%= Time.now.year %> UGent</a></li>
+      <li><%= link_to "About", pages_about_path %></li>
+      <li><%= link_to "Contact", pages_contact_path %></li>
     </ul>
 
     <div class="footer-secondary-links">
       <ul>
-        <li><a href="javascript:void(0)">Terms and Conditions</a></li>
-        <li><a href="javascript:void(0)">Privacy Policy</a></li>
-      </ul>
-
-      <ul class="footer-social">
-        <li><a href="javascript:void(0)">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="">
-          </a></li>
-        <li><a href="javascript:void(0)">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="">
-        </a></li>
-        <li><a href="javascript:void(0)">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="">
-        </a></li>
+        <li><a href="http://www.ugent.be/en/disclaimer">Disclaimer</a></li>
       </ul>
     </div>
   </footer>
