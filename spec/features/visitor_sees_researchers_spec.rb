@@ -28,6 +28,7 @@ feature "Visitor interacts with people page and" do
     project = Fabricate(:research_project)
     @researcher.research_projects << project
     @researcher.phone = "+32 (0)9 264 67 98"
+    @researcher.address = "Korte Meer 3, 9000 Ghent, Belgium"
     @researcher.save
 
     visit people_path
@@ -40,6 +41,7 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'a', text: project.title
     expect(page).to have_css 'a', text: @researcher.email
     expect(page).to have_css 'p', text: "+32 (0)9 264 67 98"
+    expect(page).to have_css 'p', text: "Korte Meer 3, 9000 Ghent, Belgium"
   end
 
   scenario "visitor clicks research project link on researcher details page and goes to research project page" do

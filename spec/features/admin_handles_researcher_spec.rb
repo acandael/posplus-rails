@@ -14,6 +14,7 @@ feature "Admin interacts with researcher" do
     course = Fabricate(:course)
     @researcher.courses << course
     @researcher.phone = "+32 (0)9 264 67 98"
+    @researcher.address = "Korte Meer 3, 9000 Ghent, Belgium"
     @researcher.save
 
     click_link @researcher.fullname
@@ -22,6 +23,7 @@ feature "Admin interacts with researcher" do
     expect(page).to have_css 'p', text: @researcher.bio
     expect(page).to have_css 'a', text: @researcher.email
     expect(page).to have_css 'p', text: "+32 (0)9 264 67 98"
+    expect(page).to have_css 'p', text: "Korte Meer 3, 9000 Ghent, Belgium"
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'a', text: course.title
     expect(page).to have_css 'a', text: project.title
@@ -35,6 +37,7 @@ feature "Admin interacts with researcher" do
       fill_in 'Bio', with: "this is the bio" 
       fill_in 'Email', with: "researcher@example.com" 
       fill_in 'Phone', with: "+32 (0)9 264 67 98"
+      fill_in 'Address', with: "Korte Meer 2, 9000 Ghent Belgium"
       attach_file 'Image', "spec/support/uploads/monk_large.jpg"
       click_button "Add Researcher"
     }.to change(Researcher, :count).by(1)
@@ -43,6 +46,7 @@ feature "Admin interacts with researcher" do
     expect((Researcher.last).bio).to eq("this is the bio")
     expect((Researcher.last).email).to eq("researcher@example.com")
     expect((Researcher.last).phone).to eq("+32 (0)9 264 67 98")
+    expect((Researcher.last).address).to eq("Korte Meer 2, 9000 Ghent Belgium")
     expect((Researcher.last).image.url).to eq("/uploads/researcher/image/#{Researcher.last.id}/monk_large.jpg")
     expect(page).to have_css 'p', text: "You successfully added a new researcher"
   end

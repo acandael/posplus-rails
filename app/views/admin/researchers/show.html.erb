@@ -9,6 +9,10 @@
   <i class="fa fa-phone"></i> <%= @researcher.phone %></p>
   </section>
   <section>
+    <h3>Address</h3>
+    <p><%= @researcher.address %></p>
+  </section>
+  <section>
     <h3>Courses</h3>
     <ul>
       <% @researcher.courses.each do |course| %>
