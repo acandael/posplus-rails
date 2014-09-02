@@ -50,11 +50,12 @@ section.home {
         color: $light-gray;
 
 				@include media($large-screen) {
-					font-size: 1.8em;
+					font-size: 1.4em;
 				}
 			}
 
 			p {
+        font-family: $serif;
 				//margin: auto;
 				margin-bottom: 3em;	
 				font-weight: 200;
