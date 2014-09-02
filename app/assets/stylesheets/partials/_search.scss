@@ -1,4 +1,22 @@
 section.search {
+  .lead {
+    margin-bottom: em(40);
+    padding: .75em;
+    background-color: white;
+    @extend .box-shadow;
+    margin-top: em(20);
+    overflow: hidden;
+    h1 {
+      text-align: center;
+      margin-bottom: em(10);
+    }
+    @include media($medium-screen) {
+      @include span-columns(12);
+      margin-top: 0;
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+  }
 
 
   h1 {
