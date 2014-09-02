@@ -14,10 +14,12 @@ div.where {
   @include media($medium-screen) {
     @include span-columns(8);
     @include omega();
+    margin-top: 0;
   }
   margin-top: em(20);
   .accordion-tabs-minimal {
     $tab-border-color: $base-border-color;
+    margin-top: 0;
     h2 {
       font-size: $base-font-size * 1.2;
       @include media($medium-screen) {
@@ -71,6 +73,7 @@ div.where {
       font-weight: 400;
       padding: $base-line-height/2 $gutter;
 
+
       @include media($tab-mode) {
         @include inline-block;
         border-top: 0;
@@ -110,7 +113,7 @@ div.where {
         border-top: $tab-border;
         float: left;
         left: 0;
-        padding: $base-line-height/2 $gutter/2;
+        //padding: $base-line-height/2 $gutter/2;
 
         p {
           @include columns(2);
