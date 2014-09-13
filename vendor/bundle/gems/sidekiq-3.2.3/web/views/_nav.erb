@@ -1,0 +1,34 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid text-center">
+        <a class="navbar-brand" href="<%= root_path %>">
+          <%= Sidekiq::NAME %>
+          <%= erb :_status %>
+        </a>
+        <ul class="nav navbar-nav">
+          <% Sidekiq::Web.default_tabs.each do |title, url| %>
+              <% if url == '' %>
+                  <li class="<%= current_path == url ? 'active' : '' %>">
+                    <a href="<%= root_path %><%= url %>"><%= t(title) %></a>
+                  </li>
+              <% else %>
+                  <li class="<%= current_path.start_with?(url) ? 'active' : '' %>">
+                    <a href="<%= root_path %><%= url %>"><%= t(title) %></a>
+                  </li>
+              <% end %>
+          <% end %>
+          <% Sidekiq::Web.custom_tabs.each do |title, url| %>
+              <li class="<%= current_path.start_with?(url) ? 'active' : '' %>">
+                <a href="<%= root_path %><%= url %>"><%= t(title) %></a>
+              </li>
+          <% end %>
+        </ul>
+    </div>
+    <div class="poll-wrapper pull-right">
+        <%= erb :_poll %>
+        <% if Sidekiq::Web.app_url %>
+            <a class="btn btn-inverse" href="<%= Sidekiq::Web.app_url %>">Back to App</a>
+        <% end %>
+    </div>
+  </div>
+</div>

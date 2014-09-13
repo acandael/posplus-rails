@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.5'
 # Use PostGres as datastore
 gem 'pg'
 # Use SCSS for stylesheets
@@ -73,6 +73,12 @@ gem 'bonsai-elasticsearch-rails'
 
 gem 'newrelic_rpm'
 gem 'ruby-prof', '~> 0.15.1'
+
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

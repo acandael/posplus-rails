@@ -22,3 +22,10 @@ test:
   <<: *default
   database: posplus_test 
 
+production:
+  database: deploy 
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: deploy 
+  password: posplus
