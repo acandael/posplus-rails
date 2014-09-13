@@ -2,9 +2,9 @@ require 'capistrano-rbenv'
 
 set :application, 'posplus'
 set :repo_url, 'git@github.com:acandael/posplus-rails.git'
+set :branch, 'capistrano'
 
 set :deploy_to, '/home/deploy/posplus'
-set :branch, 'capistrano'
 
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
