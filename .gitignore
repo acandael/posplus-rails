@@ -30,3 +30,5 @@ tags
 /public/uploads/researcher/image/*/
 /public/uploads/research_theme/image/*/
 
+# Ignore secrets.yml
+/config/secrets.yml
