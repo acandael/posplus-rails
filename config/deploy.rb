@@ -2,7 +2,6 @@ require 'capistrano-rbenv'
 
 set :application, 'posplus'
 set :repo_url, 'git@github.com:acandael/posplus-rails.git'
-set :branch, 'capistrano'
 
 set :deploy_to, '/home/deploy/posplus'
 
