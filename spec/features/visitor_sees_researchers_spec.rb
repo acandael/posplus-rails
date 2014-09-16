@@ -37,7 +37,7 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'h1', text: @researcher.fullname
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
     expect(page).to have_css 'li', text: course.title
-    expect(page).to have_css 'li', text: publication.body
+    expect(page).to have_css 'p', text: publication.body
     expect(page).to have_css 'a', text: project.title
     expect(page).to have_css 'a', text: @researcher.email
     expect(page).to have_css 'p', text: "+32 (0)9 264 67 98"
