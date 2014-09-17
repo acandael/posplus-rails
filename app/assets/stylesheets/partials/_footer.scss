@@ -1,7 +1,7 @@
 .footer-2 {
-  $footer-background: desaturate(darken($base-accent-color, 20), 30);
-  $footer-color: white;
-  $footer-link-color: transparentize($footer-color, .6);
+  $footer-background: transparentize(white, 0.3); 
+  $footer-color: darken($medium-gray, 5); 
+  $footer-link-color: darken($medium-gray, 5); 
   $footer-disclaimer-color: transparentize($footer-color, .6);
 
   background: $footer-background;
@@ -45,7 +45,7 @@
     color: $footer-link-color;
 
     &:hover {
-      color: transparentize($footer-color, 0);
+      color: lighten($dark-gray, 10);
     }
   }
 
