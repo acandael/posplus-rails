@@ -31,5 +31,5 @@ tags
 /public/uploads/research_theme/image/*/
 
 # Ignore secrets 
-/config/database.yml
-/config/secrets.yml
+config/database.yml
+config/secrets.yml
