@@ -1,10 +1,3 @@
+<% breadcrumb :document, @publication %>
 <h1>Add Document</h1>
-<%= form_for [:admin, @publication, @document] do |f| %>
-  <fieldset>
-    <div>
-      <%= f.label :file %>
-      <%= f.file_field :file %>
-    </div>
-    <%= f.submit "Add Document" %>
-</fieldset>
-<% end %>
+<%= render "form" %>

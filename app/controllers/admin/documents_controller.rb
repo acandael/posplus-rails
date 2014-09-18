@@ -4,6 +4,10 @@ class Admin::DocumentsController < DashboardController
    @documents = Document.where(publication_id: params[:publication_id])
   end
 
+  def show
+    @document = Document.find(params[:id])
+  end
+
   def new
     @document = Document.new
     @publication = Publication.find(params[:publication_id])
@@ -16,6 +20,18 @@ class Admin::DocumentsController < DashboardController
     redirect_to admin_publication_documents_path(@document.publication_id)
   end
 
+  def edit
+    @document = Document.find(params[:id])
+    @publication = Publication.find(params[:publication_id])
+  end
+
+  def update
+    @document = Document.find(params[:id])
+    if @document.update_attributes(document_params)
+      redirect_to admin_publication_documents_path(@document.publication_id), notice: "You successfully updated the document"
+    end
+  end
+
   def destroy
    document = Document.find(params[:id])
    document.destroy
@@ -25,6 +41,6 @@ class Admin::DocumentsController < DashboardController
   private
 
   def document_params
-  params.require(:document).permit(:file, :publication_id)
+  params.require(:document).permit(:file, :description, :publication_id)
   end
 end

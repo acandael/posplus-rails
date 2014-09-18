@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       member do
         patch :hide
       end
-      resources :documents, only: [:index, :new, :create, :destroy]
+      resources :documents
     end
 
     resources :features

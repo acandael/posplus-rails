@@ -132,8 +132,13 @@ crumb :publication do |publication|
 end
 
 crumb :data do |publication|
-  link "Data", admin_publication_path(publication)
+  link "Data", admin_publication_documents_path(publication)
   parent :publication, publication
+end
+
+crumb :document do |publication|
+  link "Document"
+  parent :data, publication
 end
 
 crumb :features do

@@ -1,0 +1,7 @@
+<div class="panel">
+  <div class="content">
+    <h3><%= File.basename(@document.file.url, ".*") %></h3>
+    <p><%= link_to File.basename(@document.file.url), @document.file.url %>&nbsp;<i class="fa fa-download"></i></p>
+    <p><%= @document.description %></p>
+  </div>
+</div>

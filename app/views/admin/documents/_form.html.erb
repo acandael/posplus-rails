@@ -1,0 +1,20 @@
+<%= form_for [:admin, @publication, @document] do |f| %>
+  <fieldset>
+    <div>
+      <%= f.label :file %>
+      <%= f.file_field :file %>
+    </div>
+    <% if @document.file.present? %>
+      <%= link_to File.basename(@document.file.url), @document.file.url %>
+    <% end %>
+    <div>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+    <% if @document.new_record? %>
+      <%= f.button "Add Document", data: { disable_with: "<i class='fa fa-spinner fa-sin'></i> Adding Document ..." } %>
+    <% else %>
+      <%= f.button "Update Document", data: { disable_with: "<i class='fa fa-spinner fa-sin'></i> Updating Document ..." } %>
+    <% end %>
+</fieldset>
+<% end %>

@@ -9,7 +9,11 @@
           <h2>Datasets</h2>
           <ul>
             <% dataset.each do |document| %>
-              <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i></li>
+              <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i><br />
+                <% if document.description.present? %>
+                  (<%= document.description %>)
+                <% end %>
+              </li>
             <% end %>
           </ul>
         </div>

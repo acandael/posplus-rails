@@ -6,8 +6,8 @@
     <% if @documents.any? %>
       <% @documents.each do |document| %>
         <tr>
-            <td><%= link_to File.basename(document.file.url), document.file.url %>&nbsp;<i class="fa fa-download"></i></td>
-            <td><%= link_to "Delete", admin_publication_document_path(document.publication_id, document), method: :delete, data: { confirm: "Are you sure" } %></td>
+            <td><%= link_to File.basename(document.file.url, ".*"), admin_publication_document_path(@publication, document) %></td>
+            <td><%= link_to "Edit", edit_admin_publication_document_path(@publication.id, document) %>&nbsp;&nbsp;<%= link_to "Delete", admin_publication_document_path(document.publication_id, document), method: :delete, data: { confirm: "Are you sure" } %></td>
         </tr>
       <% end %>
     <% else %>
