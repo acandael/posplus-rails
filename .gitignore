@@ -11,13 +11,13 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+db/*.sqlite3
+db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
-/public/uploads/tmp
+log/*.log
+tmp
+public/uploads/tmp
 
 # Ingnore Tags file
 tags
@@ -26,9 +26,9 @@ tags
 *.swp
 
 # Ignore images
-/public/uploads/research_group/image/*/
-/public/uploads/researcher/image/*/
-/public/uploads/research_theme/image/*/
+public/uploads/research_group/image/*/
+public/uploads/researcher/image/*/
+public/uploads/research_theme/image/*/
 
 # Ignore secrets 
 config/database.yml
