@@ -1,14 +1,12 @@
 <% breadcrumb :news_item, @news_item %>
-<div class="panel">
-  <div class="content">
-  <h1><%= @news_item.title %></h1>
-  <p><%= @news_item.body %></p>
-  <% if @news_item.document.present? %>
-    <section>
-      <h3>Document</h3>
-      <p><%= link_to File.basename(@news_item.document.url), @news_item.document.url %><i class="fa fa-download right"></i></p>
-    <% end %>
-    </section>
-  </div>
-  <%= image_tag @news_item.image.url %>
+<div class="content">
+<h1><%= @news_item.title %></h1>
+<p><%= @news_item.body %></p>
+<% if @news_item.document.present? %>
+  <section>
+    <h3>Document</h3>
+    <p><%= link_to File.basename(@news_item.document.url), @news_item.document.url %><i class="fa fa-download right"></i></p>
+  <% end %>
+  </section>
 </div>
+<%= image_tag @news_item.image.url %>

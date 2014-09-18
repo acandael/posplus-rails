@@ -1,5 +1,9 @@
 <section>
   <article>
+    <div class="breadcrumbs">
+      <a href="/people">People</a>
+      <a href="/series"><%= @researcher.fullname %></a>
+    </div>
     <h1><%= @researcher.fullname %></h1>
     <%= image_tag @researcher.image.url %>
     <h2>Contact</h2>

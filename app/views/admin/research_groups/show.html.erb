@@ -1,8 +1,6 @@
 <% breadcrumb :research_group, @research_group %>
 <h1><%= @research_group.name %></h1>
-<div class="panel">
-  <div class="content">
-    <p> Website: <%= link_to  @research_group.website, @research_group.website  %></p>
-  </div>
-    <%= image_tag @research_group.image.url %>
+<div class="content">
+  <p> Website: <%= link_to  @research_group.website, @research_group.website  %></p>
 </div>
+<%= image_tag @research_group.image.url %>

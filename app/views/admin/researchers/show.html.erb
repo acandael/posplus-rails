@@ -1,5 +1,4 @@
 <% breadcrumb :researcher, @researcher %>
-<div class="panel">
   <div class="content">
   <h1><%= @researcher.fullname %></h1>
   <p><%= sanitize @researcher.bio, tags: %w(strong i p h3 ul li) %></p>
@@ -34,4 +33,3 @@
   </section>
 </div>
   <p><%= image_tag @researcher.image.url %>
-</div>

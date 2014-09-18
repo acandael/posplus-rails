@@ -1,63 +1,61 @@
 <% breadcrumb :publication, @publication %>
-<div class="panel">
-  <div class="content">
+<div class="content">
+  <section>
+    <h3>Publication</h3>
+    <p><%= @publication.title %></p>
+  </section>
+  <section>
+    <h3>Year of publication</h3>
+    <p><%= @publication.year %></p>
+  </section>
+  <section>
+    <h3>Series</h3>
+    <p>number <%= @publication.series %></p>
+  </section>
+  <section>
+    <h3>Category</h3>
+    <p><%= @publication.category.name %></p>
+  </section>
+  <section>
+    <h3>Reference</h3>
+    <p><%= raw @publication.body %></p>
+  </section>
+  <section>
+    <h3>Authors</h3>
+    <% if @publication.researchers.any? %>
+        <ul>
+          <% @publication.researchers.each do |researcher| %>
+            <li><%= link_to researcher.fullname, person_path(researcher) %></li>
+          <% end %>
+        </ul>
+    <% else %>
+        <ul>
+          <li>no researchers assigned</li>
+        </ul>
+    <% end %>
+  </section>
     <section>
-      <h3>Publication</h3>
-      <p><%= @publication.title %></p>
-    </section>
-    <section>
-      <h3>Year of publication</h3>
-      <p><%= @publication.year %></p>
-    </section>
-    <section>
-      <h3>Series</h3>
-      <p>number <%= @publication.series %></p>
-    </section>
-    <section>
-      <h3>Category</h3>
-      <p><%= @publication.category.name %></p>
-    </section>
-    <section>
-      <h3>Reference</h3>
-      <p><%= raw @publication.body %></p>
-    </section>
-    <section>
-      <h3>Authors</h3>
-      <% if @publication.researchers.any? %>
-          <ul>
-            <% @publication.researchers.each do |researcher| %>
-              <li><%= link_to researcher.fullname, person_path(researcher) %></li>
-            <% end %>
-          </ul>
+      <h3>Research Project</h3>
+      <% if @publication.research_projects.any? %>
+      <ul>
+        <% @publication.research_projects.each do |project| %>
+          <li><%= link_to project.title, admin_research_project_path(project) %></li>
+        <% end %>
+      </ul>
       <% else %>
-          <ul>
-            <li>no researchers assigned</li>
-          </ul>
+        <ul>
+          <li>no research projects assigned</li>
+        </ul>
       <% end %>
     </section>
-      <section>
-        <h3>Research Project</h3>
-        <% if @publication.research_projects.any? %>
-        <ul>
-          <% @publication.research_projects.each do |project| %>
-            <li><%= link_to project.title, admin_research_project_path(project) %></li>
-          <% end %>
-        </ul>
-        <% else %>
-          <ul>
-            <li>no research projects assigned</li>
-          </ul>
+  <% if @publication.documents.any? %>
+    <section>
+      <h3>Data</h3>
+      <ul>
+        <% @publication.documents.each do |document| %>
+          <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i></li>
         <% end %>
-      </section>
-    <% if @publication.documents.any? %>
-      <section>
-        <h3>Data</h3>
-        <ul>
-          <% @publication.documents.each do |document| %>
-            <li><%= link_to File.basename(document.file.url), document.file.url %><i class="fa fa-download right"></i></li>
-          <% end %>
-        </ul>
-      </section>
-    <% end %>
-  </div>
+      </ul>
+    </section>
+  <% end %>
 </div>

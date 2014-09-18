@@ -1,15 +1,13 @@
 <% breadcrumb :feature, @feature %>
-<div class="panel">
-  <div class="content">
-    <h1><%= @feature.title %></h1>
-    <div>
-      <h3>Bodytext</h3>
-      <%= @feature.body %>
-    </div>
-      <section>
-      <h3>Document</h3>
-      <p><%= link_to File.basename(@feature.document.url), @feature.document.url %><i class="fa fa-download right"></i></p>
-    </section>
+<div class="content">
+  <h1><%= @feature.title %></h1>
+  <div>
+    <h3>Bodytext</h3>
+    <%= @feature.body %>
   </div>
-  <%= image_tag @feature.image.url %>
+    <section>
+    <h3>Document</h3>
+    <p><%= link_to File.basename(@feature.document.url), @feature.document.url %><i class="fa fa-download right"></i></p>
+  </section>
 </div>
+<%= image_tag @feature.image.url %>

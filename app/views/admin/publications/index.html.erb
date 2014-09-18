@@ -1,18 +1,16 @@
 <% breadcrumb :publications %>
-<div class="panel">
-  <h1>Publications</h1>
-  <%= button_to "Add Publication", new_admin_publication_path, method: "get" %>
-  <%= form_tag admin_publications_path, method: "get", id: "filter", class: "filter" do %>
-    <%= label_tag "Category" %>
-    <%= select "publication", "category", options_for_select(options_for_categories, selected: @selected), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
+<h1>Publications</h1>
+<%= button_to "Add Publication", new_admin_publication_path, method: "get" %>
+<%= form_tag admin_publications_path, method: "get", id: "filter", class: "filter" do %>
+  <%= label_tag "Category" %>
+  <%= select "publication", "category", options_for_select(options_for_categories, selected: @selected), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
+<% end %>
+<table class="table-borders">
+  <% @publications.each do |publication| %>
+    <tr>
+      <td><%= link_to publication.title, admin_publication_path(publication) %></td>
+      <td><%= link_to "Edit", edit_admin_publication_path(publication) %>&nbsp;&nbsp;<%= link_to "Delete", admin_publication_path(publication), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp;&nbsp;
+        <%= link_to toggle_visibility(publication), hide_admin_publication_path(publication), method: :patch, remote: true, id: dom_id(publication) %>&nbsp;&nbsp;<%= link_to "Data", admin_publication_documents_path(publication) %></td>
+    </tr>
   <% end %>
-  <table class="table-borders">
-    <% @publications.each do |publication| %>
-      <tr>
-        <td><%= link_to publication.title, admin_publication_path(publication) %></td>
-        <td><%= link_to "Edit", edit_admin_publication_path(publication) %>&nbsp;&nbsp;<%= link_to "Delete", admin_publication_path(publication), method: :delete, data: { confirm: "Are you sure?" } %>&nbsp;&nbsp;
-          <%= link_to toggle_visibility(publication), hide_admin_publication_path(publication), method: :patch, remote: true, id: dom_id(publication) %>&nbsp;&nbsp;<%= link_to "Data", admin_publication_documents_path(publication) %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+</table>

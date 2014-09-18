@@ -1,5 +1,10 @@
 <section class="publications">
     <div class="documents">
+      <div class="breadcrumbs">
+        <a href="/publications">Publications</a>
+        <a href="/series">POS+ Publication Series</a>
+        <a href="javascript:void(0)">Archive</a>
+      </div>
       <h1>POS+ Publication Series Archive</h1>
       <h2><%= @year %></h2>
       <% if @archived_publications.any? { |p| p.category.name == "working_paper" } %>
