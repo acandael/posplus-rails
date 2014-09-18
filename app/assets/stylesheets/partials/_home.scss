@@ -9,7 +9,7 @@ section.home {
     }
 
 
-	$hero-background: desaturate(darken($base-accent-color, 20), 30);	
+	$hero-background: desaturate(lighten($purple, 5), 10);	
 	$hero-color: white;
 
 	background-color: $hero-background;
