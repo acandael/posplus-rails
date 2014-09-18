@@ -13,6 +13,10 @@
     <p><%= @researcher.address %></p>
   </section>
   <section>
+    <h3>Bibliography</h3>
+    <p><%= link_to @researcher.bibliography, @researcher.bibliography %></p>
+  </section>
+  <section>
     <h3>Courses</h3>
     <ul>
       <% @researcher.courses.each do |course| %>

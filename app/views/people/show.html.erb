@@ -27,6 +27,10 @@
         </p>
         <% end %>
     <% end %>
+    <% if @researcher.bibliography.present? %>
+      <h2>Bibliography</h2>
+      <p><%= link_to @researcher.bibliography, @researcher.bibliography %></p>
+    <% end %>
     <% if @researcher.research_projects.any? %>
       <h2>Projects</h2>
       <ul>

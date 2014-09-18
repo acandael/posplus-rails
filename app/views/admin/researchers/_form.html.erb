@@ -40,6 +40,10 @@
     <%= f.file_field :image %>
   </div>
   <div>
+    <%= f.label :bibliography %>
+    <%= f.text_field :bibliography %>
+  </div>
+  <div>
      <h3>Courses</h3>
      <%= f.collection_check_boxes :course_ids, Course.all, :id, :title do |b| %>
        <%= b.label() { b.check_box + b.text } %>

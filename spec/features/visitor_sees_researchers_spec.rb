@@ -29,6 +29,7 @@ feature "Visitor interacts with people page and" do
     @researcher.research_projects << project
     @researcher.phone = "+32 (0)9 264 67 98"
     @researcher.address = "Korte Meer 3, 9000 Ghent, Belgium"
+    @researcher.bibliography = "http://biblio.ugent.be"
     @researcher.save
 
     visit people_path
@@ -42,6 +43,7 @@ feature "Visitor interacts with people page and" do
     expect(page).to have_css 'a', text: @researcher.email
     expect(page).to have_css 'p', text: "+32 (0)9 264 67 98"
     expect(page).to have_css 'p', text: "Korte Meer 3, 9000 Ghent, Belgium"
+    expect(page).to have_css 'a', text: "http://biblio.ugent.be"
   end
 
   scenario "visitor clicks research project link on researcher details page and goes to research project page" do
