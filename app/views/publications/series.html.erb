@@ -5,7 +5,7 @@
       <section class="series">
         <h2>Working Papers</h2>
         <ul>
-          <% @publications.order('series ASC').each do |publication| %>
+          <% @current_publications.order('series ASC').each do |publication| %>
             <% if publication.category.name == "working_paper" %>
               <li><%= sanitize publication.body, tags: %w(strong i) %>
               <% if publication.series.present? %>
@@ -22,7 +22,7 @@
       <section class="series">
         <h2>Technical Reports</h2>
         <ul>
-          <% @publications.order('series ASC').each do |publication| %>
+          <% @current_publications.order('series ASC').each do |publication| %>
             <% if publication.category.name == "technical report" %>
               <li><%= sanitize publication.body, tags: %w(strong i) %>
               <% if publication.series.present? %>
