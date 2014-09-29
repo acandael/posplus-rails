@@ -39,8 +39,6 @@ describe "A researcher" do
     expect(researcher2.valid?).to be_false
     expect(researcher2.errors[:email].first).to eq("has already been taken")
   end
-  
-  
 end
 
 

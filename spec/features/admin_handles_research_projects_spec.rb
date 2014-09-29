@@ -33,15 +33,24 @@ feature "Admin interacts with research projects" do
     expect(page).to have_content "you successfully added a new research project"
   end
 
-  scenario 'Admin should not be able to add research project without title and body' do
+  scenario 'Admin should not be able to add research project without title' do
     expect{
       find("input[@value='Add Research Project']").click
       fill_in 'Title', with: "" 
-      fill_in 'Body', with: ""
       click_button "Add Research Project"
     }.not_to change(ResearchProject, :count).by(1)
     expect(page).to have_css 'h1', text: "Add new research project"
-    expect(page).to have_css 'p', text: "there was a problem, the research project was not added"
+    expect(page).to have_css 'p', text: "Title can't be blan"
+  end
+
+  scenario 'Admin should not be able to add research project without body' do
+    expect{
+      find("input[@value='Add Research Project']").click
+      fill_in 'Body', with: "" 
+      click_button "Add Research Project"
+    }.not_to change(ResearchProject, :count).by(1)
+    expect(page).to have_css 'h1', text: "Add new research project"
+    expect(page).to have_css 'p', text: "Body can't be blank"
   end
 
   scenario 'Admin edits research project' do
@@ -55,15 +64,20 @@ feature "Admin interacts with research projects" do
     expect(page).to have_content "you successfully updated the research project"
   end
 
-  scenario 'Admin should not be able to update research project without title or body' do
-    @research_project.title = "this is the edited title"
-    @research_project.body = ""
+  scenario 'Admin should not be able to update research project without title' do
     find("a[href='/admin/research_projects/#{@research_project.id}/edit']").click 
-    find("input[@id='research_project_title']").set(@research_project.title)
-    find("textarea[@id='research_project_body']").set(@research_project.body)
+    find("input[@id='research_project_title']").set("")
     click_button "Update Research Project"
-    expect(ResearchProject.find(@research_project.id).title).not_to eq("this is the edited title")
-    expect(page).to have_content "there was a problem, the research project could not be updated"
+    expect(ResearchProject.find(@research_project.id).title).not_to eq("")
+    expect(page).to have_content "Title can't be blank"
+  end
+
+  scenario 'Admin should not be able to update research project without body' do
+    find("a[href='/admin/research_projects/#{@research_project.id}/edit']").click 
+    find("textarea[@id='research_project_body']").set("")
+    click_button "Update Research Project"
+    expect(ResearchProject.find(@research_project.id).body).not_to eq("")
+    expect(page).to have_content "Body can't be blank"
   end
 
   scenario "Admin deletes research project" do

@@ -20,7 +20,7 @@ class Admin::ResearchProjectsController < DashboardController
     if @research_project.save
       redirect_to admin_research_projects_path, notice: "you successfully added a new research project"
     else
-      flash.alert = "there was a problem, the research project was not added"
+      flash[:alert] = @research_project.errors.full_messages.join(' ') 
       render :new
     end
   end
@@ -30,7 +30,7 @@ class Admin::ResearchProjectsController < DashboardController
     if @research_project.update_attributes(research_project_params)
     redirect_to admin_research_projects_path, notice: "you successfully updated the research project"
     else
-      flash.alert =  "there was a problem, the research project could not be updated"
+      flash[:alert] = @research_project.errors.full_messages.join(' ') 
       render :edit
     end
   end
