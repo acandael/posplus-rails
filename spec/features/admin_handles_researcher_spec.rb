@@ -19,7 +19,8 @@ feature "Admin interacts with researcher" do
     @researcher.save
 
     click_link @researcher.fullname
-
+    
+    expect(current_path).to eq admin_researcher_path(@researcher)
     expect(page).to have_css 'h1', text: @researcher.fullname
     expect(page).to have_css 'p', text: @researcher.bio
     expect(page).to have_css 'a', text: @researcher.email
@@ -44,6 +45,8 @@ feature "Admin interacts with researcher" do
       fill_in 'Bibliography', with: "https://biblio.ugent.be/publication?q=%22ronan+van+rossem"
       click_button "Add Researcher"
     }.to change(Researcher, :count).by(1)
+
+    expect(current_path).to eq admin_researchers_path
     expect((Researcher.last).first_name).to eq("John")
     expect((Researcher.last).last_name).to eq("Doe")
     expect((Researcher.last).bio).to eq("this is the bio")
@@ -55,7 +58,7 @@ feature "Admin interacts with researcher" do
     expect(page).to have_css 'p', text: "You successfully added a new researcher"
   end
 
-  scenario 'Admin should not be able to add research project without bio' do
+  scenario 'Admin should not be able to add researcher without bio' do
     expect{
       find("input[@value='Add Researcher']").click
       fill_in 'First name', with: "John"
