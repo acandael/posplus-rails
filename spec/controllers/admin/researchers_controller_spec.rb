@@ -55,6 +55,11 @@ describe Admin::ResearchersController do
       it "does not create a new researcher" do
         set_current_admin
          post :create, researcher: { first_name: "", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+         expect(Researcher.count).not_to eq(1)
+      end
+      it "renders the new template" do
+        set_current_admin
+         post :create, researcher: { first_name: "", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
          
          expect(response).to render_template :new
       end
@@ -84,7 +89,7 @@ describe Admin::ResearchersController do
     end
 
     context "with valid input" do
-      it "updates and existing record" do
+      it "updates an existing record" do
         set_current_admin
         @researcher = Fabricate(:researcher)
         patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "John", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
