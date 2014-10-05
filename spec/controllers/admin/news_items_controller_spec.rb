@@ -126,7 +126,7 @@ describe Admin::NewsItemsController do
         patch :update, id: @news_item.id, news_item: { title: "" }
         @news_item.reload 
 
-        expect(NewsItem.find(@news_items.id).title).not_to eq("")
+        expect(NewsItem.find(@news_item.id).title).not_to eq("")
       end
 
       it "renders the edit page" do
@@ -153,6 +153,10 @@ describe Admin::NewsItemsController do
     end
 
     it_behaves_like "require sign in" do
+      let(:action) { delete :destroy, id: @news_item }
+    end
+
+    it_behaves_like "require admin" do
       let(:action) { delete :destroy, id: @news_item }
     end
 
