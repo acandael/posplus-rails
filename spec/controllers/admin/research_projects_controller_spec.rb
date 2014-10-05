@@ -30,7 +30,7 @@ describe Admin::ResearchProjectsController do
       let(:action) { post :create }
     end
 
-    describe "with valid input" do
+    context "with valid input" do
       before do
         @research_theme1 = Fabricate(:research_theme)
         @research_theme2 = Fabricate(:research_theme)
