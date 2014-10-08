@@ -16,8 +16,13 @@ class Admin::DocumentsController < DashboardController
   def create
     @document = Document.create(document_params) 
     @document.publication_id = params[:publication_id]
-    @document.save
-    redirect_to admin_publication_documents_path(@document.publication_id)
+    if @document.save
+      redirect_to admin_publication_documents_path(@document.publication_id), notice: "A new document was added to the publication"
+    else
+      flash[:alert] = @document.errors.full_messages.join(' ')
+      @publication = Publication.find(params[:publication_id])
+      render :new
+    end
   end
 
   def edit
@@ -29,13 +34,15 @@ class Admin::DocumentsController < DashboardController
     @document = Document.find(params[:id])
     if @document.update_attributes(document_params)
       redirect_to admin_publication_documents_path(@document.publication_id), notice: "You successfully updated the document"
+    else
+      render :edit
     end
   end
 
   def destroy
    document = Document.find(params[:id])
    document.destroy
-   redirect_to admin_publication_documents_path(document.publication_id, document), notice: "You successfully deleted the document"
+   redirect_to admin_publication_documents_path(document.publication_id), notice: "You successfully deleted the document"
   end
 
   private

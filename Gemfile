@@ -33,6 +33,10 @@ gem 'rspec-rails', '~> 2.14.1'
   gem 'launchy'
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 gem 'fabrication'
 gem 'faker'
 
