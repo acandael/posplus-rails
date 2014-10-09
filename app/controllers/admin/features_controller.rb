@@ -38,7 +38,7 @@ class Admin::FeaturesController < DashboardController
   def destroy
     feature = Feature.find(params[:id])
     feature.destroy
-    redirect_to admin_features_path
+    redirect_to admin_features_path, notice: "You successfully deleted the feature"
   end
 
   private
