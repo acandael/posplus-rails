@@ -4,6 +4,7 @@ class Publication < ActiveRecord::Base
 
   validates :title, :body, :year, presence: true
   validates :year, numericality: true
+  validates_inclusion_of :year, :in => 1950..2050
   validates :series, numericality: true, allow_blank: true
   before_save :scrub_body
 

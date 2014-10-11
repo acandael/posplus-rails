@@ -1,6 +1,37 @@
 require 'spec_helper'
 
 describe Publication do
+  it "requires a title" do
+    publication = Fabricate(:publication)
+
+    publication.title = ""
+
+    expect(publication.valid?).to be_false
+  end
+
+  it "requires a bodytext" do
+    publication = Fabricate(:publication)
+
+    publication.body = ""
+
+    expect(publication.valid?).to be_false
+  end
+
+  it "requires a year" do
+    publication = Fabricate(:publication)
+
+    publication.year = nil 
+
+    expect(publication.valid?).to be_false
+  end
+
+  it "requires a valid year" do
+    publication = Fabricate(:publication)
+
+    publication.year = 899 
+
+    expect(publication.valid?).to be_false
+  end
   it "should return 3 latest publications" do
     publication1 = Fabricate(:publication)
     publication2 = Fabricate(:publication)
