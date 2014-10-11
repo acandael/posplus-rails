@@ -1,6 +1,33 @@
 require 'spec_helper'
 
 describe "A researcher" do
+  it "requires a first name" do
+    researcher = Fabricate(:researcher)
+    researcher.first_name = ""
+
+    expect(researcher.valid?).to be_false
+  end
+  it "requires a last name" do
+    researcher = Fabricate(:researcher)
+    researcher.last_name = ""
+
+    expect(researcher.valid?).to be_false
+  end
+  it "requires a unique combination of first and last name" do
+    researcher1 = Fabricate(:researcher)
+    researcher2 = Fabricate(:researcher)
+
+    researcher2.first_name = researcher1.first_name
+    researcher2.last_name = researcher1.last_name
+
+    expect(researcher2.valid?).to be_false
+  end
+  it "requires a bio" do
+    researcher = Fabricate(:researcher)
+    researcher.bio = ""
+
+    expect(researcher.valid?).to be_false
+  end
   it "requires an email" do
     researcher = Fabricate(:researcher)
     researcher.email = ""
