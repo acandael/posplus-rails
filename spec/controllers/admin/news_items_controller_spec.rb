@@ -32,14 +32,15 @@ describe Admin::NewsItemsController do
       it "creates a new research theme" do
         set_current_admin
 
-        post :create, news_item: { title: "news item 1", body: "this is the content" }
+        post :create, news_item: Fabricate.attributes_for(:news_item) 
+
         expect(NewsItem.count).to eq(1)
       end
 
       it "redirects to the news items page" do
         set_current_admin
 
-        post :create, news_item: { title: "news item 1", body: "this is the content" }
+        post :create, news_item: Fabricate.attributes_for(:news_item) 
         
         expect(response).to redirect_to admin_news_items_path
       end
@@ -47,7 +48,8 @@ describe Admin::NewsItemsController do
       it "sets the flash success message" do
         set_current_admin
 
-        post :create, news_item: { title: "news item 1", body: "this is the content" }
+        post :create, news_item: Fabricate.attributes_for(:news_item) 
+
         expect(flash[:notice]).to be_present
       end
     end
@@ -56,7 +58,7 @@ describe Admin::NewsItemsController do
       it "does not create a new news item" do
         set_current_admin
 
-        post :create, news_item: { title: "", body: "this is the content" }
+        post :create, news_item: Fabricate.attributes_for(:news_item, title: "") 
 
         expect(NewsItem.count).to eq(0)
       end
@@ -64,7 +66,7 @@ describe Admin::NewsItemsController do
       it "renders the :new template" do
         set_current_admin
 
-        post :create, news_item: { title: "", body: "this is the content" }
+        post :create, news_item: Fabricate.attributes_for(:news_item, title: "") 
 
         expect(response).to render_template :new
       end
@@ -72,7 +74,7 @@ describe Admin::NewsItemsController do
       it "sets the flash alert message" do
         set_current_admin
 
-        post :create, news_item: { title: "", body: "this is the content" }
+        post :create, news_item: Fabricate.attributes_for(:news_item, title: "") 
 
         expect(flash[:alert]).to be_present
       end
@@ -80,32 +82,31 @@ describe Admin::NewsItemsController do
   end
 
   describe "PUT#update" do
-    before do
-      @news_item = Fabricate(:news_item)
-    end
+
+    let(:news_item) { Fabricate(:news_item) }
 
     it_behaves_like "require sign in" do
-      let(:action) { patch :update, id: @news_item.id }
+      let(:action) { patch :update, id: news_item.id }
     end
 
     it_behaves_like "require admin" do
-      let(:action) { patch :update, id: @news_item.id }
+      let(:action) { patch :update, id: news_item.id }
     end
 
     context "with valid input" do
       it "updates an existing record" do
         set_current_admin
 
-        patch :update, id: @news_item.id, news_item: { title: "new title" }
-        @news_item.reload
+        patch :update, id: news_item.id, news_item: { title: "new title" }
+        news_item.reload
 
-        expect(NewsItem.find(@news_item.id).title).to eq("new title") 
+        expect(NewsItem.find(news_item.id).title).to eq("new title") 
       end
 
       it "sets a flash success message" do
         set_current_admin
         
-        patch :update, id: @news_item.id, news_item: { title: "new title" }
+        patch :update, id: news_item.id, news_item: { title: "new title" }
 
         expect(flash[:notice]).to be_present
       end
@@ -113,7 +114,7 @@ describe Admin::NewsItemsController do
       it "redirects to the news items index page" do
         set_current_admin
         
-        patch :update, id: @news_item.id, news_item: { title: "new title" }
+        patch :update, id: news_item.id, news_item: { title: "new title" }
 
         expect(response).to redirect_to admin_news_items_path
       end
@@ -123,16 +124,16 @@ describe Admin::NewsItemsController do
       it "does not update and existing record" do
         set_current_admin
         
-        patch :update, id: @news_item.id, news_item: { title: "" }
-        @news_item.reload 
+        patch :update, id: news_item.id, news_item: { title: "" }
+        news_item.reload 
 
-        expect(NewsItem.find(@news_item.id).title).not_to eq("")
+        expect(NewsItem.find(news_item.id).title).not_to eq("")
       end
 
       it "renders the edit page" do
         set_current_admin
         
-        patch :update, id: @news_item.id, news_item: { title: "" }
+        patch :update, id: news_item.id, news_item: { title: "" }
 
         expect(response).to render_template :edit
       end
@@ -140,7 +141,7 @@ describe Admin::NewsItemsController do
       it "sets a flash alert message" do
         set_current_admin
         
-        patch :update, id: @news_item.id, news_item: { title: "" }
+        patch :update, id: news_item.id, news_item: { title: "" }
 
         expect(flash[:alert]).to be_present
       end
@@ -148,22 +149,21 @@ describe Admin::NewsItemsController do
   end
 
   describe "DELETE #destroy" do
-    before do
-      @news_item = Fabricate(:news_item)
-    end
+
+    let(:news_item) { Fabricate(:news_item) }
 
     it_behaves_like "require sign in" do
-      let(:action) { delete :destroy, id: @news_item }
+      let(:action) { delete :destroy, id: news_item }
     end
 
     it_behaves_like "require admin" do
-      let(:action) { delete :destroy, id: @news_item }
+      let(:action) { delete :destroy, id: news_item }
     end
 
     it "deletes the researcher" do
       set_current_admin
 
-      delete :destroy, id: @news_item.id
+      delete :destroy, id: news_item.id
 
       expect(NewsItem.count).to eq(0)
     end
@@ -171,7 +171,7 @@ describe Admin::NewsItemsController do
     it "redirects to the admin news items page" do
       set_current_admin
 
-      delete :destroy, id: @news_item.id
+      delete :destroy, id: news_item.id
 
       expect(response).to redirect_to admin_news_items_path
     end
@@ -179,7 +179,7 @@ describe Admin::NewsItemsController do
     it "sets the flash message" do
       set_current_admin
 
-      delete :destroy, id: @news_item.id
+      delete :destroy, id: news_item.id
 
       expect(flash[:notice]).to be_present
     end

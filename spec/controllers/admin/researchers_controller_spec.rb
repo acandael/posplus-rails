@@ -32,20 +32,24 @@ describe Admin::ResearchersController do
     context "with valid input" do
        it "redirects to the admin researchers page" do
          set_current_admin
-         post :create, researcher: { first_name: "John", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+
+         post :create, researcher: Fabricate.attributes_for(:researcher) 
+
          expect(response).to redirect_to admin_researchers_path
        end
 
        it "creates a new researcher" do
          set_current_admin
-         post :create, researcher: { first_name: "John", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+
+         post :create, researcher: Fabricate.attributes_for(:researcher) 
 
          expect(Researcher.count).to eq(1)
        end
 
        it "sets the flash success message" do
          set_current_admin
-         post :create, researcher: { first_name: "John", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+
+         post :create, researcher: Fabricate.attributes_for(:researcher) 
 
          expect(flash[:notice]).to be_present
        end
@@ -54,26 +58,29 @@ describe Admin::ResearchersController do
     context "with invalid input" do
       it "does not create a new researcher" do
         set_current_admin
-         post :create, researcher: { first_name: "", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+         post :create, researcher: Fabricate.attributes_for(:researcher, first_name: "") 
          expect(Researcher.count).not_to eq(1)
       end
       it "renders the new template" do
         set_current_admin
-         post :create, researcher: { first_name: "", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+
+         post :create, researcher: Fabricate.attributes_for(:researcher, first_name: "") 
          
          expect(response).to render_template :new
       end
 
       it "sets the @ researcher variable" do
         set_current_admin
-        post :create, researcher: { first_name: "", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+
+        post :create, researcher: Fabricate.attributes_for(:researcher, first_name: "") 
 
         expect(assigns(:researcher)).to be_present
       end
 
       it "sets the flash alert message" do
         set_current_admin
-         post :create, researcher: { first_name: "", last_name: "Doe", bio: "some bio", email: "john.doe@ugent.be", title: "professor" }
+
+         post :create, researcher: Fabricate.attributes_for(:researcher, first_name: "")  
 
          expect(flash[:alert]).to be_present
       end
@@ -81,6 +88,9 @@ describe Admin::ResearchersController do
   end
 
   describe "PATCH#update" do
+
+    let(:researcher) { Fabricate(:researcher) }
+
     it_behaves_like "require sign in" do
       let(:action) { post :create }
     end
@@ -91,23 +101,26 @@ describe Admin::ResearchersController do
     context "with valid input" do
       it "updates an existing record" do
         set_current_admin
-        @researcher = Fabricate(:researcher)
-        patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "John", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
-        @researcher.reload
-        expect(Researcher.find(@researcher.id).first_name).to eq(@researcher.first_name)
+
+        patch :update, id: researcher.id, researcher: Fabricate.attributes_for(:researcher) 
+        researcher.reload
+
+        expect(Researcher.find(researcher.id).first_name).to eq(researcher.first_name)
       end
 
       it "sets a flash success message" do
         set_current_admin
-        @researcher = Fabricate(:researcher)
-        patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "John", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
+
+        patch :update, id: researcher.id, researcher: Fabricate.attributes_for(:researcher) 
+        
         expect(flash[:notice]).to be_present
       end
 
       it "redirects to the admin researchers page" do
         set_current_admin
-        @researcher = Fabricate(:researcher)
-        patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "John", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
+
+        patch :update, id: researcher.id, researcher: Fabricate.attributes_for(:researcher) 
+
         expect(response).to redirect_to admin_researchers_path
       end
     end
@@ -116,17 +129,15 @@ describe Admin::ResearchersController do
       it "does not update an existing record" do
         set_current_admin
 
-        @researcher = Fabricate(:researcher)
-        patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
+        patch :update, id: researcher.id, researcher: Fabricate.attributes_for(:researcher, first_name: "") 
 
-        expect(Researcher.find(@researcher.id).first_name).not_to eq("")
+        expect(Researcher.find(researcher.id).first_name).not_to eq("")
       end
 
       it "renders the :edit template" do
         set_current_admin
 
-        @researcher = Fabricate(:researcher)
-        patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
+        patch :update, id: researcher.id, researcher: Fabricate.attributes_for(:researcher, first_name: "") 
 
         expect(response).to render_template :edit
       end
@@ -134,8 +145,7 @@ describe Admin::ResearchersController do
       it "sets a flash error message" do
         set_current_admin
 
-        @researcher = Fabricate(:researcher)
-        patch :update, id: @researcher.id, researcher: { id: @researcher.id, first_name: "", last_name: "Doe", email: "john.doe@ugent.be", bio: "changed my bio" }
+        patch :update, id: researcher.id, researcher: Fabricate.attributes_for(:researcher, first_name: "") 
 
         expect(flash[:alert]).to be_present
       end
@@ -143,36 +153,36 @@ describe Admin::ResearchersController do
   end
 
   describe "DELETE #destroy" do
+
+    let(:researcher) { Fabricate(:researcher) }
+
     it_behaves_like "require sign in" do
-      let(:action) { post :create }
+      let(:action) { delete :destroy, id: researcher.id }
     end
     it_behaves_like "require admin" do
-      let(:action) { post :create }
+      let(:action) { delete :destroy, id: researcher.id }
     end
 
     it "redirects to the admin researchers page" do
       set_current_admin
-      @researcher = Fabricate(:researcher)
 
-      delete :destroy, id: @researcher.id
+      delete :destroy, id: researcher.id
 
       expect(response).to redirect_to admin_researchers_path
     end
 
     it "deletes the researcher" do
       set_current_admin
-      @researcher = Fabricate(:researcher)
 
-      delete :destroy, id: @researcher.id
+      delete :destroy, id: researcher.id
 
       expect(Researcher.count).to eq(0)
     end
 
     it "sets the flash message" do
       set_current_admin
-      @researcher = Fabricate(:researcher)
 
-      delete :destroy, id: @researcher.id
+      delete :destroy, id: researcher.id
       
       expect(flash[:notice]).to be_present
     end

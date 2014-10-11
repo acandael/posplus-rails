@@ -71,33 +71,31 @@ describe Admin::ResearchThemesController do
   end
 
   describe "PUT#update" do
-    before do
-      @research_theme = Fabricate(:research_theme)
-    end
+    let(:research_theme) { Fabricate(:research_theme) }
     it_behaves_like "require sign in" do
-      let(:action) { post :update, id: @research_theme.id }
+      let(:action) { post :update, id: research_theme.id }
     end
 
     it_behaves_like "require admin" do
-      let(:action) { post :update, id: @research_theme.id }
+      let(:action) { post :update, id: research_theme.id }
     end
 
     context "with valid input" do
       it "updates an existing record" do
         set_current_admin
-        put :update, id: @research_theme.id, research_theme: { id: @research_theme.id, title: "new title", description: @research_theme.description }
-        expect(ResearchTheme.find(@research_theme.id).title).to eq("new title")
+        put :update, id: research_theme.id, research_theme: { id: research_theme.id, title: "new title", description: research_theme.description }
+        expect(ResearchTheme.find(research_theme.id).title).to eq("new title")
       end
 
       it "sets a flash success message" do
         set_current_admin
-        put :update, id: @research_theme.id, research_theme: { id: @research_theme.id, title: "new title", description: @research_theme.description }
+        put :update, id: research_theme.id, research_theme: { id: research_theme.id, title: "new title", description: research_theme.description }
         expect(flash[:notice]).to be_present
       end
 
       it "redirects to the research themes index page" do
         set_current_admin
-        put :update, id: @research_theme.id, research_theme: { id: @research_theme.id, title: "new title", description: @research_theme.description }
+        put :update, id: research_theme.id, research_theme: { id: research_theme.id, title: "new title", description: research_theme.description }
         expect(response).to redirect_to admin_research_themes_path
       end
     end
@@ -105,19 +103,19 @@ describe Admin::ResearchThemesController do
     context "with invalid input" do
       it "does not update an existing record" do
         set_current_admin
-        put :update, id: @research_theme.id, research_theme: { id: @research_theme.id, title: "new title", description: nil }
-        expect(ResearchTheme.find(@research_theme.id).description).not_to eq("")
+        put :update, id: research_theme.id, research_theme: { id: research_theme.id, title: "new title", description: nil }
+        expect(ResearchTheme.find(research_theme.id).description).not_to eq("")
       end
 
       it "renders the edit page" do
         set_current_admin
-        put :update, id: @research_theme.id, research_theme: { id: @research_theme.id, title: "new title", description: nil }
+        put :update, id: research_theme.id, research_theme: { id: research_theme.id, title: "new title", description: nil }
         expect(response).to render_template :edit
       end
 
       it "set a flash alert message" do
         set_current_admin
-        put :update, id: @research_theme.id, research_theme: { id: @research_theme.id, title: "new title", description: nil }
+        put :update, id: research_theme.id, research_theme: { id: research_theme.id, title: "new title", description: nil }
         expect(flash[:alert]).to be_present
       end
     end
@@ -125,33 +123,31 @@ describe Admin::ResearchThemesController do
 
   describe "DELETE #destroy" do
 
-    before do
-      @research_theme = Fabricate(:research_theme)
-    end
+    let(:research_theme) { Fabricate(:research_theme) }
 
     it_behaves_like "require sign in" do
-      let(:action) { post :update, id: @research_theme.id }
+      let(:action) { post :update, id: research_theme.id }
     end
 
     it_behaves_like "require admin" do
-      let(:action) { post :update, id: @research_theme.id }
+      let(:action) { post :update, id: research_theme.id }
     end
 
     it "deletes the research theme" do
       set_current_admin
-      delete :destroy, id: @research_theme.id
+      delete :destroy, id: research_theme.id
       expect(ResearchTheme.count).to eq(0)
     end
 
     it "redirects to the admin research themes page" do
       set_current_admin
-      delete :destroy, id: @research_theme.id
+      delete :destroy, id: research_theme.id
       expect(response).to redirect_to admin_research_themes_path
     end
 
     it "set the flash message" do
       set_current_admin
-      delete :destroy, id: @research_theme.id
+      delete :destroy, id: research_theme.id
       expect(flash[:notice]).to be_present
     end
   end
