@@ -1,6 +1,22 @@
 require 'spec_helper'
 
 describe ResearchProject do
+  it "requires a title" do
+    research_project = Fabricate(:research_project)
+
+    research_project.title = ""
+
+    expect(research_project.valid?).to be_false
+  end
+
+  it "requires a bodytext" do
+    research_project = Fabricate(:research_project)
+
+    research_project.body = ""
+
+    expect(research_project.valid?).to be_false
+  end
+  
   it "should destroy research_theme dependency when destroyed" do
     research_project = Fabricate(:research_project)
     research_theme_1 = Fabricate(:research_theme)
