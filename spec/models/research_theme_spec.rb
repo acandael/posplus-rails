@@ -1,6 +1,22 @@
 require 'spec_helper'
 
 describe ResearchTheme do
+  it "requires a title" do
+    research_theme = Fabricate(:research_theme)
+
+    research_theme.title = ""
+
+    expect(research_theme.valid?).to be_false
+  end
+
+  it "requires a unique title" do
+    research_theme1 = Fabricate(:research_theme)
+    research_theme2 = Fabricate(:research_theme)
+
+    research_theme2.title = research_theme1.title 
+
+    expect(research_theme2.valid?).to be_false
+  end
   it "should not destroy itself if it has research projects" do
     research_theme = Fabricate(:research_theme)
     research_project = Fabricate(:research_project)
