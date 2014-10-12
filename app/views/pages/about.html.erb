@@ -1,11 +1,11 @@
 <section class="about">
   <h1>About POS+</h1>
-  <article class="about">
+  <article data-mh="row1" class="about">
     <h2>Mission Statement</h2>
     <p>The research group Participation, Opportunities, Structures (POS+) focusses its research on the multidimensional patters of participation and social exclusion in both current and past societies.</p>
     <p>Employing a wide range of methods, theoretical frameworks and sociological disciplines—from political sociology to ethnic studies and cultural sociology—POS+ studies the relation between various forms of participation and structural characteristics at the macro- as well as on the meso- and micro-levels. Recent macro-social transformations and processes, such as the evolutions towards a post-modern, post-industrial and globalized society characterized by an increasing individualization, a weakening of traditional community life, a (presumed) lowering of social capital, etc., encourages sociologists to reflect about how traditional forms of societal participation are gradually replaced by more post-modern forms of participation.</p>
   </article>
-  <aside>
+  <aside data-mh="row1">
     <h2>Affiliated Research Groups</h2>
     <% @research_groups.each do |research_group| %>
       <p><%= link_to research_group.name, research_group.website %></p>
