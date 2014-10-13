@@ -20,14 +20,16 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
-  <h3>Researchers</h3>
+  <div>
+     <%= f.label "Researchers" %>
      <%= f.collection_check_boxes :researcher_ids, Researcher.all.order(:last_name), :id, :fullname do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
+  </div>
   <div>
   </div>
-  <h3>Research Projects</h3>
   <div>
+     <%= f.label "Research Projects" %>
      <%= f.collection_check_boxes :research_project_ids, ResearchProject.all, :id, :title do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
