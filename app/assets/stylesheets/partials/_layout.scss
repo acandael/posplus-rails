@@ -237,7 +237,9 @@ form {
     margin-bottom: em(40);
   }
 
-  label { margin-top: em(20); }
+  label { 
+    margin-top: em(20); 
+  }
 
   label[for="researcher_active"] {
     display: inline;
@@ -252,5 +254,10 @@ form {
   a.cancel {
     vertical-align: middle;
   }
+
+  .error {
+    color: darken($error-color, 20);
+  }
+
 }
 
