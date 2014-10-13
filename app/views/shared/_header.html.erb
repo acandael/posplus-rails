@@ -18,7 +18,7 @@
       <div class="search-bar">
           <%= form_tag search_path, class: "search-and-submit", method: :get do %>
               <%= text_field_tag :q, params[:q], type: "search", placeholder: "Search publications, ..." %>
-              <button type="submit"><i class="fa fa-search"></i></button>
+              <button type="submit", class: "search-button"><i class="fa fa-search"></i></button>
           <% end %>
       </div>
       <% if current_user_admin? %>

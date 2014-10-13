@@ -232,7 +232,7 @@ html, body {
 
 // forms
 
-form {
+section.dashboard form {
   div:not(div#researcher_bio) {
     margin-bottom: em(40);
   }
@@ -250,6 +250,7 @@ form {
     margin-top: em(20);
     margin-right: em(20);
   }
+
   
   a.cancel {
     vertical-align: middle;
