@@ -39,7 +39,7 @@
   <% else %>
     <%= f.button "Update Publication", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Publication ..." } %>
   <% end %>
-  <%= link_to 'Cancel', admin_publications_path %>
+  <%= link_to 'Cancel', admin_publications_path, class: "cancel" %>
 </fieldset>
 <% end %>
 

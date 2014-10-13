@@ -20,5 +20,6 @@
   <% else %>
     <%= f.button "Update Research Theme", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Research Theme ..." } %>
   <% end %>
+  <%= link_to 'Cancel', admin_research_themes_path, class: "cancel" %>
   </fieldset>
 <% end %>

@@ -16,7 +16,7 @@
     <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
   </div>
   <div>
-     <h3>Research Themes</h3>
+     <%= f.label "Research Themes" %>
      <%= f.collection_check_boxes :research_theme_ids, ResearchTheme.all, :id, :title do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
