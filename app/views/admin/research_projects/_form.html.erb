@@ -1,4 +1,4 @@
-<%= form_for [:admin, @research_project], html: { multipart: true }  do |f| %>
+<%= form_for [:admin, @research_project], html: { id: "research-project-form", multipart: true }  do |f| %>
   <fieldset>
   <div>
     <%= f.label :title %>
@@ -28,4 +28,30 @@
   <% end %>
   <%= link_to 'Cancel', admin_research_projects_path %>
 </fieldset>
+<% end %>
+
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+          $("#research-project-form").validate({
+            debug: false,
+            onfocusout: true,
+            rules: {
+              "research_project[title]": { required: true},
+              "research_project[body]": { required: true}
+            },
+            messages: {
+              "research_project[title]": { required: "Title is required!" },
+              "research_project[body]": { required: "Body is required!"}
+            },
+            onfocusout: function (element) {
+              this.element(element);
+            },
+            onkeyup: function (element, event) {
+              this.element(element);
+            },
+            errorClass: 'error'
+        });
+      });
+  </script>
 <% end %>
