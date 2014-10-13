@@ -1,4 +1,4 @@
-<%= form_for [:admin, @research_group], html: { multipart: true } do |f| %>
+<%= form_for [:admin, @research_group], html: { id: "research-group-form", multipart: true } do |f| %>
   <fieldset>
     <div>
       <%= f.label :name %>
@@ -21,4 +21,30 @@
       <%= f.button "Update Affiliated Research Group", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Adding Affiliated Research Group ..." } %>
     <% end %>
   </fieldset>
+<% end %>
+
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+          $("#research-group-form").validate({
+            debug: false,
+            onfocusout: true,
+            rules: {
+              "research_group[name]": { required: true},
+              "research_group[website]": { url: true }
+            },
+            messages: {
+              "research_group[title]": { required: "Name is required!" },
+              "research_group[website]": { url: "This is not a valid link!" }
+            },
+            onfocusout: function (element) {
+              this.element(element);
+            },
+            onkeyup: function (element, event) {
+              this.element(element);
+            },
+            errorClass: 'error'
+        });
+      });
+  </script>
 <% end %>

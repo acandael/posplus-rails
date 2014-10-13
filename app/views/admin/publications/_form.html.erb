@@ -1,4 +1,4 @@
-<%= form_for [:admin, @publication] do |f| %>
+<%= form_for [:admin, @publication], html: { id: "publication-form" } do |f| %>
   <fieldset>
   <div>
     <%= f.label :title %>
@@ -46,6 +46,37 @@
 <% content_for :javascript do %>
   <script>
       $(function() {
+        $("#publication-form").validate({
+          debug: false,
+          onfocusout: true,
+          rules: {
+            "publication[title]": { required: true},
+            "publication[body]": { required: true},
+            "publication[year]": {
+              required: true,
+              number: true,
+              range: [1950, 2050]
+            },
+            "publication[series]": { number: true }
+          },
+          messages: {
+            "publication[title]": { required: "Title is required!" },
+            "publication[body]": { required: "Body is required!"},
+            "publication[year]": {
+              required: "Year is required",
+              number: "Year must be a number",
+              range: "Year must be between 1950 and 2050"
+            },
+            "publication[series]": { number: "Series must be a number" }
+          },
+          onfocusout: function (element) {
+            this.element(element);
+          },
+          onkeyup: function (element, event) {
+            this.element(element);
+          },
+          errorClass: 'error'
+        });
         $('#publication_body').editable({
           inlineMode: false,
 

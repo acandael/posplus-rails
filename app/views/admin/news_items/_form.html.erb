@@ -1,4 +1,4 @@
-<%= form_for [:admin, @news_item], html: { multipart: true }  do |f| %>
+<%= form_for [:admin, @news_item], html: { id: "news-item-form", multipart: true }  do |f| %>
   <fieldset>
     <div>
       <%= f.label :title %>
@@ -33,4 +33,32 @@
     <% end %>
     <%= link_to 'Cancel', admin_news_items_path %>
   </fieldset>
+<% end %>
+
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+          $("#news-item-form").validate({
+            debug: false,
+            onfocusout: true,
+            rules: {
+              "news_item[title]": { required: true},
+              "news_item[body]": { required: true},
+              "news_item[link]": { url: true }
+            },
+            messages: {
+              "news_item[title]": { required: "Title is required!" },
+              "news_item[body]": { required: "Body is required!"},
+              "news_item[link]": { url: "This is not a valid link" }
+            },
+            onfocusout: function (element) {
+              this.element(element);
+            },
+            onkeyup: function (element, event) {
+              this.element(element);
+            },
+            errorClass: 'error'
+        });
+      });
+  </script>
 <% end %>

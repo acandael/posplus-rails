@@ -1,4 +1,4 @@
-<%= form_for [:admin, @feature], html: { multipart: true }  do |f| %>
+<%= form_for [:admin, @feature], html: { id: "feature-form", multipart: true }  do |f| %>
   <fieldset>
     <div>
       <%= f.label :title %>
@@ -29,4 +29,30 @@
     <% end %>
     <%= link_to 'Cancel', admin_features_path %>
   </fieldset>
+<% end %>
+
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+          $("#feature-form").validate({
+            debug: false,
+            onfocusout: true,
+            rules: {
+              "feature[title]": { required: true},
+              "feature[body]": { required: true}
+            },
+            messages: {
+              "feature[title]": { required: "Title is required!" },
+              "feature[body]": { required: "Body is required!"}
+            },
+            onfocusout: function (element) {
+              this.element(element);
+            },
+            onkeyup: function (element, event) {
+              this.element(element);
+            },
+            errorClass: 'error'
+        });
+      });
+  </script>
 <% end %>

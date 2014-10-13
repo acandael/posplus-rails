@@ -1,4 +1,4 @@
-<%= form_for [:admin, @course] do |f| %>
+<%= form_for [:admin, @course], html: { id: "course-form" } do |f| %>
   <fieldset>
   <div>
     <%= f.label :title %>
@@ -11,4 +11,28 @@
   <% end %>
   <%= link_to 'Cancel', admin_courses_path %>
   </field>
+<% end %>
+
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+          $("#course-form").validate({
+            debug: false,
+            onfocusout: true,
+            rules: {
+              "course[title]": { required: true}
+            },
+            messages: {
+              "course[title]": { required: "Title is required!" },
+            },
+            onfocusout: function (element) {
+              this.element(element);
+            },
+            onkeyup: function (element, event) {
+              this.element(element);
+            },
+            errorClass: 'error'
+        });
+      });
+  </script>
 <% end %>
