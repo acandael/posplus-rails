@@ -44,13 +44,13 @@
     <%= f.text_field :bibliography %>
   </div>
   <div>
-     <h3>Courses</h3>
+     <%= f.label "Courses" %> 
      <%= f.collection_check_boxes :course_ids, Course.all, :id, :title do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
   </div>
   <div>
-     <h3>Research Projects</h3>
+     <%= f.label "Research Projects" %>
      <%= f.collection_check_boxes :research_project_ids, ResearchProject.all, :id, :title do |b| %>
        <%= b.label() { b.check_box + b.text } %>
      <% end %>
@@ -60,7 +60,7 @@
   <% else %>
     <%= f.button "Update Researcher", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating Researcher ..." } %>
   <% end %>
-  <%= link_to 'Cancel', admin_researchers_path %>
+  <%= link_to 'Cancel', admin_researchers_path, class: "cancel" %>
 </fieldset>
 <% end %>
 

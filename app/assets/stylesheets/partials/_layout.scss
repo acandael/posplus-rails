@@ -230,3 +230,27 @@ html, body {
   }
 }
 
+// forms
+
+form {
+  div:not(div#researcher_bio) {
+    margin-bottom: em(40);
+  }
+
+  label { margin-top: em(20); }
+
+  label[for="researcher_active"] {
+    display: inline;
+    margin-bottom: em(40);
+  }
+
+  button {
+    margin-top: em(20);
+    margin-right: em(20);
+  }
+  
+  a.cancel {
+    vertical-align: bottom;
+  }
+}
+
