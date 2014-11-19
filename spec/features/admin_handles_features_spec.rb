@@ -16,6 +16,11 @@ feature "Admin interacts with features" do
     visit admin_features_path
     page.should have_selector(:link_or_button, 'Add Feature')
   end
+  
+  scenario "Admin sees no items message when no features exists" do
+    visit admin_features_path
+    expect(page).to have_css 'p', text: "There are no features. Click 'Add Feature' to create one."
+  end
 
   scenario "Admin views features" do
     feature_item = Fabricate(:feature)

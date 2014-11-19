@@ -5,16 +5,20 @@
 <% end %>
 <table class="table-borders">
   <tbody>
-    <% @features.each do |feature| %>
-      <tr>
-        <td>
-          <%= link_to feature.title, admin_feature_path(feature) %>
-        </td>
-        <td>
-          <%= link_to "Edit", edit_admin_feature_path(feature) %>&nbsp;&nbsp;
-          <%= link_to "Delete", admin_feature_path(feature), method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
-      </tr>
+    <% if @features.count != 0 %>
+      <% @features.each do |feature| %>
+        <tr>
+          <td>
+            <%= link_to feature.title, admin_feature_path(feature) %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_admin_feature_path(feature) %>&nbsp;&nbsp;
+            <%= link_to "Delete", admin_feature_path(feature), method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <p class="no-items">There are no features. Click 'Add Feature' to create one.</p>     
     <% end %>
   </tbody>
 </table>

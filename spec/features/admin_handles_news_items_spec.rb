@@ -12,6 +12,12 @@ feature 'Admin interacts with news' do
     expect(page).to have_css 'td', text: @news_item.title
   end
 
+  scenario "Admin sees no items message when no items" do
+    @news_item.destroy
+    visit admin_news_items_path
+    expect(page).to have_css 'p', text: "There are no news items. Click 'Add News Item' to create one."
+  end
+
   scenario "Admin clicks news item link and views news item details" do
     click_link @news_item.title
     expect(page).to have_css 'h1', text: @news_item.title

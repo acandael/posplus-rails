@@ -36,7 +36,7 @@ describe "A user" do
     end
   end
 
-  it "accepts properly formatted email addresses" do
+  it "rejects badly formatted email addresses" do
     emails = %w[@ user@ @example.com]
     emails.each do |email|
       user = Fabricate(:user)

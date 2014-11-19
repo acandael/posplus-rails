@@ -7,6 +7,10 @@ section.dashboard {
     }
   }
 
+  .no-items {
+    float: left;
+  }
+
   form {
     @include span-columns(8);
     input[type="submit"]{

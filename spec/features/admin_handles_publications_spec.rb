@@ -11,6 +11,13 @@ feature 'Admin interacts with publications' do
     expect(page).to have_css 'td', text: @publication.title
   end
 
+  scenario 'admin sees no items message when no publications exist' do
+    @publication.destroy
+    visit admin_publications_path
+
+    expect(page).to have_css 'p', text: "There are no publications. Click 'Add Publication' to create one."
+  end
+
   scenario 'admin clicks publication and views publication details' do
     project = Fabricate(:research_project)
     @publication.research_projects << project

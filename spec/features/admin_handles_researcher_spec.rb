@@ -8,6 +8,16 @@ feature "Admin interacts with researcher" do
     visit admin_researchers_path
   end
 
+  scenario "Admin sees researchers" do
+    expect(page).to have_css 'td', text: "#{@researcher.first_name} #{@researcher.last_name}" 
+  end
+
+  scenario "Admin sees no items message when no researchers exists" do
+    @researcher.destroy
+    visit admin_researchers_path
+    expect(page).to have_css 'p', text: "There are no researchers. Click 'Add Researcher' to create one."
+  end
+
   scenario "Admin clicks researcher link and views researcher details" do
     project = Fabricate(:research_project)
     @researcher.research_projects << project

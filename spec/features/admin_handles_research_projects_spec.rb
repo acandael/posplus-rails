@@ -8,8 +8,15 @@ feature "Admin interacts with research projects" do
     sign_in(admin)
     visit admin_research_projects_path    
   end
+
   scenario "Admin views research projects" do
     expect(page).to have_content @research_project.title 
+  end
+
+  scenario "Admin sees no items message when no research projects exists" do
+    @research_project.destroy
+    visit admin_research_projects_path
+    expect(page).to have_css 'p', text: "There are no research projects. Click 'Add Research Project' to create one."
   end
 
   scenario "Admin clicks research project link and views research project details" do

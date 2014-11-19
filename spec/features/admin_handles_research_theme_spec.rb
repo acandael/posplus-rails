@@ -8,6 +8,12 @@ require 'spec_helper'
       visit admin_research_themes_path    
     end
 
+    scenario "Admin sees no items message when no research themes exists" do
+      @research_theme.destroy
+      visit admin_research_themes_path
+      expect(page).to have_css 'p', text: "There are no research themes. Click 'Add Research Theme' to create one."
+    end
+
     scenario "Admin views research themes" do
       expect(page).to have_content @research_theme.title
     end
