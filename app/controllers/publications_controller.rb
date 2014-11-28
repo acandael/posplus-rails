@@ -8,15 +8,13 @@ class PublicationsController < ApplicationController
   end
 
   def series
-    @current_publications = Publication.where('year = ?', Time.now.year)
-    publications = Publication.all
-    @publications_year = publications.order('year DESC').group_by { |p| p.year}
+    @current_publications = Publication.by_current_year
+    @publications_year = Publication.all.grouped_by_year  
   end
 
   def archive
-    publications = Publication.all
-    @publications_year = publications.order('year DESC').group_by { |p| p.year }
+    @publications_year = Publication.all.grouped_by_year 
     @year = params[:year]
-    @archived_publications = Publication.where('year = ?', @year)
+    @archived_publications = Publication.by_year(@year)
   end
 end
