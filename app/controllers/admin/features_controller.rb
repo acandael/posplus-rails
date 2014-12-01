@@ -27,7 +27,7 @@ class Admin::FeaturesController < DashboardController
 
   def update
     @feature = Feature.find(params[:id])
-    if @feature.update_attributes(feature_params)
+    if @feature.update(feature_params)
       redirect_to admin_features_path, notice: "You successfully updated the feature!"
     else
       flash[:alert] = @feature.errors.full_messages.join(' ')

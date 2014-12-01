@@ -28,7 +28,7 @@ class Admin::ResearchThemesController < DashboardController
 
   def update
     @research_theme = ResearchTheme.find(params[:id])
-    if @research_theme.update_attributes(research_theme_params)
+    if @research_theme.update(research_theme_params)
     redirect_to admin_research_themes_path, notice: "you successfully updated the research theme"
     else
       flash.alert = @research_theme.errors.full_messages.join(' ') 

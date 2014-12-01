@@ -28,7 +28,7 @@ class Admin::NewsItemsController < DashboardController
 
   def update
     @news_item = NewsItem.find(params[:id])
-    if @news_item.update_attributes(news_item_params)
+    if @news_item.update(news_item_params)
     redirect_to admin_news_items_path, notice: "You successfully updated the news item"
     else
       flash[:alert] = @news_item.errors.full_messages.join(' ')

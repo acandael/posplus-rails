@@ -32,7 +32,7 @@ class Admin::PublicationsController < DashboardController
 
   def update
     @publication = Publication.find(params[:id])
-    if @publication.update_attributes(publication_params)
+    if @publication.update(publication_params)
       redirect_to admin_publications_path, notice: "You successfully updated the publication"
     else
       flash[:alert] = @publication.errors.full_messages.join(' ')

@@ -27,7 +27,7 @@ class Admin::ResearchGroupsController < DashboardController
 
   def update
     @research_group = ResearchGroup.find(params[:id])
-    if @research_group.update_attributes(research_group_params)
+    if @research_group.update(research_group_params)
     redirect_to admin_research_groups_path, notice: "you successfully updated the research group"
     else
       flash[:alert] = @research_group.errors.full_messages.join(' ')

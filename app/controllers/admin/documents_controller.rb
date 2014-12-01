@@ -32,7 +32,7 @@ class Admin::DocumentsController < DashboardController
 
   def update
     @document = Document.find(params[:id])
-    if @document.update_attributes(document_params)
+    if @document.update(document_params)
       redirect_to admin_publication_documents_path(@document.publication_id), notice: "You successfully updated the document"
     else
       render :edit

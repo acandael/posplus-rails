@@ -27,7 +27,7 @@ class Admin::ResearchProjectsController < DashboardController
 
   def update
     @research_project = ResearchProject.find(params[:id])
-    if @research_project.update_attributes(research_project_params)
+    if @research_project.update(research_project_params)
     redirect_to admin_research_projects_path, notice: "you successfully updated the research project"
     else
       flash[:alert] = @research_project.errors.full_messages.join(' ') 
