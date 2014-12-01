@@ -3,6 +3,7 @@ class Researcher < ActiveRecord::Base
 
   scope :active, ->{ where(active: true).order(:last_name) }
   scope :not_active, ->{ where(active: false).order(:last_name) }
+  scope :by_last_name, ->{ order(:last_name) }
 
   validates :first_name, :last_name, presence: true
   validates :last_name, :uniqueness => { :scope => :first_name }

@@ -1,6 +1,6 @@
 class Admin::ResearchersController < DashboardController
   def index
-    @researchers = Researcher.all.order(:last_name)
+    @researchers = Researcher.all.by_last_name
   end
 
   def show
