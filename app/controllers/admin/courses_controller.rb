@@ -1,6 +1,6 @@
 class Admin::CoursesController < DashboardController
   def index
-    @courses = Course.all.order(:title)
+    @courses = Course.all.by_title
   end
 
   def show
