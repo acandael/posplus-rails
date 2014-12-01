@@ -1,7 +1,7 @@
 class Admin::DocumentsController < DashboardController
   def index
    @publication = Publication.find(params[:publication_id])
-   @documents = Document.where(publication_id: params[:publication_id])
+   @documents = Document.by_publication(params[:publication_id])
   end
 
   def show
