@@ -1,4 +1,7 @@
 class ResearchTheme < ActiveRecord::Base
+
+  scope :by_created_at, ->{ order('created_at DESC') }
+
   before_destroy :check_for_projects
   validates :title, presence: true, uniqueness: true
   validates :description, presence: true
