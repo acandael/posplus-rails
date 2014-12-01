@@ -1,6 +1,9 @@
 class Researcher < ActiveRecord::Base
   include Hideable
 
+  scope :active, ->{ where(active: true).order(:last_name) }
+  scope :not_active, ->{ where(active: false).order(:last_name) }
+
   validates :first_name, :last_name, presence: true
   validates :last_name, :uniqueness => { :scope => :first_name }
   validates :bio, presence: true
