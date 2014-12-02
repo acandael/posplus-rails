@@ -1,6 +1,7 @@
 <section class="researchthemes">
   <div class="bullets">
     <% @research_themes.each do |theme| %>
+      <% cache(theme) do %>
       <div class="bullet">
         <div class="bullet-icon bullet-icon-1">
           <%= image_tag theme.image.url(:thumb) %>
@@ -11,6 +12,7 @@
           <p><%= link_to 'Go to projects', research_theme_path(theme) %></p>
         </div>
       </div> 
+      <% end %>
     <% end %>
   </div>
 </section>

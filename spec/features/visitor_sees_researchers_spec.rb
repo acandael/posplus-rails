@@ -33,7 +33,7 @@ feature "Visitor interacts with people page and" do
     @researcher.save
 
     visit people_path
-    find("a[href='/people/#{@researcher.id}']").click
+    find("h5 a[href='/people/#{@researcher.id}']").click
 
     expect(page).to have_css 'h1', text: @researcher.fullname
     page.should have_xpath("//img[@src=\"/uploads/researcher/image/#{@researcher.id}/#{File.basename(@researcher.image.url)}\"]")
@@ -53,7 +53,7 @@ feature "Visitor interacts with people page and" do
 
     visit people_path
 
-    find("a[href='/people/#{@researcher.id}']").click
+    find("h5 a[href='/people/#{@researcher.id}']").click
     find("a[href='/research_projects/#{project.id}']").click
     expect(current_path).to eq("/research_projects/#{project.id}")
   end

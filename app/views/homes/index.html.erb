@@ -14,10 +14,12 @@
     <div class="news-inner">
       <h2>News</h2>
       <% @news.each do |newsitem| %>
-        <% if newsitem.visible? %>
-          <p><%= newsitem.created_at.strftime('%d %B %Y') %> <%= link_to newsitem.title, news_item_path(newsitem) %><br />
-        news summary
-          </p>
+        <% cache(newsitem) do %>
+          <% if newsitem.visible? %>
+            <p><%= newsitem.created_at.strftime('%d %B %Y') %> <%= link_to newsitem.title, news_item_path(newsitem) %><br />
+          news summary
+            </p>
+          <% end %>
         <% end %>
       <% end %>
     </div>
@@ -32,8 +34,10 @@
       <div class="bullet-content">
         <h2>Research Themes</h2>
         <% @research_themes.each do |theme| %>
-        <h3><%= link_to theme.title, research_theme_path(theme) %></h3>
-        <p><%= theme.description %></p>
+          <% cache(theme) do %>
+            <h3><%= link_to theme.title, research_theme_path(theme) %></h3>
+            <p><%= theme.description %></p>
+          <% end %>
         <% end %>
       </div>
     </div>  
@@ -43,13 +47,15 @@
         <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
       </div>
       <% @features.each do |feature| %>
-        <div class="bullet-content">
-          <h2><%= link_to feature.title, feature_path(feature) %></h2>
-          <p><%= feature.body %></p>
-          <% if feature.image.present? %>
-            <%= image_tag feature.image.url(:thumb) %>
-          <% end %>
-        </div>
+        <% cache(feature) do %>
+          <div class="bullet-content">
+            <h2><%= link_to feature.title, feature_path(feature) %></h2>
+            <p><%= feature.body %></p>
+            <% if feature.image.present? %>
+              <%= image_tag feature.image.url(:thumb) %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

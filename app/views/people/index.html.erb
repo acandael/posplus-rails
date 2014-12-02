@@ -6,25 +6,7 @@
   <h2>Current Researchers</h2>
   <div class="members">
     <% @current_researchers.each do |researcher| %>
-      <% if researcher.visible? %>
-        <div class="member">
-          <%= link_to person_path(researcher) do %>
-            <% if researcher.image.url.present? %>
-              <%= image_tag researcher.image.url(:thumb) %>
-            <% else %>
-              <%= image_tag 'member_placeholder.png' %>
-            <% end %>
-          <% end %>
-          <h5><%= researcher.fullname %></h5>
-          <p><%= researcher.title %></p>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <% if (@past_researchers.size > 0) %>
-    <h2>Past Researchers</h2>
-    <div class="members">
-      <% @past_researchers.each do |researcher| %>
+      <% cache(researcher) do %>
         <% if researcher.visible? %>
           <div class="member">
             <%= link_to person_path(researcher) do %>
@@ -34,9 +16,31 @@
                 <%= image_tag 'member_placeholder.png' %>
               <% end %>
             <% end %>
-            <h5><%= researcher.fullname %></h5>
+            <h5><%= link_to researcher.fullname, person_path(researcher) %></h5>
             <p><%= researcher.title %></p>
           </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <% if (@past_researchers.size > 0) %>
+    <h2>Past Researchers</h2>
+    <div class="members">
+      <% @past_researchers.each do |researcher| %>
+        <% cache(researcher) do %>
+          <% if researcher.visible? %>
+            <div class="member">
+              <%= link_to person_path(researcher) do %>
+                <% if researcher.image.url.present? %>
+                  <%= image_tag researcher.image.url(:thumb) %>
+                <% else %>
+                  <%= image_tag 'member_placeholder.png' %>
+                <% end %>
+              <% end %>
+              <h5><%= researcher.fullname %></h5>
+              <p><%= researcher.title %></p>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
