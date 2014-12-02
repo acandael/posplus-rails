@@ -37,7 +37,7 @@
                   <%= image_tag 'member_placeholder.png' %>
                 <% end %>
               <% end %>
-              <h5><%= researcher.fullname %></h5>
+              <h5><%= link_to researcher.fullname, person_path(researcher) %></h5>
               <p><%= researcher.title %></p>
             </div>
           <% end %>
