@@ -1,6 +1,6 @@
 class Admin::PublicationsController < DashboardController
   def index
-    if (params.has_key?(:publication) && (params[:publication][:category] != ""))
+    if category_present? 
       @publications = Publication.filter(params[:publication][:category])
       @selected = params[:publication].try(:[], :category)
     else
@@ -53,6 +53,10 @@ class Admin::PublicationsController < DashboardController
   end
   
   private
+
+  def category_present?
+    params.has_key?(:publication) && params[:publication][:category] != ""
+  end
 
   def publication_params
     params.require(:publication).permit(:title, :year, :category_id, :series, :body, :visible, :researcher_ids => [], :research_project_ids => [])
