@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
  
- scope :by_title, -> { order(:title) }
+ scope :by_created_at, ->{ order(created_at: :desc) }
 
  validates :title, presence: true, uniqueness: true
 

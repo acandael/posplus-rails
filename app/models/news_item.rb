@@ -1,6 +1,8 @@
 class NewsItem < ActiveRecord::Base
   include Hideable
 
+  scope :by_created_at, ->{ order(created_at: :desc) }
+
   validates :title, :body, presence: true
   validates :image, format: { :with => /\.(png|gif|jpg|jpeg)\z/i },
                       allow_blank: true
