@@ -1,6 +1,6 @@
 class Admin::ResearchGroupsController < DashboardController
   def index
-    @research_groups = ResearchGroup.all
+    @research_groups = ResearchGroup.all.by_name
   end
 
   def show
@@ -45,6 +45,6 @@ class Admin::ResearchGroupsController < DashboardController
   private
 
   def research_group_params
-    params.require(:research_group).permit(:name, :image, :website)
+    params.require(:research_group).permit(:name, :image, :remove_image, :website)
   end
 end

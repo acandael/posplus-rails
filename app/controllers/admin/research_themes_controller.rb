@@ -50,6 +50,6 @@ class Admin::ResearchThemesController < DashboardController
   private
 
   def research_theme_params
-    params.require(:research_theme).permit(:title, :description, :image)
+    params.require(:research_theme).permit(:title, :description, :image, :remove_image)
   end
 end

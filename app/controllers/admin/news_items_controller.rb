@@ -51,6 +51,6 @@ class Admin::NewsItemsController < DashboardController
   private
 
   def news_item_params
-    params.required(:news_item).permit(:title, :body, :image, :document, :link, :visible)
+    params.required(:news_item).permit(:title, :body, :image, :remove_image, :document, :link, :visible)
   end
 end

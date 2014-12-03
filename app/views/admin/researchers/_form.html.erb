@@ -33,8 +33,10 @@
     <%= f.text_area :address, size: "20x3" %>
   </div>
   <div>
-    <% if @researcher.image %>
+    <% if @researcher.image.present? %>
       <%= image_tag @researcher.image.url(:thumb) %>
+      <%= f.check_box :remove_image %>
+      remove image
     <% end %>
     <%= f.label :image %>
     <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>

@@ -9,8 +9,10 @@
     <%= f.text_area :body %>
   </div>
   <div>
-    <% if @research_project.image %>
+    <% if @research_project.image.present? %>
       <%= image_tag @research_project.image.url %>
+      <%= f.check_box :remove_image %>
+      remove image
     <% end %>
     <%= f.label :image %>
     <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>

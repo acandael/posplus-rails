@@ -2,6 +2,8 @@ class ResearchProject < ActiveRecord::Base
   include Closeable
   include Searchable
 
+  scope :by_created_at, ->{ order(:created_at) }
+
   validates :title, :body, presence: true
   validates :image, format: { :with => /\.(png|gif|jpg|jpeg)\z/i },
                       allow_blank: true

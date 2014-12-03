@@ -44,6 +44,6 @@ class Admin::FeaturesController < DashboardController
   private
 
   def feature_params
-    params.require(:feature).permit(:title, :body, :image, :document)
+    params.require(:feature).permit(:title, :body, :image, :remove_image, :document)
   end
 end

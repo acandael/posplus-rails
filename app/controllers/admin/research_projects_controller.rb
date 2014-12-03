@@ -1,6 +1,6 @@
 class Admin::ResearchProjectsController < DashboardController 
   def index
-    @research_projects = ResearchProject.all.order(:created_at)
+    @research_projects = ResearchProject.all.by_created_at
   end
 
   def show
@@ -51,6 +51,6 @@ class Admin::ResearchProjectsController < DashboardController
   private
 
   def research_project_params
-    params.require(:research_project).permit(:title, :body, :image, :active, :research_theme_ids => [])
+    params.require(:research_project).permit(:title, :body, :image, :remove_image, :active, :research_theme_ids => [])
   end
 end
