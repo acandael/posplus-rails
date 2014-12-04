@@ -7,12 +7,7 @@
   </article>
   <aside data-mh="row1">
     <h2>Affiliated Research Groups</h2>
-    <% @research_groups.each do |research_group| %>
-      <% cache(research_group) do %>
-        <p><%= link_to research_group.name, research_group.website %></p>
-        <%= image_tag research_group.image.url(:thumb) %> 
-      <% end %>
-    <% end %>
+    <%= render partial: "researchgroup", collection: @researchgroups %>
   </aside>
 </section>
 

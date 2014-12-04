@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def about
-    @research_groups = ResearchGroup.all
+    @researchgroups = ResearchGroup.all
   end
 
   def contact

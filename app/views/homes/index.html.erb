@@ -17,25 +17,25 @@
     </div>
   </div>
   <div class="research">
-  <div class="bullets">
-    <div class="bullet">
-      <div class="bullet-icon bullet-icon-1">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png
-  " alt="">
+    <div class="bullets">
+      <div class="bullet">
+        <div class="bullet-icon bullet-icon-1">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png
+    " alt="">
+        </div>
+        <div class="bullet-content">
+          <h2>Research Themes</h2>
+          <%= render partial: "researchtheme", collection: @researchthemes %>
+        </div>
+      </div>  
+          
+      <div class="bullet">
+        <div class="bullet-icon bullet-icon-2">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
+        </div>
+        <%= render partial: "feature", collection: @features %>
       </div>
-      <div class="bullet-content">
-        <h2>Research Themes</h2>
-        <%= render partial: "researchtheme", collection: @researchthemes %>
-      </div>
-    </div>  
-        
-    <div class="bullet">
-      <div class="bullet-icon bullet-icon-2">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
-      </div>
-      <%= render partial: "feature", collection: @features %>
     </div>
-  </div>
   </div>
 </section>
 
