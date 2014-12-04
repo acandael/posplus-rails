@@ -1,0 +1,7 @@
+<div class="bullet-content">
+  <h2><%= link_to feature.title, feature_path(feature) %></h2>
+  <p><%= feature.body %></p>
+  <% if feature.image.present? %>
+    <%= image_tag feature.image.url(:thumb) %>
+  <% end %>
+</div>

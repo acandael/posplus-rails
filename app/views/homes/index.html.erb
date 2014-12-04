@@ -33,17 +33,7 @@
       <div class="bullet-icon bullet-icon-2">
         <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
       </div>
-      <% @features.each do |feature| %>
-        <% cache(feature) do %>
-          <div class="bullet-content">
-            <h2><%= link_to feature.title, feature_path(feature) %></h2>
-            <p><%= feature.body %></p>
-            <% if feature.image.present? %>
-              <%= image_tag feature.image.url(:thumb) %>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
+      <%= render partial: "feature", collection: @features %>
     </div>
   </div>
   </div>
