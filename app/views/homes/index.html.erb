@@ -25,12 +25,7 @@
       </div>
       <div class="bullet-content">
         <h2>Research Themes</h2>
-        <% @research_themes.each do |theme| %>
-          <% cache(theme) do %>
-            <h3><%= link_to theme.title, research_theme_path(theme) %></h3>
-            <p><%= theme.description %></p>
-          <% end %>
-        <% end %>
+        <%= render partial: "researchtheme", collection: @researchthemes %>
       </div>
     </div>  
         
