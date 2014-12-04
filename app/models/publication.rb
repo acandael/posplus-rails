@@ -2,9 +2,10 @@ class Publication < ActiveRecord::Base
   include Hideable
   include Searchable
 
-  scope :by_year, ->(year){ where(year: year) }
-  scope :by_current_year, ->{ where(year: Time.now.year) } 
+  scope :year, ->(year){ where(year: year) }
+  scope :current_year, ->{ where(year: Time.now.year) } 
   scope :grouped_by_year, ->{ order(year: :desc).group_by { |p| p.year} }
+  scope :sort_by_series, ->{ order('series ASC') }
 
   validates :title, :body, :year, presence: true
   validates :year, numericality: true

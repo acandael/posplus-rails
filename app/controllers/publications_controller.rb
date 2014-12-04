@@ -8,13 +8,13 @@ class PublicationsController < ApplicationController
   end
 
   def series
-    @current_publications = Publication.by_current_year
+    @publications = Publication.current_year.sort_by_series
     @publications_year = Publication.all.grouped_by_year  
   end
 
   def archive
     @publications_year = Publication.all.grouped_by_year 
     @year = params[:year]
-    @archived_publications = Publication.by_year(params[:year])
+    @archived_publications = Publication.year(params[:year])
   end
 end

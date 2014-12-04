@@ -1,0 +1,10 @@
+<% if publication.category.name == category %>
+  <li><%= sanitize publication.body, tags: %w(strong i) %>
+    <% if publication.series.present? %>
+      ( <%= publication.series %> )
+    <% end %>
+    <% if publication.documents.size > 0 %>
+      <%= link_to 'Download', publication_path(publication) %>
+    <% end %>
+  </li>
+<% end %>
