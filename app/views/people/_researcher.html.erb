@@ -1,0 +1,13 @@
+<% if researcher.visible? %>
+  <div class="member">
+    <%= link_to person_path(researcher) do %>
+      <% if researcher.image.url.present? %>
+        <%= image_tag researcher.image.url(:thumb) %>
+      <% else %>
+        <%= image_tag 'member_placeholder.png' %>
+      <% end %>
+    <% end %>
+    <h5><%= link_to researcher.fullname, person_path(researcher) %></h5>
+    <p><%= researcher.title %></p>
+  </div>
+<% end %>
