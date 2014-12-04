@@ -1,19 +1,6 @@
 <section class="researchthemes">
   <div class="bullets">
-    <% @research_themes.each do |theme| %>
-      <% cache(theme) do %>
-      <div class="bullet">
-        <div class="bullet-icon bullet-icon-1">
-          <%= image_tag theme.image.url(:thumb) %>
-        </div>
-        <div class="bullet-content">
-          <h2><%= link_to theme.title, research_theme_path(theme) %></h2>
-          <p><%= theme.description %></p>
-          <p><%= link_to 'Go to projects', research_theme_path(theme) %></p>
-        </div>
-      </div> 
-      <% end %>
-    <% end %>
+    <%= render partial: "researchtheme", collection: @researchthemes %>
   </div>
 </section>
 

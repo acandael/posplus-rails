@@ -1,5 +1,5 @@
 class ResearchController < ApplicationController
   def index
-    @research_themes = ResearchTheme.all
+    @researchthemes = ResearchTheme.all
   end
 end
