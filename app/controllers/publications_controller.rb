@@ -15,6 +15,6 @@ class PublicationsController < ApplicationController
   def archive
     @publications_year = Publication.all.grouped_by_year 
     @year = params[:year]
-    @archived_publications = Publication.year(params[:year])
+    @archived_publications = Publication.year(params[:year]).sort_by_series
   end
 end

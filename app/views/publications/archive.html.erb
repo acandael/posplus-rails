@@ -11,18 +11,7 @@
       <section class="series">
         <h2>Working Papers</h2>
         <ul>
-          <% @archived_publications.order('series ASC').each do |publication| %>
-            <% if publication.category.name == "working_paper" %>
-              <li><%= sanitize publication.body, tags: %w(strong i) %>
-              <% if publication.series.present? %>
-                ( <%= publication.series %> )
-              <% end %>
-              <% if publication.documents.size > 0 %>
-                (<%= link_to 'Download', publication_path(publication) %>)
-              <% end %>
-              </li>
-            <% end %>
-          <% end %>
+          <%= render partial: "publication", collection: @archived_publications, locals: { category: "working_paper" } %>
         </ul>
       </section>
       <% end %>
@@ -30,19 +19,7 @@
         <section class="series">
           <h2>Technical Reports</h2>
           <ul>
-            <% @archived_publications.order('series ASC').each do |publication| %>
-              <% if publication.category.name == "technical report" %>
-                <li><%= sanitize publication.body, tags: %w(strong i) %>
-                <% if publication.series.present? %>
-                  ( <%= publication.series %> )
-                <% end %>
-
-                <% if publication.documents.size > 0 %>
-                  (<%= link_to 'Download', publication_path(publication) %>)
-                <% end %>
-  </li>
-              <% end %>
-            <% end %>
+            <%= render partial: "publication", collection: @archived_publications, locals: { category: "technical report" } %>
           </ul>
         </section>
       <% end %>
