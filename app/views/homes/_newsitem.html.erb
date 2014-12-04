@@ -1,0 +1,5 @@
+<% if newsitem.visible? %>
+  <p><%= newsitem.created_at.strftime('%d %B %Y') %> <%= link_to newsitem.title, news_item_path(newsitem) %><br />
+news summary
+  </p>
+<% end %>

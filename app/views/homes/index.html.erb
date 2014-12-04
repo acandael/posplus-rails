@@ -13,15 +13,7 @@
   <div class="news block">
     <div class="news-inner">
       <h2>News</h2>
-      <% @news.each do |newsitem| %>
-        <% cache(newsitem) do %>
-          <% if newsitem.visible? %>
-            <p><%= newsitem.created_at.strftime('%d %B %Y') %> <%= link_to newsitem.title, news_item_path(newsitem) %><br />
-          news summary
-            </p>
-          <% end %>
-        <% end %>
-      <% end %>
+      <%= render partial: "newsitem", collection: @newsitems %>
     </div>
   </div>
   <div class="research">
