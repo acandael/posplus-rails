@@ -33,6 +33,14 @@ section.about {
         font-size: $base-font-size * 2;
       }
     }
+
+    ul {
+      @extend %default-ul;
+    }
+
+    li {
+      line-height: 1.5em;
+    }
   }
   aside {
     margin-top: em(20);

@@ -33,14 +33,13 @@ section.home {
 		margin: auto;
 		text-align: left;
 		color: $hero-color;
-    background: image-url('belfort.png') no-repeat;
+    background: image-url('indignadis.jpg') no-repeat;
     background-size: cover; 
 		button {
 			@include button(simple, $base-accent-color);
 			font-size: $base-font-size;
 			outline: none;
 		}
-
 		.hero-copy {
 			text-align: left;
 			
