@@ -121,6 +121,11 @@ html, body {
   }
 }
 
+// Fix for border around linked images in IE
+a > img {
+  border: none;
+}
+
 .footer-2, .push {
   height: 17em;
   @include media($large-screen) {
