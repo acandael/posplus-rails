@@ -89,6 +89,9 @@ header.navigation {
 
   ul li {
     background: $navigation-background;
+    @include media($small-screen) {
+      background: white;
+    }
     display: block;
     line-height: $navigation-height;
     overflow: hidden;

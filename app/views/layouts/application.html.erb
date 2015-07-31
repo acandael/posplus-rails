@@ -23,5 +23,20 @@
 </div>
 <%= render "shared/footer" %>
 <%= yield(:javascript) %>
+<script>
+$(document).ready(function() {
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('navigation-menu').removeClass("show");
+
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#navigation-menu').slideToggle(function(){
+      if($('#navigation-menu').is(':hidden')) {
+        $('navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
